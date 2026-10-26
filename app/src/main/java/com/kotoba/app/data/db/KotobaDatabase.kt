@@ -6,13 +6,10 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
+import androidx.room.migration.Migration
 import androidx.sqlite.db.SupportSQLiteDatabase
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
-import com.kotoba.app.data.model.ExampleSentence
-import com.kotoba.app.data.model.FormulaRule
-import com.kotoba.app.data.model.GrammarConverters
-import com.kotoba.app.data.model.GrammarEntity
 import com.kotoba.app.data.model.WordConverters
 import com.kotoba.app.data.model.WordEntity
 import kotlinx.coroutines.CoroutineScope
@@ -20,12 +17,11 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.io.InputStreamReader
 
-@Database(entities = [WordEntity::class, GrammarEntity::class], version = 3, exportSchema = false)
-@TypeConverters(WordConverters::class, GrammarConverters::class)
+@Database(entities = [WordEntity::class], version = 4, exportSchema = false)
+@TypeConverters(WordConverters::class)
 abstract class KotobaDatabase : RoomDatabase() {
 
     abstract fun wordDao(): WordDao
-    abstract fun grammarDao(): GrammarDao
 
     fun checkAndSeedData(context: Context, scope: CoroutineScope) {
         scope.launch(Dispatchers.IO) {
@@ -43,6 +39,18 @@ abstract class KotobaDatabase : RoomDatabase() {
         @Volatile
         private var INSTANCE: KotobaDatabase? = null
 
+        /**
+         * Non-destructive migration from v3 -> v4:
+         * Drops the removed grammar table and adds firstStudiedAt to words while preserving 100% of FSRS progress.
+         */
+        private val MIGRATION_3_4 = object : Migration(3, 4) {
+            override fun migrate(db: SupportSQLiteDatabase) {
+                db.execSQL("DROP TABLE IF EXISTS grammar")
+                db.execSQL("ALTER TABLE words ADD COLUMN firstStudiedAt INTEGER NOT NULL DEFAULT 0")
+                db.execSQL("UPDATE words SET firstStudiedAt = lastReview WHERE state != 'new' AND lastReview > 0")
+            }
+        }
+
         fun getDatabase(context: Context, scope: CoroutineScope): KotobaDatabase {
             return INSTANCE ?: synchronized(this) {
                 val instance = Room.databaseBuilder(
@@ -50,12 +58,13 @@ abstract class KotobaDatabase : RoomDatabase() {
                     KotobaDatabase::class.java,
                     "kotoba_database"
                 )
+                    .addMigrations(MIGRATION_3_4)
                     .fallbackToDestructiveMigration()
                     .addCallback(DatabaseCallback(context, scope))
                     .build()
                 INSTANCE = instance
 
-                // Smart sync: adds any new words/grammar while preserving user progress
+                // Smart sync: adds new N5-N3 words while preserving user FSRS progress
                 instance.checkAndSeedData(context, scope)
 
                 instance
@@ -87,16 +96,15 @@ abstract class KotobaDatabase : RoomDatabase() {
 
         /**
          * Smart Non-Destructive Sync:
-         * Loads all vocabulary and grammar from assets, preserves any existing FSRS study state
-         * and grammar mastery flags, and inserts/updates the full curriculum.
+         * Loads all JLPT N5, N4, and N3 vocabulary from assets, preserves existing FSRS study state
+         * and firstStudiedAt timestamps, and inserts/updates the full library.
          */
         suspend fun populateInitialData(context: Context, database: KotobaDatabase) {
             try {
                 val gson = Gson()
-
-                // 1. Smart Sync Vocabulary N5 & N4
                 val existingWordsMap = database.wordDao().getAllWordsOnce().associateBy { it.id }
-                context.assets.open("data/vocab_n5_n4.json").use { stream ->
+
+                context.assets.open("data/vocab_n5_n3.json").use { stream ->
                     val reader = InputStreamReader(stream, Charsets.UTF_8)
                     val rawListType = object : TypeToken<List<RawWordJson>>() {}.type
                     val rawWords: List<RawWordJson> = gson.fromJson(reader, rawListType)
@@ -118,7 +126,6 @@ abstract class KotobaDatabase : RoomDatabase() {
                             exampleTh = raw.exampleTh,
                             exampleEn = raw.exampleEn,
                             note = raw.note,
-                            // Preserve user FSRS progress if already studied
                             state = existing?.state ?: "new",
                             stability = existing?.stability ?: 0.0,
                             difficulty = existing?.difficulty ?: 0.0,
@@ -128,43 +135,15 @@ abstract class KotobaDatabase : RoomDatabase() {
                             lapses = existing?.lapses ?: 0,
                             lastReview = existing?.lastReview ?: 0L,
                             nextReview = existing?.nextReview ?: 0L,
-                            isSuspended = existing?.isSuspended ?: false
+                            isSuspended = existing?.isSuspended ?: false,
+                            firstStudiedAt = existing?.firstStudiedAt ?: 0L
                         )
                     }
                     database.wordDao().insertAll(mergedWords)
-                    Log.d(TAG, "Successfully synced ${mergedWords.size} vocabulary items.")
-                }
-
-                // 2. Smart Sync Grammar Foundations, N5 & N4
-                val existingGrammarMap = database.grammarDao().getAllGrammarOnce().associateBy { it.id }
-                context.assets.open("data/grammar_n5_n4.json").use { stream ->
-                    val reader = InputStreamReader(stream, Charsets.UTF_8)
-                    val rawListType = object : TypeToken<List<RawGrammarJson>>() {}.type
-                    val rawGrammar: List<RawGrammarJson> = gson.fromJson(reader, rawListType)
-                    val mergedGrammar = rawGrammar.map { raw ->
-                        val existing = existingGrammarMap[raw.id]
-                        GrammarEntity(
-                            id = raw.id,
-                            title = raw.title,
-                            lvl = raw.lvl,
-                            groupName = raw.group,
-                            meanTh = raw.meanTh,
-                            meanEn = raw.meanEn,
-                            formulaJson = gson.toJson(raw.formula),
-                            nuanceTh = raw.nuanceTh,
-                            nuanceEn = raw.nuanceEn,
-                            examplesJson = gson.toJson(raw.examples),
-                            quizQuestion = raw.quizQuestion,
-                            quizChoicesJson = gson.toJson(raw.quizChoices),
-                            quizAnswer = raw.quizAnswer,
-                            isMastered = existing?.isMastered ?: false
-                        )
-                    }
-                    database.grammarDao().insertAll(mergedGrammar)
-                    Log.d(TAG, "Successfully synced ${mergedGrammar.size} grammar items.")
+                    Log.d(TAG, "Synced ${mergedWords.size} vocabulary items (N5-N3)")
                 }
             } catch (e: Exception) {
-                Log.e(TAG, "Error populating initial data", e)
+                Log.e(TAG, "Error seeding Kotoba database", e)
             }
         }
     }
@@ -185,21 +164,5 @@ data class RawWordJson(
     val exampleJp: String,
     val exampleTh: String,
     val exampleEn: String,
-    val note: String? = null
-)
-
-data class RawGrammarJson(
-    val id: String,
-    val title: String,
-    val lvl: String,
-    val group: String,
-    val meanTh: String,
-    val meanEn: String,
-    val formula: List<FormulaRule>,
-    val nuanceTh: String,
-    val nuanceEn: String,
-    val examples: List<ExampleSentence>,
-    val quizQuestion: String? = null,
-    val quizChoices: List<String>? = null,
-    val quizAnswer: Int = 0
+    val note: String?
 )

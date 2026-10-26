@@ -3318,5 +3318,2861 @@
     "exampleTh": "ประทับใจกับการบรรเลงดนตรีที่ยอดเยี่ยมมาก",
     "exampleEn": "Was moved by the wonderful musical performance.",
     "note": "คำชมระดับสูง ใช้ได้ทั้งกับผลงาน วิวทิวทัศน์ และความคิด"
+  },
+  {
+    "id": 111,
+    "kanji": "影響",
+    "kana": "えいきょう",
+    "ruby": [
+      [
+        "影",
+        "えい"
+      ],
+      [
+        "響",
+        "きょう"
+      ]
+    ],
+    "meanTh": "ผลกระทบ, อิทธิพล",
+    "meanEn": "influence, effect",
+    "pos": "คำนาม / กริยา する",
+    "lvl": "N3",
+    "morae": [
+      "え",
+      "い",
+      "きょ",
+      "う"
+    ],
+    "dropMora": 0,
+    "pitchPattern": "平板 [0]",
+    "exampleJp": "天気が計画に大きく影響した。",
+    "exampleTh": "สภาพอากาศส่งผลกระทบต่อแผนการอย่างมาก",
+    "exampleEn": "The weather greatly affected the plan.",
+    "note": "ใช้คู่กับ 〜に影響を与える (ส่งผลกระทบต่อ...) หรือ 〜の影響を受ける (ได้รับอิทธิพลจาก...)"
+  },
+  {
+    "id": 112,
+    "kanji": "価値",
+    "kana": "かち",
+    "ruby": [
+      [
+        "価",
+        "か"
+      ],
+      [
+        "値",
+        "ち"
+      ]
+    ],
+    "meanTh": "คุณค่า, มูลค่า",
+    "meanEn": "value, worth",
+    "pos": "คำนาม",
+    "lvl": "N3",
+    "morae": [
+      "か",
+      "ち"
+    ],
+    "dropMora": 1,
+    "pitchPattern": "頭高 [1]",
+    "exampleJp": "この本は読む価値がある。",
+    "exampleTh": "หนังสือเล่มนี้มีคุณค่าแก่การอ่าน",
+    "exampleEn": "This book is worth reading.",
+    "note": "สำนวนพบบ่อยใน N3: 〜価値がある (มีค่าควรแก่การ...)"
+  },
+  {
+    "id": 113,
+    "kanji": "機会",
+    "kana": "きかい",
+    "ruby": [
+      [
+        "機",
+        "き"
+      ],
+      [
+        "会",
+        "かい"
+      ]
+    ],
+    "meanTh": "โอกาส (จังหวะเวลา)",
+    "meanEn": "opportunity, chance",
+    "pos": "คำนาม",
+    "lvl": "N3",
+    "morae": [
+      "き",
+      "か",
+      "い"
+    ],
+    "dropMora": 2,
+    "pitchPattern": "中高 [2]",
+    "exampleJp": "日本へ行く機会が増えた。",
+    "exampleTh": "โอกาสที่จะได้ไปญี่ปุ่นเพิ่มขึ้น",
+    "exampleEn": "Opportunities to go to Japan have increased.",
+    "note": "เสียงพ้องกับ 機械 [2] (เครื่องจักร) เสียงตกที่พยางค์ที่ 2 เหมือนกัน ต้องดูบริบทและคันจิ"
+  },
+  {
+    "id": 114,
+    "kanji": "結果",
+    "kana": "けっか",
+    "ruby": [
+      [
+        "結",
+        "けっ"
+      ],
+      [
+        "果",
+        "か"
+      ]
+    ],
+    "meanTh": "ผลลัพธ์, ผลสรุป",
+    "meanEn": "result, consequence",
+    "pos": "คำนาม",
+    "lvl": "N3",
+    "morae": [
+      "け",
+      "っ",
+      "か"
+    ],
+    "dropMora": 0,
+    "pitchPattern": "平板 [0]",
+    "exampleJp": "試験の結果を待っている。",
+    "exampleTh": "กำลังรอผลสอบอยู่",
+    "exampleEn": "Waiting for the exam results.",
+    "note": "มักใช้คู่กับ 努力の結果 (ผลจากความพยายาม)"
+  },
+  {
+    "id": 115,
+    "kanji": "原因",
+    "kana": "げんいん",
+    "ruby": [
+      [
+        "原",
+        "げん"
+      ],
+      [
+        "因",
+        "いん"
+      ]
+    ],
+    "meanTh": "สาเหตุ, ต้นเหตุ",
+    "meanEn": "cause, origin",
+    "pos": "คำนาม",
+    "lvl": "N3",
+    "morae": [
+      "げ",
+      "ん",
+      "い",
+      "ん"
+    ],
+    "dropMora": 0,
+    "pitchPattern": "平板 [0]",
+    "exampleJp": "事故の原因を調べています。",
+    "exampleTh": "กำลังตรวจสอบสาเหตุของอุบัติเหตุ",
+    "exampleEn": "Investigating the cause of the accident.",
+    "note": "ต่างจาก 理由 (เหตุผล/ข้ออ้าง): 原因 มักใช้กับเหตุการณ์หรือปัญหาที่เกิดขึ้น"
+  },
+  {
+    "id": 116,
+    "kanji": "効果",
+    "kana": "こうか",
+    "ruby": [
+      [
+        "効",
+        "こう"
+      ],
+      [
+        "果",
+        "か"
+      ]
+    ],
+    "meanTh": "ประสิทธิผล, ผลลัพธ์ที่ได้ผล",
+    "meanEn": "effect, effectiveness",
+    "pos": "คำนาม",
+    "lvl": "N3",
+    "morae": [
+      "こ",
+      "う",
+      "か"
+    ],
+    "dropMora": 1,
+    "pitchPattern": "頭高 [1]",
+    "exampleJp": "この薬はとても効果がある。",
+    "exampleTh": "ยาตัวนี้ได้ผลดีมาก",
+    "exampleEn": "This medicine is very effective.",
+    "note": "効果がある = ได้ผล / 効果的 (な) = อย่างมีประสิทธิภาพ"
+  },
+  {
+    "id": 117,
+    "kanji": "状況",
+    "kana": "じょうきょう",
+    "ruby": [
+      [
+        "状",
+        "じょう"
+      ],
+      [
+        "況",
+        "きょう"
+      ]
+    ],
+    "meanTh": "สถานการณ์, สภาพการณ์",
+    "meanEn": "situation, circumstances",
+    "pos": "คำนาม",
+    "lvl": "N3",
+    "morae": [
+      "じょ",
+      "う",
+      "きょ",
+      "う"
+    ],
+    "dropMora": 0,
+    "pitchPattern": "平板 [0]",
+    "exampleJp": "現在の状況を説明します。",
+    "exampleTh": "ขออธิบายสถานการณ์ในปัจจุบันครับ",
+    "exampleEn": "I will explain the current situation.",
+    "note": "หมายถึงสภาพแวดล้อมหรือสถานการณ์ที่เปลี่ยนแปลงอยู่รอบตัว"
+  },
+  {
+    "id": 118,
+    "kanji": "情報",
+    "kana": "じょうほう",
+    "ruby": [
+      [
+        "情",
+        "じょう"
+      ],
+      [
+        "報",
+        "ほう"
+      ]
+    ],
+    "meanTh": "ข้อมูลข่าวสาร",
+    "meanEn": "information",
+    "pos": "คำนาม",
+    "lvl": "N3",
+    "morae": [
+      "じょ",
+      "う",
+      "ほ",
+      "う"
+    ],
+    "dropMora": 0,
+    "pitchPattern": "平板 [0]",
+    "exampleJp": "新しい情報を集めている。",
+    "exampleTh": "กำลังรวบรวมข้อมูลใหม่ๆ อยู่",
+    "exampleEn": "Collecting new information.",
+    "note": "ใช้กับข้อมูลทั้งข่าวสาร ไอที และความรู้ทั่วไป"
+  },
+  {
+    "id": 119,
+    "kanji": "責任",
+    "kana": "せきにん",
+    "ruby": [
+      [
+        "責",
+        "せき"
+      ],
+      [
+        "任",
+        "にん"
+      ]
+    ],
+    "meanTh": "ความรับผิดชอบ",
+    "meanEn": "responsibility, duty",
+    "pos": "คำนาม",
+    "lvl": "N3",
+    "morae": [
+      "せ",
+      "き",
+      "に",
+      "ん"
+    ],
+    "dropMora": 0,
+    "pitchPattern": "平板 [0]",
+    "exampleJp": "最後まで責任を持ってやり抜く。",
+    "exampleTh": "ทำจนถึงที่สุดด้วยความรับผิดชอบ",
+    "exampleEn": "Carry it through responsibly until the end.",
+    "note": "責任を持つ = มีความรับผิดชอบ / 責任を取る = รับผิดชอบต่อผลที่เกิดขึ้น"
+  },
+  {
+    "id": 120,
+    "kanji": "目標",
+    "kana": "もくひょう",
+    "ruby": [
+      [
+        "目",
+        "もく"
+      ],
+      [
+        "標",
+        "ひょう"
+      ]
+    ],
+    "meanTh": "เป้าหมาย",
+    "meanEn": "goal, target",
+    "pos": "คำนาม",
+    "lvl": "N3",
+    "morae": [
+      "も",
+      "く",
+      "ひょ",
+      "う"
+    ],
+    "dropMora": 0,
+    "pitchPattern": "平板 [0]",
+    "exampleJp": "今年の目標はN3に合格することだ。",
+    "exampleTh": "เป้าหมายของปีนี้คือการสอบผ่านระดับ N3",
+    "exampleEn": "This year's goal is to pass JLPT N3.",
+    "note": "目標を立てる = ตั้งเป้าหมาย / 目標を達成する = บรรลุเป้าหมาย"
+  },
+  {
+    "id": 121,
+    "kanji": "目的",
+    "kana": "もくてき",
+    "ruby": [
+      [
+        "目",
+        "もく"
+      ],
+      [
+        "的",
+        "てき"
+      ]
+    ],
+    "meanTh": "วัตถุประสงค์, จุดมุ่งหมาย",
+    "meanEn": "purpose, objective",
+    "pos": "คำนาม",
+    "lvl": "N3",
+    "morae": [
+      "も",
+      "く",
+      "て",
+      "き"
+    ],
+    "dropMora": 0,
+    "pitchPattern": "平板 [0]",
+    "exampleJp": "来日の目的は何ですか。",
+    "exampleTh": "จุดประสงค์ของการมาญี่ปุ่นคืออะไรครับ",
+    "exampleEn": "What is the purpose of your visit to Japan?",
+    "note": "目的 คือจุดประสงค์ปลายทาง ส่วน 目標 คือหมุดหมายที่ตั้งไว้เพื่อไปให้ถึง"
+  },
+  {
+    "id": 122,
+    "kanji": "努力",
+    "kana": "どりょく",
+    "ruby": [
+      [
+        "努",
+        "ど"
+      ],
+      [
+        "力",
+        "りょく"
+      ]
+    ],
+    "meanTh": "ความพยายาม, ความอุตสาหะ",
+    "meanEn": "effort, endeavor",
+    "pos": "คำนาม / กริยา する",
+    "lvl": "N3",
+    "morae": [
+      "ど",
+      "りょ",
+      "く"
+    ],
+    "dropMora": 1,
+    "pitchPattern": "頭高 [1]",
+    "exampleJp": "毎日の努力が実を結んだ。",
+    "exampleTh": "ความพยายามในทุกๆ วันเกิดผลสำเร็จแล้ว",
+    "exampleEn": "Daily efforts bore fruit.",
+    "note": "เป็นได้ทั้งคำนามและกริยา 努力する (ทุ่มเทพยายาม)"
+  },
+  {
+    "id": 123,
+    "kanji": "印象",
+    "kana": "いんしょう",
+    "ruby": [
+      [
+        "印",
+        "いん"
+      ],
+      [
+        "象",
+        "しょう"
+      ]
+    ],
+    "meanTh": "ความประทับใจ, ภาพจำ",
+    "meanEn": "impression",
+    "pos": "คำนาม",
+    "lvl": "N3",
+    "morae": [
+      "い",
+      "ん",
+      "しょ",
+      "う"
+    ],
+    "dropMora": 0,
+    "pitchPattern": "平板 [0]",
+    "exampleJp": "彼はとても優しい印象がある。",
+    "exampleTh": "เขามีภาพลักษณ์ที่ดูใจดีมาก",
+    "exampleEn": "He gives a very kind impression.",
+    "note": "第一印象 (だいいちいんしょう) = ความประทับใจแรกพบ"
+  },
+  {
+    "id": 124,
+    "kanji": "雰囲気",
+    "kana": "ふんいき",
+    "ruby": [
+      [
+        "雰",
+        "ふん"
+      ],
+      [
+        "囲",
+        "い"
+      ],
+      [
+        "気",
+        "き"
+      ]
+    ],
+    "meanTh": "บรรยากาศ",
+    "meanEn": "atmosphere, vibe, mood",
+    "pos": "คำนาม",
+    "lvl": "N3",
+    "morae": [
+      "ふ",
+      "ん",
+      "い",
+      "き"
+    ],
+    "dropMora": 3,
+    "pitchPattern": "中高 [3]",
+    "exampleJp": "このカフェは落ち着いた雰囲気だ。",
+    "exampleTh": "คาเฟ่แห่งนี้มีบรรยากาศที่สงบผ่อนคลาย",
+    "exampleEn": "This cafe has a calm atmosphere.",
+    "note": "ข้อควรระวัง: อ่านว่า ふんいき (คนญี่ปุ่นพูดเร็วๆ อาจฟังคล้าย ふいんき แต่สะกดจริงคือ ふんいき)"
+  },
+  {
+    "id": 125,
+    "kanji": "話題",
+    "kana": "わだい",
+    "ruby": [
+      [
+        "話",
+        "わ"
+      ],
+      [
+        "題",
+        "だい"
+      ]
+    ],
+    "meanTh": "หัวข้อสนทนา, ประเด็นที่เป็นที่พูดถึง",
+    "meanEn": "topic, subject of conversation",
+    "pos": "คำนาม",
+    "lvl": "N3",
+    "morae": [
+      "わ",
+      "だ",
+      "い"
+    ],
+    "dropMora": 0,
+    "pitchPattern": "平板 [0]",
+    "exampleJp": "その映画は今とても話題になっている。",
+    "exampleTh": "ภาพยนตร์เรื่องนั้นกำลังเป็นที่พูดถึงอย่างมากตอนนี้",
+    "exampleEn": "That movie is a hot topic right now.",
+    "note": "話題になる = กลายเป็นประเด็นดัง / 話題を変える = เปลี่ยนเรื่องคุย"
+  },
+  {
+    "id": 126,
+    "kanji": "知識",
+    "kana": "ちしき",
+    "ruby": [
+      [
+        "知",
+        "ち"
+      ],
+      [
+        "識",
+        "しき"
+      ]
+    ],
+    "meanTh": "ความรู้",
+    "meanEn": "knowledge",
+    "pos": "คำนาม",
+    "lvl": "N3",
+    "morae": [
+      "ち",
+      "し",
+      "き"
+    ],
+    "dropMora": 1,
+    "pitchPattern": "頭高 [1]",
+    "exampleJp": "専門的な知識を身につける。",
+    "exampleTh": "สั่งสมความรู้เฉพาะทางติดตัวไว้",
+    "exampleEn": "Acquire specialized knowledge.",
+    "note": "知識が豊富 (ちしきがほうふ) = มีความรู้กว้างขวาง"
+  },
+  {
+    "id": 127,
+    "kanji": "能力",
+    "kana": "のうりょく",
+    "ruby": [
+      [
+        "能",
+        "のう"
+      ],
+      [
+        "力",
+        "りょく"
+      ]
+    ],
+    "meanTh": "ความสามารถ, ศักยภาพ",
+    "meanEn": "ability, capacity",
+    "pos": "คำนาม",
+    "lvl": "N3",
+    "morae": [
+      "の",
+      "う",
+      "りょ",
+      "く"
+    ],
+    "dropMora": 1,
+    "pitchPattern": "頭高 [1]",
+    "exampleJp": "日本語能力試験を受ける。",
+    "exampleTh": "เข้าสอบวัดระดับความรู้ภาษาญี่ปุ่น (JLPT)",
+    "exampleEn": "Take the Japanese Language Proficiency Test.",
+    "note": "คำเต็มของ JLPT คือ 日本語能力試験 (にほんごのうりょくしけん)"
+  },
+  {
+    "id": 128,
+    "kanji": "判断",
+    "kana": "はんだん",
+    "ruby": [
+      [
+        "判",
+        "はん"
+      ],
+      [
+        "断",
+        "だん"
+      ]
+    ],
+    "meanTh": "การตัดสินใจ, การวินิจฉัย",
+    "meanEn": "judgment, decision",
+    "pos": "คำนาม / กริยา する",
+    "lvl": "N3",
+    "morae": [
+      "は",
+      "ん",
+      "だ",
+      "ん"
+    ],
+    "dropMora": 1,
+    "pitchPattern": "頭高 [1]",
+    "exampleJp": "状況を見て冷静に判断する。",
+    "exampleTh": "ดูสถานการณ์แล้วตัดสินใจอย่างสุขุม",
+    "exampleEn": "Assess the situation and judge calmly.",
+    "note": "เน้นการคิดวิเคราะห์แยกแยะก่อนตัดสิน"
+  },
+  {
+    "id": 129,
+    "kanji": "表現",
+    "kana": "ひょうげん",
+    "ruby": [
+      [
+        "表",
+        "ひょう"
+      ],
+      [
+        "現",
+        "げん"
+      ]
+    ],
+    "meanTh": "การแสดงออก, สำนวนภาษา",
+    "meanEn": "expression",
+    "pos": "คำนาม / กริยา する",
+    "lvl": "N3",
+    "morae": [
+      "ひょ",
+      "う",
+      "げ",
+      "ん"
+    ],
+    "dropMora": 3,
+    "pitchPattern": "中高 [3]",
+    "exampleJp": "自分の気持ちを言葉で表現する。",
+    "exampleTh": "แสดงความรู้สึกของตัวเองออกมาเป็นคำพูด",
+    "exampleEn": "Express one's feelings in words.",
+    "note": "ใช้ได้ทั้งการแสดงออกทางอารมณ์ และสำนวนในภาษา"
+  },
+  {
+    "id": 130,
+    "kanji": "余裕",
+    "kana": "よゆう",
+    "ruby": [
+      [
+        "余",
+        "よ"
+      ],
+      [
+        "裕",
+        "ゆう"
+      ]
+    ],
+    "meanTh": "ความเผื่อเหลือ (เวลา/เงิน/ใจ)",
+    "meanEn": "leeway, room, composure",
+    "pos": "คำนาม",
+    "lvl": "N3",
+    "morae": [
+      "よ",
+      "ゆ",
+      "う"
+    ],
+    "dropMora": 0,
+    "pitchPattern": "平板 [0]",
+    "exampleJp": "出発までまだ時間の余裕がある。",
+    "exampleTh": "ยังพอมีเวลาเหลือก่อนออกเดินทาง",
+    "exampleEn": "There is still plenty of time before departure.",
+    "note": "心に余裕がある = จิตใจปลอดโปร่งไม่ตึงเครียด"
+  },
+  {
+    "id": 131,
+    "kanji": "自信",
+    "kana": "じしん",
+    "ruby": [
+      [
+        "自",
+        "じ"
+      ],
+      [
+        "信",
+        "しん"
+      ]
+    ],
+    "meanTh": "ความมั่นใจในตนเอง",
+    "meanEn": "self-confidence",
+    "pos": "คำนาม",
+    "lvl": "N3",
+    "morae": [
+      "じ",
+      "し",
+      "ん"
+    ],
+    "dropMora": 0,
+    "pitchPattern": "平板 [0]",
+    "exampleJp": "もっと自分に自信を持ってください。",
+    "exampleTh": "ขอให้มีความมั่นใจในตัวเองมากขึ้นอีกนะครับ",
+    "exampleEn": "Please have more confidence in yourself.",
+    "note": "เสียงพ้องกับ 地震 [0] (แผ่นดินไหว) เสียงเรียบเหมือนกัน"
+  },
+  {
+    "id": 132,
+    "kanji": "条件",
+    "kana": "じょうけん",
+    "ruby": [
+      [
+        "条",
+        "じょう"
+      ],
+      [
+        "件",
+        "けん"
+      ]
+    ],
+    "meanTh": "เงื่อนไข, ข้อกำหนด",
+    "meanEn": "condition, requirement",
+    "pos": "คำนาม",
+    "lvl": "N3",
+    "morae": [
+      "じょ",
+      "う",
+      "け",
+      "ん"
+    ],
+    "dropMora": 3,
+    "pitchPattern": "中高 [3]",
+    "exampleJp": "働く前に契約の条件を確認する。",
+    "exampleTh": "ตรวจสอบเงื่อนไขสัญญาจ้างก่อนเริ่มทำงาน",
+    "exampleEn": "Check the contract conditions before working.",
+    "note": "条件が合う = เงื่อนไขตรงกัน"
+  },
+  {
+    "id": 133,
+    "kanji": "対策",
+    "kana": "たいさく",
+    "ruby": [
+      [
+        "対",
+        "たい"
+      ],
+      [
+        "策",
+        "さく"
+      ]
+    ],
+    "meanTh": "มาตรการรับมือ, แนวทางป้องกัน",
+    "meanEn": "countermeasure, strategy",
+    "pos": "คำนาม",
+    "lvl": "N3",
+    "morae": [
+      "た",
+      "い",
+      "さ",
+      "く"
+    ],
+    "dropMora": 0,
+    "pitchPattern": "平板 [0]",
+    "exampleJp": "試験に向けてしっかり対策を立てる。",
+    "exampleTh": "วางแนวทางเตรียมตัวรับมือการสอบอย่างรัดกุม",
+    "exampleEn": "Prepare a solid strategy for the exam.",
+    "note": "対策を立てる / 対策をとる = วางมาตรการรับมือ"
+  },
+  {
+    "id": 134,
+    "kanji": "特徴",
+    "kana": "とくちょう",
+    "ruby": [
+      [
+        "特",
+        "とく"
+      ],
+      [
+        "徴",
+        "ちょう"
+      ]
+    ],
+    "meanTh": "ลักษณะเด่น, จุดสังเกตเฉพาะ",
+    "meanEn": "characteristic, feature",
+    "pos": "คำนาม",
+    "lvl": "N3",
+    "morae": [
+      "と",
+      "く",
+      "ちょ",
+      "う"
+    ],
+    "dropMora": 0,
+    "pitchPattern": "平板 [0]",
+    "exampleJp": "この料理の特徴は香り高いことだ。",
+    "exampleTh": "จุดเด่นของอาหารจานนี้คือความหอมกรุ่น",
+    "exampleEn": "The feature of this dish is its rich aroma.",
+    "note": "ใช้ได้ทั้งแง่บวกและแง่กลางเพื่อบอกเอกลักษณ์"
+  },
+  {
+    "id": 135,
+    "kanji": "立場",
+    "kana": "たちば",
+    "ruby": [
+      [
+        "立",
+        "たち"
+      ],
+      [
+        "場",
+        "ば"
+      ]
+    ],
+    "meanTh": "จุดยืน, สถานะ, มุมมอง",
+    "meanEn": "standpoint, position",
+    "pos": "คำนาม",
+    "lvl": "N3",
+    "morae": [
+      "た",
+      "ち",
+      "ば"
+    ],
+    "dropMora": 0,
+    "pitchPattern": "平板 [0]",
+    "exampleJp": "相手の立場になって考える。",
+    "exampleTh": "ลองคิดในมุมมองของอีกฝ่าย (เอาใจเขามาใส่ใจเรา)",
+    "exampleEn": "Put yourself in the other person's shoes.",
+    "note": "สำนวนสำคัญใน N3: 〜の立場に立つ / 立場になって考える"
+  },
+  {
+    "id": 136,
+    "kanji": "現実",
+    "kana": "げんじつ",
+    "ruby": [
+      [
+        "現",
+        "げん"
+      ],
+      [
+        "実",
+        "じつ"
+      ]
+    ],
+    "meanTh": "ความเป็นจริง",
+    "meanEn": "reality",
+    "pos": "คำนาม",
+    "lvl": "N3",
+    "morae": [
+      "げ",
+      "ん",
+      "じ",
+      "つ"
+    ],
+    "dropMora": 0,
+    "pitchPattern": "平板 [0]",
+    "exampleJp": "夢がとうとう現実になった。",
+    "exampleTh": "ความฝันกลายเป็นความจริงในที่สุด",
+    "exampleEn": "The dream finally became reality.",
+    "note": "ตรงข้ามกับ 理想 (อุดมคติ)"
+  },
+  {
+    "id": 137,
+    "kanji": "理想",
+    "kana": "りそう",
+    "ruby": [
+      [
+        "理",
+        "り"
+      ],
+      [
+        "想",
+        "そう"
+      ]
+    ],
+    "meanTh": "อุดมคติ",
+    "meanEn": "ideal",
+    "pos": "คำนาม",
+    "lvl": "N3",
+    "morae": [
+      "り",
+      "そ",
+      "う"
+    ],
+    "dropMora": 0,
+    "pitchPattern": "平板 [0]",
+    "exampleJp": "理想と現実は違うことが多い。",
+    "exampleTh": "อุดมคติกับความเป็นจริงมักแตกต่างกันอยู่บ่อยครั้ง",
+    "exampleEn": "Ideals and reality are often different.",
+    "note": "理想が高い = ตั้งมาตรฐานอุดมคติไว้สูง"
+  },
+  {
+    "id": 138,
+    "kanji": "誤解",
+    "kana": "ごかい",
+    "ruby": [
+      [
+        "誤",
+        "ご"
+      ],
+      [
+        "解",
+        "かい"
+      ]
+    ],
+    "meanTh": "ความเข้าใจผิด",
+    "meanEn": "misunderstanding",
+    "pos": "คำนาม / กริยา する",
+    "lvl": "N3",
+    "morae": [
+      "ご",
+      "か",
+      "い"
+    ],
+    "dropMora": 0,
+    "pitchPattern": "平板 [0]",
+    "exampleJp": "誤解を招くような言い方は避けよう。",
+    "exampleTh": "หลีกเลี่ยงวิธีพูดที่อาจก่อให้เกิดความเข้าใจผิดกันเถอะ",
+    "exampleEn": "Let's avoid phrasing that invites misunderstanding.",
+    "note": "誤解を解く (ごかいをとく) = คลายความเข้าใจผิด"
+  },
+  {
+    "id": 139,
+    "kanji": "満足",
+    "kana": "まんぞく",
+    "ruby": [
+      [
+        "満",
+        "まん"
+      ],
+      [
+        "足",
+        "ぞく"
+      ]
+    ],
+    "meanTh": "ความพึงพอใจ",
+    "meanEn": "satisfaction",
+    "pos": "คำนาม / คุณศัพท์ な / กริยา する",
+    "lvl": "N3",
+    "morae": [
+      "ま",
+      "ん",
+      "ぞ",
+      "く"
+    ],
+    "dropMora": 1,
+    "pitchPattern": "頭高 [1]",
+    "exampleJp": "今の生活にとても満足している。",
+    "exampleTh": "พึงพอใจกับการใช้ชีวิตในตอนนี้มาก",
+    "exampleEn": "I am very satisfied with my current life.",
+    "note": "ใช้คำช่วย に เช่น 結果に満足する (พอใจในผลลัพธ์)"
+  },
+  {
+    "id": 140,
+    "kanji": "記憶",
+    "kana": "きおく",
+    "ruby": [
+      [
+        "記",
+        "き"
+      ],
+      [
+        "憶",
+        "おく"
+      ]
+    ],
+    "meanTh": "ความทรงจำ, การจดจำ",
+    "meanEn": "memory, recollection",
+    "pos": "คำนาม / กริยา する",
+    "lvl": "N3",
+    "morae": [
+      "き",
+      "お",
+      "く"
+    ],
+    "dropMora": 0,
+    "pitchPattern": "平板 [0]",
+    "exampleJp": "子どもの頃の記憶がはっきり残っている。",
+    "exampleTh": "ความทรงจำสมัยเด็กยังคงชัดเจนอยู่",
+    "exampleEn": "Childhood memories remain vivid.",
+    "note": "記憶に残る = ติดอยู่ในความทรงจำ"
+  },
+  {
+    "id": 141,
+    "kanji": "確かめる",
+    "kana": "たしかめる",
+    "ruby": [
+      [
+        "確",
+        "たし"
+      ],
+      [
+        "かめる",
+        ""
+      ]
+    ],
+    "meanTh": "ตรวจสอบให้แน่ใจ, ยืนยัน",
+    "meanEn": "to ascertain, to verify",
+    "pos": "กริยากลุ่ม 2",
+    "lvl": "N3",
+    "morae": [
+      "た",
+      "し",
+      "か",
+      "め",
+      "る"
+    ],
+    "dropMora": 4,
+    "pitchPattern": "中高 [4]",
+    "exampleJp": "鍵をかけたかどうか確かめる。",
+    "exampleTh": "ตรวจดูให้แน่ใจว่าล็อกกุญแจแล้วหรือยัง",
+    "exampleEn": "Check to make sure whether the door is locked.",
+    "note": "มาจากคุณศัพท์ 確か (แน่ชัด) ผันเป็นกริยาสกรรมกริยา"
+  },
+  {
+    "id": 142,
+    "kanji": "比べる",
+    "kana": "くらべる",
+    "ruby": [
+      [
+        "比",
+        "くら"
+      ],
+      [
+        "べる",
+        ""
+      ]
+    ],
+    "meanTh": "เปรียบเทียบ",
+    "meanEn": "to compare",
+    "pos": "กริยากลุ่ม 2",
+    "lvl": "N3",
+    "morae": [
+      "く",
+      "ら",
+      "べ",
+      "る"
+    ],
+    "dropMora": 0,
+    "pitchPattern": "平板 [0]",
+    "exampleJp": "去年と比べて日本語が上達した。",
+    "exampleTh": "เมื่อเทียบกับปีที่แล้ว ภาษาญี่ปุ่นเก่งขึ้นมาก",
+    "exampleEn": "Compared to last year, my Japanese has improved.",
+    "note": "โครงสร้างพบบ่อย: AとBを比べる / 〜に比べて"
+  },
+  {
+    "id": 143,
+    "kanji": "認める",
+    "kana": "みとめる",
+    "ruby": [
+      [
+        "認",
+        "みと"
+      ],
+      [
+        "める",
+        ""
+      ]
+    ],
+    "meanTh": "ยอมรับ, รับรอง",
+    "meanEn": "to recognize, to admit, to approve",
+    "pos": "กริยากลุ่ม 2",
+    "lvl": "N3",
+    "morae": [
+      "み",
+      "と",
+      "め",
+      "る"
+    ],
+    "dropMora": 0,
+    "pitchPattern": "平板 [0]",
+    "exampleJp": "自分の間違いを素直に認める。",
+    "exampleTh": "ยอมรับความผิดพลาดของตัวเองอย่างตรงไปตรงมา",
+    "exampleEn": "Honestly admit one's own mistake.",
+    "note": "หมายถึงทั้งยอมรับความจริง และยอมรับในความสามารถของผู้อื่น"
+  },
+  {
+    "id": 144,
+    "kanji": "求める",
+    "kana": "もとめる",
+    "ruby": [
+      [
+        "求",
+        "もと"
+      ],
+      [
+        "める",
+        ""
+      ]
+    ],
+    "meanTh": "แสวงหา, เรียกร้อง, ต้องการ",
+    "meanEn": "to seek, to request, to demand",
+    "pos": "กริยากลุ่ม 2",
+    "lvl": "N3",
+    "morae": [
+      "も",
+      "と",
+      "め",
+      "る"
+    ],
+    "dropMora": 3,
+    "pitchPattern": "中高 [3]",
+    "exampleJp": "助けを求める声が聞こえた。",
+    "exampleTh": "ได้ยินเสียงร้องขอความช่วยเหลือ",
+    "exampleEn": "Heard a voice calling for help.",
+    "note": "ภาษาเขียนและทางการของ 欲しい / 頼む ในบริบทจริงจัง"
+  },
+  {
+    "id": 145,
+    "kanji": "増える",
+    "kana": "ふえる",
+    "ruby": [
+      [
+        "増",
+        "ふ"
+      ],
+      [
+        "える",
+        ""
+      ]
+    ],
+    "meanTh": "เพิ่มขึ้น (อกรรมกริยา)",
+    "meanEn": "to increase (intransitive)",
+    "pos": "กริยากลุ่ม 2",
+    "lvl": "N3",
+    "morae": [
+      "ふ",
+      "え",
+      "る"
+    ],
+    "dropMora": 2,
+    "pitchPattern": "中高 [2]",
+    "exampleJp": "最近、外国人観光客が増えている。",
+    "exampleTh": "ช่วงนี้นักท่องเที่ยวชาวต่างชาติกำลังเพิ่มขึ้น",
+    "exampleEn": "Recently, foreign tourists have been increasing.",
+    "note": "อกรรมกริยา (自動詞) ใช้กับคำช่วย が เช่น 人口が増える"
+  },
+  {
+    "id": 146,
+    "kanji": "増やす",
+    "kana": "ふやす",
+    "ruby": [
+      [
+        "増",
+        "ふ"
+      ],
+      [
+        "やす",
+        ""
+      ]
+    ],
+    "meanTh": "เพิ่มจำนวน (สกรรมกริยา)",
+    "meanEn": "to increase something (transitive)",
+    "pos": "กริยากลุ่ม 1",
+    "lvl": "N3",
+    "morae": [
+      "ふ",
+      "や",
+      "す"
+    ],
+    "dropMora": 2,
+    "pitchPattern": "中高 [2]",
+    "exampleJp": "毎日少しずつ語彙を増やす。",
+    "exampleTh": "เพิ่มคลังคำศัพท์ทีละน้อยทุกวัน",
+    "exampleEn": "Increase vocabulary little by little every day.",
+    "note": "สกรรมกริยา (他動詞) ใช้กับคำช่วย を เช่น 時間を増やす"
+  },
+  {
+    "id": 147,
+    "kanji": "減る",
+    "kana": "へる",
+    "ruby": [
+      [
+        "減",
+        "へ"
+      ],
+      [
+        "る",
+        ""
+      ]
+    ],
+    "meanTh": "ลดลง (อกรรมกริยา)",
+    "meanEn": "to decrease (intransitive)",
+    "pos": "กริยากลุ่ม 1",
+    "lvl": "N3",
+    "morae": [
+      "へ",
+      "る"
+    ],
+    "dropMora": 0,
+    "pitchPattern": "平板 [0]",
+    "exampleJp": "運動したら体重が減った。",
+    "exampleTh": "พอออกกำลังกายแล้วน้ำหนักลดลง",
+    "exampleEn": "My weight decreased after exercising.",
+    "note": "ข้อควรระวัง: 減る เป็นกริยากลุ่ม 1 (減らない / 減ります / 減って) และสำนวน お腹が減る = หิวข้าว"
+  },
+  {
+    "id": 148,
+    "kanji": "減らす",
+    "kana": "へらす",
+    "ruby": [
+      [
+        "減",
+        "へ"
+      ],
+      [
+        "らす",
+        ""
+      ]
+    ],
+    "meanTh": "ลดจำนวนลง (สกรรมกริยา)",
+    "meanEn": "to reduce something (transitive)",
+    "pos": "กริยากลุ่ม 1",
+    "lvl": "N3",
+    "morae": [
+      "へ",
+      "ら",
+      "す"
+    ],
+    "dropMora": 0,
+    "pitchPattern": "平板 [0]",
+    "exampleJp": "無駄な出費を減らすようにしている。",
+    "exampleTh": "พยายามลดค่าใช้จ่ายที่สิ้นเปลืองลง",
+    "exampleEn": "Trying to cut down unnecessary expenses.",
+    "note": "สกรรมกริยาคู่กับ 減る"
+  },
+  {
+    "id": 149,
+    "kanji": "任せる",
+    "kana": "まかせる",
+    "ruby": [
+      [
+        "任",
+        "まか"
+      ],
+      [
+        "せる",
+        ""
+      ]
+    ],
+    "meanTh": "มอบหมายให้ดูแล, ไว้ใจให้จัดการ",
+    "meanEn": "to entrust, to leave to someone",
+    "pos": "กริยากลุ่ม 2",
+    "lvl": "N3",
+    "morae": [
+      "ま",
+      "か",
+      "せ",
+      "る"
+    ],
+    "dropMora": 3,
+    "pitchPattern": "中高 [3]",
+    "exampleJp": "この仕事は私に任せてください。",
+    "exampleTh": "งานชิ้นนี้ขอให้ไว้ใจมอบให้ฉันจัดการเถอะครับ",
+    "exampleEn": "Please leave this job to me.",
+    "note": "คนญี่ปุ่นพูดบ่อยมาก: 任せて！(ปล่อยให้เป็นหน้าที่ฉันเอง!)"
+  },
+  {
+    "id": 150,
+    "kanji": "断る",
+    "kana": "ことわる",
+    "ruby": [
+      [
+        "断",
+        "ことわ"
+      ],
+      [
+        "る",
+        ""
+      ]
+    ],
+    "meanTh": "ปฏิเสธ, บอกกล่าวขออนุญาตล่วงหน้า",
+    "meanEn": "to refuse, to decline, to give notice",
+    "pos": "กริยากลุ่ม 1",
+    "lvl": "N3",
+    "morae": [
+      "こ",
+      "と",
+      "わ",
+      "る"
+    ],
+    "dropMora": 3,
+    "pitchPattern": "中高 [3]",
+    "exampleJp": "忙しいので誘いを丁寧に断った。",
+    "exampleTh": "เพราะยุ่งอยู่จึงปฏิเสธคำชวนไปอย่างสุภาพ",
+    "exampleEn": "Politely declined the invitation because I was busy.",
+    "note": "กริยากลุ่ม 1 (断らない / 断ります / 断って)"
+  },
+  {
+    "id": 151,
+    "kanji": "迷う",
+    "kana": "まよう",
+    "ruby": [
+      [
+        "迷",
+        "まよ"
+      ],
+      [
+        "う",
+        ""
+      ]
+    ],
+    "meanTh": "ลังเลตัดสินใจไม่ถูก, หลงทาง",
+    "meanEn": "to hesitate, to get lost",
+    "pos": "กริยากลุ่ม 1",
+    "lvl": "N3",
+    "morae": [
+      "ま",
+      "よ",
+      "う"
+    ],
+    "dropMora": 2,
+    "pitchPattern": "中高 [2]",
+    "exampleJp": "どれを選ぶかずっと迷っている。",
+    "exampleTh": "ลังเลมาตลอดว่าจะเลือกอันไหนดี",
+    "exampleEn": "Still hesitating over which one to choose.",
+    "note": "道に迷う (みちにまよう) = หลงทาง"
+  },
+  {
+    "id": 152,
+    "kanji": "諦める",
+    "kana": "あきらめる",
+    "ruby": [
+      [
+        "諦",
+        "あきら"
+      ],
+      [
+        "める",
+        ""
+      ]
+    ],
+    "meanTh": "ตัดใจ, ยอมแพ้, ล้มเลิก",
+    "meanEn": "to give up, to abandon",
+    "pos": "กริยากลุ่ม 2",
+    "lvl": "N3",
+    "morae": [
+      "あ",
+      "き",
+      "ら",
+      "め",
+      "る"
+    ],
+    "dropMora": 4,
+    "pitchPattern": "中高 [4]",
+    "exampleJp": "最後まで絶対に諦めない。",
+    "exampleTh": "จะไม่ยอมแพ้จนถึงที่สุดอย่างเด็ดขาด",
+    "exampleEn": "Never give up until the very end.",
+    "note": "กริยากลุ่ม 2 (諦めない / 諦めます)"
+  },
+  {
+    "id": 153,
+    "kanji": "気づく",
+    "kana": "きづく",
+    "ruby": [
+      [
+        "気",
+        "き"
+      ],
+      [
+        "づく",
+        ""
+      ]
+    ],
+    "meanTh": "สังเกตเห็น, รู้สึกตัว, ตระหนักได้",
+    "meanEn": "to notice, to realize",
+    "pos": "กริยากลุ่ม 1",
+    "lvl": "N3",
+    "morae": [
+      "き",
+      "づ",
+      "く"
+    ],
+    "dropMora": 2,
+    "pitchPattern": "中高 [2]",
+    "exampleJp": "家に帰ってから財布がないことに気づいた。",
+    "exampleTh": "พอกลับถึงบ้านแล้วเพิ่งรู้ตัวว่ากระเป๋าสตางค์หายไป",
+    "exampleEn": "Realized my wallet was gone after getting home.",
+    "note": "ใช้คู่กับคำช่วย に เสมอ เช่น 変化に気づく (สังเกตเห็นความเปลี่ยนแปลง)"
+  },
+  {
+    "id": 154,
+    "kanji": "似る",
+    "kana": "にる",
+    "ruby": [
+      [
+        "似",
+        "に"
+      ],
+      [
+        "る",
+        ""
+      ]
+    ],
+    "meanTh": "คล้ายคลึง, เหมือนกัน",
+    "meanEn": "to resemble, to be similar",
+    "pos": "กริยากลุ่ม 2",
+    "lvl": "N3",
+    "morae": [
+      "に",
+      "る"
+    ],
+    "dropMora": 0,
+    "pitchPattern": "平板 [0]",
+    "exampleJp": "彼女は母親によく似ている。",
+    "exampleTh": "เธอหน้าตาคล้ายคุณแม่มาก",
+    "exampleEn": "She closely resembles her mother.",
+    "note": "มักใช้ในรูป 〜に似ている เพื่อบอกสภาพที่คล้ายคลึงกัน"
+  },
+  {
+    "id": 155,
+    "kanji": "守る",
+    "kana": "まもる",
+    "ruby": [
+      [
+        "守",
+        "まも"
+      ],
+      [
+        "る",
+        ""
+      ]
+    ],
+    "meanTh": "ปกป้อง, รักษา (สัญญา/กฎเกณฑ์)",
+    "meanEn": "to protect, to keep (a promise/rule)",
+    "pos": "กริยากลุ่ม 1",
+    "lvl": "N3",
+    "morae": [
+      "ま",
+      "も",
+      "る"
+    ],
+    "dropMora": 2,
+    "pitchPattern": "中高 [2]",
+    "exampleJp": "約束や時間をしっかり守る。",
+    "exampleTh": "รักษาสัญญาและตรงต่อเวลาอย่างเคร่งครัด",
+    "exampleEn": "Strictly keep promises and be punctual.",
+    "note": "ใช้ได้ทั้งปกป้องคน/สิ่งของ และรักษากฎ (ルールを守る)"
+  },
+  {
+    "id": 156,
+    "kanji": "救う",
+    "kana": "すくう",
+    "ruby": [
+      [
+        "救",
+        "すく"
+      ],
+      [
+        "う",
+        ""
+      ]
+    ],
+    "meanTh": "ช่วยชีวิต, กอบกู้",
+    "meanEn": "to rescue, to save",
+    "pos": "กริยากลุ่ม 1",
+    "lvl": "N3",
+    "morae": [
+      "す",
+      "く",
+      "う"
+    ],
+    "dropMora": 0,
+    "pitchPattern": "平板 [0]",
+    "exampleJp": "医師が多くの命を救った。",
+    "exampleTh": "แพทย์ได้ช่วยชีวิตผู้คนไว้มากมาย",
+    "exampleEn": "The doctor saved many lives.",
+    "note": "ใช้กับเรื่องใหญ่หรือลึกซึ้งกว่า 助ける"
+  },
+  {
+    "id": 157,
+    "kanji": "招く",
+    "kana": "まねく",
+    "ruby": [
+      [
+        "招",
+        "まね"
+      ],
+      [
+        "く",
+        ""
+      ]
+    ],
+    "meanTh": "เชิญมา, นำพาให้เกิดผล (มักเป็นผลเสีย)",
+    "meanEn": "to invite, to cause",
+    "pos": "กริยากลุ่ม 1",
+    "lvl": "N3",
+    "morae": [
+      "ま",
+      "ね",
+      "く"
+    ],
+    "dropMora": 2,
+    "pitchPattern": "中高 [2]",
+    "exampleJp": "友人を家に招いて食事をした。",
+    "exampleTh": "เชิญเพื่อนมาที่บ้านแล้วทานอาหารด้วยกัน",
+    "exampleEn": "Invited friends home and had a meal.",
+    "note": "แปลว่า เชิญแขก หรือ ก่อให้เกิด เช่น 誤解を招く"
+  },
+  {
+    "id": 158,
+    "kanji": "疑う",
+    "kana": "うたがう",
+    "ruby": [
+      [
+        "疑",
+        "うたが"
+      ],
+      [
+        "う",
+        ""
+      ]
+    ],
+    "meanTh": "สงสัย, เคลือบแคลงใจ",
+    "meanEn": "to doubt, to suspect",
+    "pos": "กริยากลุ่ม 1",
+    "lvl": "N3",
+    "morae": [
+      "う",
+      "た",
+      "が",
+      "う"
+    ],
+    "dropMora": 0,
+    "pitchPattern": "平板 [0]",
+    "exampleJp": "自分の耳を疑うようなニュースだ。",
+    "exampleTh": "เป็นข่าวที่แทบไม่เชื่อหูตัวเอง",
+    "exampleEn": "It is news that makes me doubt my own ears.",
+    "note": "ตรงข้ามกับ 信じる (เชื่อ)"
+  },
+  {
+    "id": 159,
+    "kanji": "信じる",
+    "kana": "しんじる",
+    "ruby": [
+      [
+        "信",
+        "しん"
+      ],
+      [
+        "じる",
+        ""
+      ]
+    ],
+    "meanTh": "เชื่อ, เชื่อใจ, ศรัทธา",
+    "meanEn": "to believe, to trust",
+    "pos": "กริยากลุ่ม 2",
+    "lvl": "N3",
+    "morae": [
+      "し",
+      "ん",
+      "じ",
+      "る"
+    ],
+    "dropMora": 3,
+    "pitchPattern": "中高 [3]",
+    "exampleJp": "自分の力を信じて前に進もう。",
+    "exampleTh": "จงเชื่อมั่นในพลังของตัวเองแล้วก้าวต่อไป",
+    "exampleEn": "Believe in your own strength and move forward.",
+    "note": "กริยากลุ่ม 2 (信じない / 信じます / 信じて)"
+  },
+  {
+    "id": 160,
+    "kanji": "落ち込む",
+    "kana": "おちこむ",
+    "ruby": [
+      [
+        "落",
+        "お"
+      ],
+      [
+        "ち",
+        ""
+      ],
+      [
+        "込",
+        "こ"
+      ],
+      [
+        "む",
+        ""
+      ]
+    ],
+    "meanTh": "ซึมเศร้า, จิตตก, ท้อแท้",
+    "meanEn": "to feel down, to be depressed",
+    "pos": "กริยากลุ่ม 1",
+    "lvl": "N3",
+    "morae": [
+      "お",
+      "ち",
+      "こ",
+      "む"
+    ],
+    "dropMora": 3,
+    "pitchPattern": "中高 [3]",
+    "exampleJp": "試験に落ちて少し落ち込んでいる。",
+    "exampleTh": "สอบตกเลยรู้สึกซึมไปนิดหน่อย",
+    "exampleEn": "Feeling a bit down after failing the exam.",
+    "note": "เมื่อหมายถึงอารมณ์ท้อแท้ มักใช้รูป 〜ている"
+  },
+  {
+    "id": 161,
+    "kanji": "驚く",
+    "kana": "おどろく",
+    "ruby": [
+      [
+        "驚",
+        "おどろ"
+      ],
+      [
+        "く",
+        ""
+      ]
+    ],
+    "meanTh": "ประหลาดใจ, ตกใจ",
+    "meanEn": "to be surprised, to be astonished",
+    "pos": "กริยากลุ่ม 1",
+    "lvl": "N3",
+    "morae": [
+      "お",
+      "ど",
+      "ろ",
+      "く"
+    ],
+    "dropMora": 3,
+    "pitchPattern": "中高 [3]",
+    "exampleJp": "突然の知らせにとても驚いた。",
+    "exampleTh": "ตกใจมากกับข่าวที่แจ้งมากะทันหัน",
+    "exampleEn": "Was very surprised by the sudden news.",
+    "note": "ใช้กับคำช่วย に เช่น 値段の高さに驚く"
+  },
+  {
+    "id": 162,
+    "kanji": "慌てる",
+    "kana": "あわてる",
+    "ruby": [
+      [
+        "慌",
+        "あわ"
+      ],
+      [
+        "てる",
+        ""
+      ]
+    ],
+    "meanTh": "ลนลาน, รีบร้อนตื่นตระหนก",
+    "meanEn": "to panic, to be flustered",
+    "pos": "กริยากลุ่ม 2",
+    "lvl": "N3",
+    "morae": [
+      "あ",
+      "わ",
+      "て",
+      "る"
+    ],
+    "dropMora": 0,
+    "pitchPattern": "平板 [0]",
+    "exampleJp": "慌てずにゆっくり確認してください。",
+    "exampleTh": "กรุณาค่อยๆ ตรวจสอบช้าๆ โดยไม่ต้องลนลานครับ",
+    "exampleEn": "Please check slowly without panicking.",
+    "note": "慌てて (อย่างลุกลี้ลุกลน)"
+  },
+  {
+    "id": 163,
+    "kanji": "助かる",
+    "kana": "たすかる",
+    "ruby": [
+      [
+        "助",
+        "たす"
+      ],
+      [
+        "かる",
+        ""
+      ]
+    ],
+    "meanTh": "รอดพ้นภัย, ช่วยได้มากเลย (เบาแรง)",
+    "meanEn": "to be saved, to be very helpful",
+    "pos": "กริยากลุ่ม 1",
+    "lvl": "N3",
+    "morae": [
+      "た",
+      "す",
+      "か",
+      "る"
+    ],
+    "dropMora": 3,
+    "pitchPattern": "中高 [3]",
+    "exampleJp": "手伝ってくれて本当に助かりました。",
+    "exampleTh": "ที่คุณมาช่วยไว้ ช่วยแบ่งเบาได้มากจริงๆ ขอบคุณครับ",
+    "exampleEn": "It was really a big help that you assisted me.",
+    "note": "วลีขอบคุณยอดนิยมของคนญี่ปุ่น: 助かります / 助かりました！"
+  },
+  {
+    "id": 164,
+    "kanji": "申し込む",
+    "kana": "もうしこむ",
+    "ruby": [
+      [
+        "申",
+        "もう"
+      ],
+      [
+        "し",
+        ""
+      ],
+      [
+        "込",
+        "こ"
+      ],
+      [
+        "む",
+        ""
+      ]
+    ],
+    "meanTh": "สมัคร, ลงทะเบียนขอใช้บริการ",
+    "meanEn": "to apply for, to subscribe",
+    "pos": "กริยากลุ่ม 1",
+    "lvl": "N3",
+    "morae": [
+      "も",
+      "う",
+      "し",
+      "こ",
+      "む"
+    ],
+    "dropMora": 4,
+    "pitchPattern": "中高 [4]",
+    "exampleJp": "インターネットで講座を申し込んだ。",
+    "exampleTh": "สมัครคอร์สเรียนผ่านทางอินเทอร์เน็ตแล้ว",
+    "exampleEn": "Applied for the course online.",
+    "note": "คำนามคือ 申し込み (もうしこみ = การสมัคร)"
+  },
+  {
+    "id": 165,
+    "kanji": "受け取る",
+    "kana": "うけとる",
+    "ruby": [
+      [
+        "受",
+        "う"
+      ],
+      [
+        "け",
+        ""
+      ],
+      [
+        "取",
+        "と"
+      ],
+      [
+        "る",
+        ""
+      ]
+    ],
+    "meanTh": "รับมอบ (พัสดุ/เอกสาร/เงิน)",
+    "meanEn": "to receive, to accept",
+    "pos": "กริยากลุ่ม 1",
+    "lvl": "N3",
+    "morae": [
+      "う",
+      "け",
+      "と",
+      "る"
+    ],
+    "dropMora": 3,
+    "pitchPattern": "中高 [3]",
+    "exampleJp": "玄関で宅配便の荷物を受け取った。",
+    "exampleTh": "รับพัสดุจัดส่งที่หน้าประตูบ้าน",
+    "exampleEn": "Received the delivery package at the entrance.",
+    "note": "เป็นทางการและชัดเจนกว่า もらう ในการรับสิ่งของ"
+  },
+  {
+    "id": 166,
+    "kanji": "参加する",
+    "kana": "さんかする",
+    "ruby": [
+      [
+        "参",
+        "さん"
+      ],
+      [
+        "加",
+        "か"
+      ],
+      [
+        "する",
+        ""
+      ]
+    ],
+    "meanTh": "เข้าร่วม (กิจกรรม/ประชุม)",
+    "meanEn": "to participate, to join",
+    "pos": "กริยากลุ่ม 3",
+    "lvl": "N3",
+    "morae": [
+      "さ",
+      "ん",
+      "か",
+      "す",
+      "る"
+    ],
+    "dropMora": 0,
+    "pitchPattern": "平板 [0]",
+    "exampleJp": "来週のイベントにぜひ参加したい。",
+    "exampleTh": "อยากเข้าร่วมอีเวนต์สัปดาห์หน้าให้ได้เลย",
+    "exampleEn": "I would love to join next week's event.",
+    "note": "ใช้กับคำช่วย に เสมอ เช่น 会議に参加する"
+  },
+  {
+    "id": 167,
+    "kanji": "集中する",
+    "kana": "しゅうちゅうする",
+    "ruby": [
+      [
+        "集",
+        "しゅう"
+      ],
+      [
+        "中",
+        "ちゅう"
+      ],
+      [
+        "する",
+        ""
+      ]
+    ],
+    "meanTh": "มีสมาธิจดจ่อ, รวมศูนย์",
+    "meanEn": "to concentrate, to focus",
+    "pos": "กริยากลุ่ม 3",
+    "lvl": "N3",
+    "morae": [
+      "しゅ",
+      "う",
+      "ちゅ",
+      "う",
+      "す",
+      "る"
+    ],
+    "dropMora": 0,
+    "pitchPattern": "平板 [0]",
+    "exampleJp": "静かな部屋で勉強に集中する。",
+    "exampleTh": "จดจ่อกับการเรียนในห้องที่เงียบสงบ",
+    "exampleEn": "Focus on studying in a quiet room.",
+    "note": "ใช้กับคำช่วย に เช่น 仕事に集中する"
+  },
+  {
+    "id": 168,
+    "kanji": "協力する",
+    "kana": "きょうりょくする",
+    "ruby": [
+      [
+        "協",
+        "きょう"
+      ],
+      [
+        "力",
+        "りょく"
+      ],
+      [
+        "する",
+        ""
+      ]
+    ],
+    "meanTh": "ร่วมมือ, ให้ความร่วมมือ",
+    "meanEn": "to cooperate, to collaborate",
+    "pos": "กริยากลุ่ม 3",
+    "lvl": "N3",
+    "morae": [
+      "きょ",
+      "う",
+      "りょ",
+      "く",
+      "す",
+      "る"
+    ],
+    "dropMora": 0,
+    "pitchPattern": "平板 [0]",
+    "exampleJp": "みんなで協力して問題を解決した。",
+    "exampleTh": "ทุกคนร่วมมือกันแก้ไขปัญหาจนสำเร็จ",
+    "exampleEn": "Everyone cooperated to solve the problem.",
+    "note": "ご協力ありがとうございます = ขอบคุณสำหรับความร่วมมือครับ"
+  },
+  {
+    "id": 169,
+    "kanji": "解決する",
+    "kana": "かいけつする",
+    "ruby": [
+      [
+        "解",
+        "かい"
+      ],
+      [
+        "決",
+        "けつ"
+      ],
+      [
+        "する",
+        ""
+      ]
+    ],
+    "meanTh": "แก้ไขปัญหา, คลี่คลาย",
+    "meanEn": "to solve, to resolve",
+    "pos": "กริยากลุ่ม 3",
+    "lvl": "N3",
+    "morae": [
+      "か",
+      "い",
+      "け",
+      "つ",
+      "す",
+      "る"
+    ],
+    "dropMora": 0,
+    "pitchPattern": "平板 [0]",
+    "exampleJp": "話し合いでトラブルを解決する。",
+    "exampleTh": "คลี่คลายปัญหาด้วยการพูดคุยปรึกษากัน",
+    "exampleEn": "Resolve the trouble through discussion.",
+    "note": "เป็นได้ทั้งสกรรมกริยา (問題を解決する) และอกรรมกริยา (問題が解決する)"
+  },
+  {
+    "id": 170,
+    "kanji": "確認する",
+    "kana": "かくにんする",
+    "ruby": [
+      [
+        "確",
+        "かく"
+      ],
+      [
+        "認",
+        "にん"
+      ],
+      [
+        "する",
+        ""
+      ]
+    ],
+    "meanTh": "ยืนยัน, ตรวจสอบความถูกต้อง",
+    "meanEn": "to confirm, to check",
+    "pos": "กริยากลุ่ม 3",
+    "lvl": "N3",
+    "morae": [
+      "か",
+      "く",
+      "に",
+      "ん",
+      "す",
+      "る"
+    ],
+    "dropMora": 0,
+    "pitchPattern": "平板 [0]",
+    "exampleJp": "メールの内容をもう一度確認する。",
+    "exampleTh": "ตรวจสอบเนื้อหาในอีเมลอีกครั้งหนึ่ง",
+    "exampleEn": "Check the contents of the email one more time.",
+    "note": "คำที่ใช้บ่อยที่สุดคำหนึ่งในชีวิตการทำงานที่ญี่ปุ่น"
+  },
+  {
+    "id": 171,
+    "kanji": "成長する",
+    "kana": "せいちょうする",
+    "ruby": [
+      [
+        "成",
+        "せい"
+      ],
+      [
+        "長",
+        "ちょう"
+      ],
+      [
+        "する",
+        ""
+      ]
+    ],
+    "meanTh": "เติบโต, พัฒนาเป็นผู้ใหญ่ขึ้น",
+    "meanEn": "to grow, to mature",
+    "pos": "กริยากลุ่ม 3",
+    "lvl": "N3",
+    "morae": [
+      "せ",
+      "い",
+      "ちょ",
+      "う",
+      "す",
+      "る"
+    ],
+    "dropMora": 0,
+    "pitchPattern": "平板 [0]",
+    "exampleJp": "失敗を通して人は大きく成長する。",
+    "exampleTh": "ผู้คนเติบโตขึ้นอย่างมากผ่านความผิดพลาด",
+    "exampleEn": "People grow greatly through failures.",
+    "note": "ใช้ได้ทั้งคน พืช และธุรกิจ/เศรษฐกิจ"
+  },
+  {
+    "id": 172,
+    "kanji": "成功する",
+    "kana": "せいこうする",
+    "ruby": [
+      [
+        "成",
+        "せい"
+      ],
+      [
+        "功",
+        "こう"
+      ],
+      [
+        "する",
+        ""
+      ]
+    ],
+    "meanTh": "ประสบความสำเร็จ",
+    "meanEn": "to succeed",
+    "pos": "กริยากลุ่ม 3",
+    "lvl": "N3",
+    "morae": [
+      "せ",
+      "い",
+      "こ",
+      "う",
+      "す",
+      "る"
+    ],
+    "dropMora": 0,
+    "pitchPattern": "平板 [0]",
+    "exampleJp": "新しいプロジェクトが無事に成功した。",
+    "exampleTh": "โปรเจกต์ใหม่ประสบความสำเร็จด้วยดี",
+    "exampleEn": "The new project succeeded safely.",
+    "note": "ตรงข้ามกับ 失敗する"
+  },
+  {
+    "id": 173,
+    "kanji": "失敗する",
+    "kana": "しっぱいする",
+    "ruby": [
+      [
+        "失",
+        "しっ"
+      ],
+      [
+        "敗",
+        "ぱい"
+      ],
+      [
+        "する",
+        ""
+      ]
+    ],
+    "meanTh": "ล้มเหลว, ทำผิดพลาด",
+    "meanEn": "to fail, to make a mistake",
+    "pos": "กริยากลุ่ม 3",
+    "lvl": "N3",
+    "morae": [
+      "し",
+      "っ",
+      "ぱ",
+      "い",
+      "す",
+      "る"
+    ],
+    "dropMora": 0,
+    "pitchPattern": "平板 [0]",
+    "exampleJp": "失敗を恐れずに挑戦しよう。",
+    "exampleTh": "มาลงมือท้าทายโดยไม่กลัวความล้มเหลวกันเถอะ",
+    "exampleEn": "Let's take on the challenge without fearing failure.",
+    "note": "失敗は成功のもと = ความล้มเหลวเป็นบ่อเกิดแห่งความสำเร็จ"
+  },
+  {
+    "id": 174,
+    "kanji": "我慢する",
+    "kana": "がまんする",
+    "ruby": [
+      [
+        "我",
+        "が"
+      ],
+      [
+        "慢",
+        "まん"
+      ],
+      [
+        "する",
+        ""
+      ]
+    ],
+    "meanTh": "อดทน, อดกลั้น",
+    "meanEn": "to endure, to be patient",
+    "pos": "กริยากลุ่ม 3",
+    "lvl": "N3",
+    "morae": [
+      "が",
+      "ま",
+      "ん",
+      "す",
+      "る"
+    ],
+    "dropMora": 1,
+    "pitchPattern": "頭高 [1]",
+    "exampleJp": "眠いのを我慢して最後まで読んだ。",
+    "exampleTh": "ฝืนทนความง่วงแล้วอ่านจนจบ",
+    "exampleEn": "Endured sleepiness and read until the end.",
+    "note": "เสียงสูงที่พยางค์แรก が (頭高 [1])"
+  },
+  {
+    "id": 175,
+    "kanji": "感動する",
+    "kana": "かんどうする",
+    "ruby": [
+      [
+        "感",
+        "かん"
+      ],
+      [
+        "動",
+        "どう"
+      ],
+      [
+        "する",
+        ""
+      ]
+    ],
+    "meanTh": "ซาบซึ้งใจ, ประทับใจกินใจ",
+    "meanEn": "to be deeply moved, to be touched",
+    "pos": "กริยากลุ่ม 3",
+    "lvl": "N3",
+    "morae": [
+      "か",
+      "ん",
+      "ど",
+      "う",
+      "す",
+      "る"
+    ],
+    "dropMora": 0,
+    "pitchPattern": "平板 [0]",
+    "exampleJp": "美しい音楽を聴いてとても感動した。",
+    "exampleTh": "ได้ฟังดนตรีอันไพเราะแล้วรู้สึกซาบซึ้งใจมาก",
+    "exampleEn": "Was deeply moved listening to the beautiful music.",
+    "note": "เน้นอารมณ์ตื้นตันหรือสะเทือนใจในทางบวก"
+  },
+  {
+    "id": 176,
+    "kanji": "正確",
+    "kana": "せいかく",
+    "ruby": [
+      [
+        "正",
+        "せい"
+      ],
+      [
+        "確",
+        "かく"
+      ]
+    ],
+    "meanTh": "แม่นยำ, ถูกต้องเที่ยงตรง",
+    "meanEn": "accurate, precise, exact",
+    "pos": "คุณศัพท์ な",
+    "lvl": "N3",
+    "morae": [
+      "せ",
+      "い",
+      "か",
+      "く"
+    ],
+    "dropMora": 0,
+    "pitchPattern": "平板 [0]",
+    "exampleJp": "正確な時間を教えてください。",
+    "exampleTh": "กรุณาบอกเวลาที่ถูกต้องแม่นยำด้วยครับ",
+    "exampleEn": "Please tell me the exact time.",
+    "note": "เสียงพ้องกับ 性格 [0] (นิสัย/บุคลิกภาพ)"
+  },
+  {
+    "id": 177,
+    "kanji": "適当",
+    "kana": "てきとう",
+    "ruby": [
+      [
+        "適",
+        "てき"
+      ],
+      [
+        "当",
+        "とう"
+      ]
+    ],
+    "meanTh": "เหมาะสมพอดี; ทำไปส่งๆ ลวกๆ",
+    "meanEn": "suitable, proper; half-hearted, random",
+    "pos": "คุณศัพท์ な",
+    "lvl": "N3",
+    "morae": [
+      "て",
+      "き",
+      "と",
+      "う"
+    ],
+    "dropMora": 0,
+    "pitchPattern": "平板 [0]",
+    "exampleJp": "適当な大きさに野菜を切る。",
+    "exampleTh": "หั่นผักให้มีขนาดพอเหมาะ",
+    "exampleEn": "Cut the vegetables into appropriate sizes.",
+    "note": "ระวัง 2 ความหมาย: แง่บวก = เหมาะสมพอดี, แง่ลบ (ภาษาพูด เช่น 適当にやる) = ทำส่งๆ พอให้ผ่านไป"
+  },
+  {
+    "id": 178,
+    "kanji": "曖昧",
+    "kana": "あいまい",
+    "ruby": [
+      [
+        "曖",
+        "あい"
+      ],
+      [
+        "昧",
+        "まい"
+      ]
+    ],
+    "meanTh": "คลุมเครือ, กำกวมไม่ชัดเจน",
+    "meanEn": "vague, ambiguous",
+    "pos": "คุณศัพท์ な",
+    "lvl": "N3",
+    "morae": [
+      "あ",
+      "い",
+      "ま",
+      "い"
+    ],
+    "dropMora": 0,
+    "pitchPattern": "平板 [0]",
+    "exampleJp": "曖昧な返事をしないでください。",
+    "exampleTh": "กรุณาอย่าตอบแบบคลุมเครือไม่ชัดเจน",
+    "exampleEn": "Please do not give a vague reply.",
+    "note": "พบบ่อยทั้งในคันจิและฮิรางานะ あいまい"
+  },
+  {
+    "id": 179,
+    "kanji": "冷静",
+    "kana": "れいせい",
+    "ruby": [
+      [
+        "冷",
+        "れい"
+      ],
+      [
+        "静",
+        "せい"
+      ]
+    ],
+    "meanTh": "สุขุม, ใจเย็นมีสติ",
+    "meanEn": "calm, composed, cool-headed",
+    "pos": "คุณศัพท์ な",
+    "lvl": "N3",
+    "morae": [
+      "れ",
+      "い",
+      "せ",
+      "い"
+    ],
+    "dropMora": 0,
+    "pitchPattern": "平板 [0]",
+    "exampleJp": "どんな時も冷静に行動したい。",
+    "exampleTh": "ไม่ว่าเมื่อไรก็อยากปฏิบัติตัวอย่างมีสติสุขุม",
+    "exampleEn": "I want to act calmly at all times.",
+    "note": "冷静になる = ตั้งสติใจเย็นลง"
+  },
+  {
+    "id": 180,
+    "kanji": "真剣",
+    "kana": "しんけん",
+    "ruby": [
+      [
+        "真",
+        "しん"
+      ],
+      [
+        "剣",
+        "けん"
+      ]
+    ],
+    "meanTh": "จริงจัง, ตั้งใจแน่วแน่",
+    "meanEn": "serious, earnest",
+    "pos": "คุณศัพท์ な",
+    "lvl": "N3",
+    "morae": [
+      "し",
+      "ん",
+      "け",
+      "ん"
+    ],
+    "dropMora": 0,
+    "pitchPattern": "平板 [0]",
+    "exampleJp": "将来のことについて真剣に話し合った。",
+    "exampleTh": "พูดคุยปรึกษาเรื่องอนาคตกันอย่างจริงจัง",
+    "exampleEn": "Talked seriously about the future.",
+    "note": "真剣な顔 = สีหน้าจริงจัง"
+  },
+  {
+    "id": 181,
+    "kanji": "不安",
+    "kana": "ふあん",
+    "ruby": [
+      [
+        "不",
+        "ふ"
+      ],
+      [
+        "安",
+        "あん"
+      ]
+    ],
+    "meanTh": "กังวลใจ, ไม่สบายใจ",
+    "meanEn": "anxious, uneasy, insecure",
+    "pos": "คุณศัพท์ な / คำนาม",
+    "lvl": "N3",
+    "morae": [
+      "ふ",
+      "あ",
+      "ん"
+    ],
+    "dropMora": 0,
+    "pitchPattern": "平板 [0]",
+    "exampleJp": "新しい環境で少し不安を感じている。",
+    "exampleTh": "รู้สึกกังวลเล็กน้อยกับสภาพแวดล้อมใหม่",
+    "exampleEn": "Feeling a little anxious in the new environment.",
+    "note": "ตรงข้ามกับ 安心 (สบายใจ, โล่งใจ)"
+  },
+  {
+    "id": 182,
+    "kanji": "豊か",
+    "kana": "ゆたか",
+    "ruby": [
+      [
+        "豊",
+        "ゆた"
+      ],
+      [
+        "か",
+        ""
+      ]
+    ],
+    "meanTh": "อุดมสมบูรณ์, มั่งคั่ง, เปี่ยมล้น",
+    "meanEn": "abundant, rich, wealthy",
+    "pos": "คุณศัพท์ な",
+    "lvl": "N3",
+    "morae": [
+      "ゆ",
+      "た",
+      "か"
+    ],
+    "dropMora": 1,
+    "pitchPattern": "頭高 [1]",
+    "exampleJp": "この町は自然がとても豊かだ。",
+    "exampleTh": "เมืองนี้มีธรรมชาติที่อุดมสมบูรณ์มาก",
+    "exampleEn": "This town is very rich in nature.",
+    "note": "ใช้ได้ทั้งธรรมชาติ (自然が豊か) และประสบการณ์/จิตใจ (経験が豊か)"
+  },
+  {
+    "id": 183,
+    "kanji": "穏やか",
+    "kana": "おだやか",
+    "ruby": [
+      [
+        "穏",
+        "おだ"
+      ],
+      [
+        "やか",
+        ""
+      ]
+    ],
+    "meanTh": "สงบอ่อนโยน, อบอุ่นไม่รุนแรง",
+    "meanEn": "gentle, calm, peaceful",
+    "pos": "คุณศัพท์ な",
+    "lvl": "N3",
+    "morae": [
+      "お",
+      "だ",
+      "や",
+      "か"
+    ],
+    "dropMora": 2,
+    "pitchPattern": "中高 [2]",
+    "exampleJp": "今日は風がなくて穏やかな天気だ。",
+    "exampleTh": "วันนี้ไม่มีลม อากาศสงบสบาย",
+    "exampleEn": "Today there is no wind and the weather is calm.",
+    "note": "ใช้ได้ทั้งสภาพอากาศ ทะเล และนิสัยที่นุ่มนวลอ่อนโยน"
+  },
+  {
+    "id": 184,
+    "kanji": "素直",
+    "kana": "すなお",
+    "ruby": [
+      [
+        "素",
+        "す"
+      ],
+      [
+        "直",
+        "なお"
+      ]
+    ],
+    "meanTh": "ซื่อตรงต่อความรู้สึก, ว่านอนสอนง่าย",
+    "meanEn": "honest, frank, obedient",
+    "pos": "คุณศัพท์ な",
+    "lvl": "N3",
+    "morae": [
+      "す",
+      "な",
+      "お"
+    ],
+    "dropMora": 1,
+    "pitchPattern": "頭高 [1]",
+    "exampleJp": "アドバイスを素直に受け入れる。",
+    "exampleTh": "เปิดใจรับฟังคำแนะนำอย่างตรงไปตรงมา",
+    "exampleEn": "Openly accept the advice.",
+    "note": "素直に謝る = ขอโทษอย่างจริงใจไม่ดื้อดึง"
+  },
+  {
+    "id": 185,
+    "kanji": "鋭い",
+    "kana": "するどい",
+    "ruby": [
+      [
+        "鋭",
+        "するど"
+      ],
+      [
+        "い",
+        ""
+      ]
+    ],
+    "meanTh": "แหลมคม, เฉียบแหลม",
+    "meanEn": "sharp, keen, acute",
+    "pos": "คุณศัพท์ い",
+    "lvl": "N3",
+    "morae": [
+      "す",
+      "る",
+      "ど",
+      "い"
+    ],
+    "dropMora": 3,
+    "pitchPattern": "中高 [3]",
+    "exampleJp": "彼女は観察力がとても鋭い。",
+    "exampleTh": "เธอเป็นคนที่ช่างสังเกตอย่างเฉียบแหลมมาก",
+    "exampleEn": "She has very sharp powers of observation.",
+    "note": "ตรงข้ามกับ 鈍い (にぶい = ทื่อ, เชื่องช้า)"
+  },
+  {
+    "id": 186,
+    "kanji": "懐かしい",
+    "kana": "なつかしい",
+    "ruby": [
+      [
+        "懐",
+        "なつ"
+      ],
+      [
+        "かしい",
+        ""
+      ]
+    ],
+    "meanTh": "ชวนคิดถึงวันวาน, หวนรำลึกความหลัง",
+    "meanEn": "nostalgic, fondly missed",
+    "pos": "คุณศัพท์ い",
+    "lvl": "N3",
+    "morae": [
+      "な",
+      "つ",
+      "か",
+      "し",
+      "い"
+    ],
+    "dropMora": 4,
+    "pitchPattern": "中高 [4]",
+    "exampleJp": "昔の写真を見て懐かしい気持ちになった。",
+    "exampleTh": "ดูรูปถ่ายสมัยก่อนแล้วรู้สึกคิดถึงวันวานขึ้นมา",
+    "exampleEn": "Felt nostalgic looking at old photos.",
+    "note": "ใช้เมื่อนึกถึงอดีตที่อบอุ่นใจ ไม่ใช่คิดถึงคนที่อยากเจอตอนนี้ (ถ้าอยากเจอใช้ 会いたい)"
+  },
+  {
+    "id": 187,
+    "kanji": "羨ましい",
+    "kana": "うらやましい",
+    "ruby": [
+      [
+        "羨",
+        "うらや"
+      ],
+      [
+        "ましい",
+        ""
+      ]
+    ],
+    "meanTh": "น่าอิจฉา (ในทางชื่นชม)",
+    "meanEn": "envious, jealous (in a positive way)",
+    "pos": "คุณศัพท์ い",
+    "lvl": "N3",
+    "morae": [
+      "う",
+      "ら",
+      "や",
+      "ま",
+      "し",
+      "い"
+    ],
+    "dropMora": 5,
+    "pitchPattern": "中高 [5]",
+    "exampleJp": "毎日楽しく働いていて羨ましい。",
+    "exampleTh": "เห็นทำงานอย่างมีความสุขทุกวันแล้วน่าอิจฉาจัง",
+    "exampleEn": "I envy how happily you work every day.",
+    "note": "มักใช้เป็นคำชมกึ่งแซวว่าอยากมีโอกาสดีๆ แบบนั้นบ้าง"
+  },
+  {
+    "id": 188,
+    "kanji": "悔しい",
+    "kana": "くやしい",
+    "ruby": [
+      [
+        "悔",
+        "くや"
+      ],
+      [
+        "しい",
+        ""
+      ]
+    ],
+    "meanTh": "เจ็บใจ, น่าเสียดายที่ทำได้ไม่ดีพอ",
+    "meanEn": "frustrating, regrettable, mortifying",
+    "pos": "คุณศัพท์ い",
+    "lvl": "N3",
+    "morae": [
+      "く",
+      "や",
+      "し",
+      "い"
+    ],
+    "dropMora": 3,
+    "pitchPattern": "中高 [3]",
+    "exampleJp": "あと一点で負けて本当に悔しい。",
+    "exampleTh": "แพ้ไปแค่แต้มเดียว รู้สึกเจ็บใจเสียดายจริงๆ",
+    "exampleEn": "Losing by just one point is truly frustrating.",
+    "note": "เน้นความเจ็บใจที่แพ้หรือทำพลาดทั้งที่ตั้งใจ"
+  },
+  {
+    "id": 189,
+    "kanji": "怪しい",
+    "kana": "あやしい",
+    "ruby": [
+      [
+        "怪",
+        "あや"
+      ],
+      [
+        "しい",
+        ""
+      ]
+    ],
+    "meanTh": "น่าสงสัย, ไม่ชอบมาพากล",
+    "meanEn": "suspicious, dubious, fishy",
+    "pos": "คุณศัพท์ い",
+    "lvl": "N3",
+    "morae": [
+      "あ",
+      "や",
+      "し",
+      "い"
+    ],
+    "dropMora": 3,
+    "pitchPattern": "中高 [3]",
+    "exampleJp": "怪しいメールのリンクは開かないで。",
+    "exampleTh": "อย่าเปิดลิงก์ในอีเมลที่น่าสงสัยเด็ดขาด",
+    "exampleEn": "Do not open links in suspicious emails.",
+    "note": "雲行きが怪しい = ท่าทางชักไม่ค่อยดี (ทั้งเมฆฝนและสถานการณ์)"
+  },
+  {
+    "id": 190,
+    "kanji": "親しい",
+    "kana": "したしい",
+    "ruby": [
+      [
+        "親",
+        "した"
+      ],
+      [
+        "しい",
+        ""
+      ]
+    ],
+    "meanTh": "สนิทสนม, ใกล้ชิด",
+    "meanEn": "close, intimate, familiar",
+    "pos": "คุณศัพท์ い",
+    "lvl": "N3",
+    "morae": [
+      "し",
+      "た",
+      "し",
+      "い"
+    ],
+    "dropMora": 3,
+    "pitchPattern": "中高 [3]",
+    "exampleJp": "親しい友人と週末に旅行する。",
+    "exampleTh": "ไปเที่ยวสุดสัปดาห์กับเพื่อนสนิท",
+    "exampleEn": "Travel on the weekend with close friends.",
+    "note": "ข้อควรระวัง: 親 อ่านว่า した เมื่อเป็นคำว่า 親しい"
+  },
+  {
+    "id": 191,
+    "kanji": "結局",
+    "kana": "けっきょく",
+    "ruby": [
+      [
+        "結",
+        "けっ"
+      ],
+      [
+        "局",
+        "きょく"
+      ]
+    ],
+    "meanTh": "ท้ายที่สุด, ลงเอยด้วย",
+    "meanEn": "after all, in the end, eventually",
+    "pos": "คำวิเศษณ์",
+    "lvl": "N3",
+    "morae": [
+      "け",
+      "っ",
+      "きょ",
+      "く"
+    ],
+    "dropMora": 0,
+    "pitchPattern": "平板 [0]",
+    "exampleJp": "いろいろ迷ったが、結局最初の店にした。",
+    "exampleTh": "ลังเลอยู่หลายอย่าง แต่สุดท้ายก็เลือกร้านแรก",
+    "exampleEn": "Hesitated a lot, but in the end chose the first shop.",
+    "note": "ใช้นำหน้าสรุปผลลัพธ์สุดท้ายหลังผ่านเรื่องราวมา"
+  },
+  {
+    "id": 192,
+    "kanji": "偶然",
+    "kana": "ぐうぜん",
+    "ruby": [
+      [
+        "偶",
+        "ぐう"
+      ],
+      [
+        "然",
+        "ぜん"
+      ]
+    ],
+    "meanTh": "โดยบังเอิญ",
+    "meanEn": "by chance, accidentally, coincidence",
+    "pos": "คำวิเศษณ์ / คำนาม",
+    "lvl": "N3",
+    "morae": [
+      "ぐ",
+      "う",
+      "ぜ",
+      "ん"
+    ],
+    "dropMora": 0,
+    "pitchPattern": "平板 [0]",
+    "exampleJp": "駅で偶然高校の友達に会った。",
+    "exampleTh": "บังเอิญเจอเพื่อนสมัยมัธยมปลายที่สถานีรถไฟ",
+    "exampleEn": "Met a high school friend by chance at the station.",
+    "note": "ตรงข้ามกับ 必然 (ความจำเป็นที่หลีกเลี่ยงไม่ได้)"
+  },
+  {
+    "id": 193,
+    "kanji": "実際",
+    "kana": "じっさい",
+    "ruby": [
+      [
+        "実",
+        "じっ"
+      ],
+      [
+        "際",
+        "さい"
+      ]
+    ],
+    "meanTh": "ตามความเป็นจริง, ในทางปฏิบัติ",
+    "meanEn": "actually, in fact, in practice",
+    "pos": "คำวิเศษณ์ / คำนาม",
+    "lvl": "N3",
+    "morae": [
+      "じ",
+      "っ",
+      "さ",
+      "い"
+    ],
+    "dropMora": 0,
+    "pitchPattern": "平板 [0]",
+    "exampleJp": "実際にやってみると意外と難しい。",
+    "exampleTh": "พอลองลงมือทำจริงกลับยากกว่าที่คิด",
+    "exampleEn": "When you actually try doing it, it is surprisingly hard.",
+    "note": "実際に = ในความเป็นจริง / ตอนลงมือจริง"
+  },
+  {
+    "id": 194,
+    "kanji": "絶対",
+    "kana": "ぜったい",
+    "ruby": [
+      [
+        "絶",
+        "ぜっ"
+      ],
+      [
+        "対",
+        "たい"
+      ]
+    ],
+    "meanTh": "อย่างเด็ดขาด, แน่นอนที่สุด",
+    "meanEn": "absolutely, definitely",
+    "pos": "คำวิเศษณ์",
+    "lvl": "N3",
+    "morae": [
+      "ぜ",
+      "っ",
+      "た",
+      "い"
+    ],
+    "dropMora": 0,
+    "pitchPattern": "平板 [0]",
+    "exampleJp": "この秘密は誰にも絶対に言わないで。",
+    "exampleTh": "ความลับนี้อย่าบอกใครเป็นอันขาดนะ",
+    "exampleEn": "Never tell this secret to anyone.",
+    "note": "ใช้ได้ทั้งประโยคบอกเล่า (มั่นใจ 100%) และประโยคปฏิเสธ (ห้ามเด็ดขาด)"
+  },
+  {
+    "id": 195,
+    "kanji": "当然",
+    "kana": "とうぜん",
+    "ruby": [
+      [
+        "当",
+        "とう"
+      ],
+      [
+        "然",
+        "ぜん"
+      ]
+    ],
+    "meanTh": "เป็นธรรมดา, แน่นอนอยู่แล้ว",
+    "meanEn": "naturally, as a matter of course",
+    "pos": "คำวิเศษณ์ / คุณศัพท์ な",
+    "lvl": "N3",
+    "morae": [
+      "と",
+      "う",
+      "ぜ",
+      "ん"
+    ],
+    "dropMora": 0,
+    "pitchPattern": "平板 [0]",
+    "exampleJp": "毎日練習したから合格するのは当然だ。",
+    "exampleTh": "เพราะฝึกซ้อมทุกวัน การสอบผ่านจึงเป็นเรื่องธรรมดาอยู่แล้ว",
+    "exampleEn": "Since you practiced daily, passing is only natural.",
+    "note": "คล้ายกับ 当たり前 แต่ภาษาดูเป็นผู้ใหญ่กว่า"
+  },
+  {
+    "id": 196,
+    "kanji": "早速",
+    "kana": "さっそく",
+    "ruby": [
+      [
+        "早",
+        "さっ"
+      ],
+      [
+        "速",
+        "そく"
+      ]
+    ],
+    "meanTh": "ทันทีทันใด, โดยไม่รอช้า",
+    "meanEn": "at once, right away, promptly",
+    "pos": "คำวิเศษณ์",
+    "lvl": "N3",
+    "morae": [
+      "さ",
+      "っ",
+      "そ",
+      "く"
+    ],
+    "dropMora": 0,
+    "pitchPattern": "平板 [0]",
+    "exampleJp": "届いた本を早速読み始めた。",
+    "exampleTh": "พอหนังสือมาถึงก็เริ่มอ่านทันทีโดยไม่รอช้า",
+    "exampleEn": "Started reading the delivered book right away.",
+    "note": "ให้ความรู้สึกกระตือรือร้นในแง่บวก"
+  },
+  {
+    "id": 197,
+    "kanji": "徐々に",
+    "kana": "じょじょに",
+    "ruby": [
+      [
+        "徐",
+        "じょ"
+      ],
+      [
+        "々",
+        "じょ"
+      ],
+      [
+        "に",
+        ""
+      ]
+    ],
+    "meanTh": "ค่อยๆ, ทีละเล็กละน้อย",
+    "meanEn": "gradually, little by little",
+    "pos": "คำวิเศษณ์",
+    "lvl": "N3",
+    "morae": [
+      "じょ",
+      "じょ",
+      "に"
+    ],
+    "dropMora": 1,
+    "pitchPattern": "頭高 [1]",
+    "exampleJp": "寒さが徐々に厳しくなってきた。",
+    "exampleTh": "ความหนาวค่อยๆ ทวีความรุนแรงขึ้นเรื่อยๆ",
+    "exampleEn": "The cold has gradually become harsher.",
+    "note": "มีความหมายคล้าย 少しずつ / だんだん แต่เป็นทางการกว่า"
+  },
+  {
+    "id": 198,
+    "kanji": "再び",
+    "kana": "ふたたび",
+    "ruby": [
+      [
+        "再",
+        "ふたた"
+      ],
+      [
+        "び",
+        ""
+      ]
+    ],
+    "meanTh": "อีกครั้งหนึ่ง (ซ้ำเป็นครั้งที่สอง)",
+    "meanEn": "again, once more",
+    "pos": "คำวิเศษณ์",
+    "lvl": "N3",
+    "morae": [
+      "ふ",
+      "た",
+      "た",
+      "び"
+    ],
+    "dropMora": 2,
+    "pitchPattern": "中高 [2]",
+    "exampleJp": "いつか再びこの美しい島を訪れたい。",
+    "exampleTh": "สักวันหนึ่งอยากกลับมาเยือนเกาะที่สวยงามแห่งนี้อีกครั้ง",
+    "exampleEn": "Someday I want to visit this beautiful island again.",
+    "note": "ภาษาเขียนที่สละสลวยของ もう一度"
+  },
+  {
+    "id": 199,
+    "kanji": "直接",
+    "kana": "ちょくせつ",
+    "ruby": [
+      [
+        "直",
+        "ちょく"
+      ],
+      [
+        "接",
+        "せつ"
+      ]
+    ],
+    "meanTh": "โดยตรง",
+    "meanEn": "directly, firsthand",
+    "pos": "คำวิเศษณ์ / คำนาม",
+    "lvl": "N3",
+    "morae": [
+      "ちょ",
+      "く",
+      "せ",
+      "つ"
+    ],
+    "dropMora": 0,
+    "pitchPattern": "平板 [0]",
+    "exampleJp": "電話ではなく直接会って話したい。",
+    "exampleTh": "อยากพบพูดคุยกันโดยตรงมากกว่าคุยทางโทรศัพท์",
+    "exampleEn": "I want to meet and talk directly rather than by phone.",
+    "note": "ตรงข้ามกับ 間接 (かんせつ = ทางอ้อม)"
+  },
+  {
+    "id": 200,
+    "kanji": "共通",
+    "kana": "きょうつう",
+    "ruby": [
+      [
+        "共",
+        "きょう"
+      ],
+      [
+        "通",
+        "つう"
+      ]
+    ],
+    "meanTh": "ร่วมกัน, เหมือนกันทั้งสองฝ่าย",
+    "meanEn": "common, shared, mutual",
+    "pos": "คำนาม / กริยา する",
+    "lvl": "N3",
+    "morae": [
+      "きょ",
+      "う",
+      "つ",
+      "う"
+    ],
+    "dropMora": 0,
+    "pitchPattern": "平板 [0]",
+    "exampleJp": "私たちには共通の趣味がある。",
+    "exampleTh": "พวกเรามีงานอดิเรกที่เหมือนกัน",
+    "exampleEn": "We share a common hobby.",
+    "note": "共通点 (きょうつうてん) = จุดร่วมที่เหมือนกัน"
   }
 ]

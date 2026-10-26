@@ -22,7 +22,7 @@ data class WordEntity(
     val meanTh: String,
     val meanEn: String,
     val pos: String,
-    val lvl: String, // N5 or N4
+    val lvl: String, // N5, N4, or N3
     val moraeJson: String, // e.g. ["は", "し"]
     val dropMora: Int,
     val pitchPattern: String,
@@ -41,7 +41,8 @@ data class WordEntity(
     var lapses: Int = 0,
     var lastReview: Long = 0L,
     var nextReview: Long = 0L,
-    var isSuspended: Boolean = false
+    var isSuspended: Boolean = false,
+    var firstStudiedAt: Long = 0L
 ) {
     fun getRubyTokens(): List<FuriganaToken> {
         return try {

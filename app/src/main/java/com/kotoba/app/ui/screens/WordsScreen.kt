@@ -43,6 +43,7 @@ fun WordsScreen(
             val matchesSeg = when (selectedSegment) {
                 "N5" -> word.lvl == "N5"
                 "N4" -> word.lvl == "N4"
+                "N3" -> word.lvl == "N3"
                 "mastered" -> word.stability >= 21.0
                 "learning" -> word.state != "new" && word.stability < 21.0
                 else -> true
@@ -110,6 +111,7 @@ fun WordsScreen(
                 "all" to "ทั้งหมด (${words.size})",
                 "N5" to "JLPT N5",
                 "N4" to "JLPT N4",
+                "N3" to "JLPT N3",
                 "learning" to "กำลังจำ",
                 "mastered" to "จำแม่น"
             ).forEach { (key, label) ->
@@ -186,15 +188,20 @@ fun WordsScreen(
                                             color = MaterialTheme.colorScheme.secondary
                                         )
                                     }
+                                    val lvlColor = when (word.lvl) {
+                                        "N3" -> AccentAmber
+                                        "N4" -> AccentPurple
+                                        else -> AccentBlue
+                                    }
                                     Surface(
                                         shape = RoundedCornerShape(6.dp),
-                                        color = if (word.lvl == "N4") AccentPurple.copy(alpha = 0.14f) else AccentBlue.copy(alpha = 0.14f)
+                                        color = lvlColor.copy(alpha = 0.14f)
                                     ) {
                                         Text(
                                             text = word.lvl,
                                             fontSize = 11.sp,
                                             fontWeight = FontWeight.Bold,
-                                            color = if (word.lvl == "N4") AccentPurple else AccentBlue,
+                                            color = lvlColor,
                                             modifier = Modifier.padding(horizontal = 6.dp, vertical = 2.dp)
                                         )
                                     }

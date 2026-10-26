@@ -84,16 +84,21 @@ fun WordDetailScreen(
                     verticalAlignment = Alignment.Top
                 ) {
                     Column(modifier = Modifier.weight(1f)) {
+                        val lvlColor = when (word.lvl) {
+                            "N3" -> AccentAmber
+                            "N4" -> AccentPurple
+                            else -> AccentBlue
+                        }
                         Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                             Surface(
                                 shape = RoundedCornerShape(6.dp),
-                                color = if (word.lvl == "N4") AccentPurple.copy(alpha = 0.14f) else AccentBlue.copy(alpha = 0.14f)
+                                color = lvlColor.copy(alpha = 0.14f)
                             ) {
                                 Text(
                                     word.lvl,
                                     fontSize = 12.sp,
                                     fontWeight = FontWeight.Bold,
-                                    color = if (word.lvl == "N4") AccentPurple else AccentBlue,
+                                    color = lvlColor,
                                     modifier = Modifier.padding(horizontal = 8.dp, vertical = 2.dp)
                                 )
                             }

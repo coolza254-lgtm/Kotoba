@@ -7,7 +7,6 @@ import androidx.compose.animation.core.tween
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.MenuBook
-import androidx.compose.material.icons.filled.AutoAwesome
 import androidx.compose.material.icons.filled.BarChart
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material.icons.filled.Today
@@ -17,25 +16,26 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleEventObserver
 import com.kotoba.app.audio.NativeAudioPlayer
 import com.kotoba.app.data.AppPreferences
 import com.kotoba.app.data.db.KotobaDatabase
 import com.kotoba.app.data.model.WordEntity
 import com.kotoba.app.fsrs.FsrsEngine
 import com.kotoba.app.ui.theme.AccentRed
-import com.kotoba.app.updater.GitHubRelease
 import com.kotoba.app.updater.GitHubUpdater
-import com.kotoba.app.updater.UpdateState
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 sealed class NavigationTab(val route: String, val label: String, val icon: ImageVector) {
     data object Today : NavigationTab("today", "วันนี้", Icons.Default.Today)
     data object Words : NavigationTab("words", "คำศัพท์", Icons.AutoMirrored.Filled.MenuBook)
-    data object Grammar : NavigationTab("grammar", "ไวยากรณ์", Icons.Default.AutoAwesome)
     data object Stats : NavigationTab("stats", "สถิติ", Icons.Default.BarChart)
     data object Settings : NavigationTab("settings", "ตั้งค่า", Icons.Default.Settings)
 }
@@ -53,19 +53,42 @@ fun MainScreen(
     // Reactive Preferences
     val themeMode by preferences.themeMode.collectAsState()
     val doneToday by preferences.doneToday.collectAsState()
+    val prefNewDoneToday by preferences.newDoneToday.collectAsState()
     val streakDays by preferences.streakDays.collectAsState()
     val dailyNewLimit by preferences.dailyNewLimit.collectAsState()
     val desiredRetention by preferences.desiredRetention.collectAsState()
     val speechRate by preferences.speechRate.collectAsState()
+    val selectedLevelFilter by preferences.newWordLevelFilter.collectAsState()
     val savedSession by preferences.savedSession.collectAsState()
 
     val fsrsEngine = remember(desiredRetention) {
         FsrsEngine(desiredRetention = desiredRetention.toDouble())
     }
 
-    // Database states
+    // Database state
     val wordsList by database.wordDao().getAllWords().collectAsState(initial = emptyList())
-    val grammarList by database.grammarDao().getAllGrammar().collectAsState(initial = emptyList())
+
+    // Live clock so 10-minute same-day reviews surface automatically without restarting the app
+    var nowMillis by remember { mutableLongStateOf(System.currentTimeMillis()) }
+    LaunchedEffect(Unit) {
+        while (true) {
+            delay(20_000L)
+            preferences.refreshDailyState()
+            nowMillis = System.currentTimeMillis()
+        }
+    }
+
+    val lifecycleOwner = LocalLifecycleOwner.current
+    DisposableEffect(lifecycleOwner) {
+        val observer = LifecycleEventObserver { _, event ->
+            if (event == Lifecycle.Event.ON_RESUME) {
+                preferences.refreshDailyState()
+                nowMillis = System.currentTimeMillis()
+            }
+        }
+        lifecycleOwner.lifecycle.addObserver(observer)
+        onDispose { lifecycleOwner.lifecycle.removeObserver(observer) }
+    }
 
     // Ensure database seeds on launch if empty
     LaunchedEffect(wordsList.size) {
@@ -74,34 +97,81 @@ fun MainScreen(
         }
     }
 
+    // Sync newDoneToday with SQLite firstStudiedAt truth (covers upgrades from older builds on the same day)
+    val dbNewTodayCount = remember(wordsList, nowMillis) {
+        val startOfDay = preferences.startOfTodayMillis()
+        wordsList.count { it.state != "new" && it.firstStudiedAt >= startOfDay }
+    }
+    LaunchedEffect(dbNewTodayCount) {
+        if (dbNewTodayCount > 0) {
+            preferences.ensureNewDoneTodayAtLeast(dbNewTodayCount)
+        }
+    }
+
+    // Effective new words studied today is the max of prefs and DB firstStudiedAt
+    val effectiveNewDoneToday = maxOf(prefNewDoneToday, dbNewTodayCount)
+    val remainingNewQuota = (dailyNewLimit - effectiveNewDoneToday).coerceAtLeast(0)
+
     // Active Tab & Sub-screens
     var currentTab by remember { mutableStateOf<NavigationTab>(NavigationTab.Today) }
     var selectedWordId by remember { mutableStateOf<Int?>(null) }
-    var selectedGrammarId by remember { mutableStateOf<String?>(null) }
 
     // Flashcard session state
     var isInSession by remember { mutableStateOf(false) }
     var activeSessionWordIds by remember { mutableStateOf<List<Int>>(emptyList()) }
     var activeSessionStartIndex by remember { mutableIntStateOf(0) }
-
-    // Grammar quiz state
-    var isInGrammarQuiz by remember { mutableStateOf(false) }
-    var grammarQuizFilterLevel by remember { mutableStateOf("all") }
+    var activeSessionIsExtra by remember { mutableStateOf(false) }
+    val sessionRetries = remember { mutableStateMapOf<Int, Int>() }
+    val sessionCountedNewIds = remember { mutableStateListOf<Int>() }
 
     // Exit App Confirmation Dialog state
     var showExitAppDialog by remember { mutableStateOf(false) }
 
-    val dueWords = remember(wordsList) {
-        val now = System.currentTimeMillis()
-        wordsList.filter { it.state != "new" && it.nextReview <= now && !it.isSuspended }
+    // Due reviews: ALWAYS across all levels, strictly already-learned words whose nextReview <= now
+    val dueWords = remember(wordsList, nowMillis) {
+        wordsList.filter { it.state != "new" && it.nextReview <= nowMillis && !it.isSuspended }
+            .sortedBy { it.nextReview }
     }
-    val newWords = remember(wordsList, dailyNewLimit) {
-        wordsList.filter { it.state == "new" && !it.isSuspended }.take(dailyNewLimit)
+
+    // New words for today: STRICTLY capped by remainingNewQuota! Once quota hits 0, empty for the rest of the day.
+    val newWords = remember(wordsList, remainingNewQuota, selectedLevelFilter) {
+        if (remainingNewQuota <= 0) {
+            emptyList()
+        } else {
+            wordsList.filter { word ->
+                word.state == "new" && !word.isSuspended &&
+                    (selectedLevelFilter == "ALL" || word.lvl == selectedLevelFilter)
+            }.take(remainingNewQuota)
+        }
+    }
+
+    val learnedWords = remember(wordsList) {
+        wordsList.filter { it.state != "new" && !it.isSuspended }
+    }
+
+    val nextDueHint = remember(wordsList, dueWords, nowMillis, remainingNewQuota) {
+        if (dueWords.isNotEmpty() || remainingNewQuota > 0) {
+            null
+        } else {
+            val nextCard = wordsList
+                .filter { it.state != "new" && !it.isSuspended && it.nextReview > nowMillis }
+                .minByOrNull { it.nextReview }
+            if (nextCard == null) {
+                "ครบโควตาคำศัพท์ใหม่วันนี้แล้ว"
+            } else {
+                val diffMin = ((nextCard.nextReview - nowMillis) / 60_000L).coerceAtLeast(1)
+                when {
+                    diffMin < 60 -> "โควตาคำใหม่ครบแล้ว · มีคำรอทบทวนถัดไปในอีก $diffMin นาที"
+                    diffMin < 24 * 60 -> "โควตาคำใหม่ครบแล้ว · มีคำรอทบทวนถัดไปในอีก ${diffMin / 60} ชั่วโมง"
+                    else -> "ครบโควตาคำใหม่วันนี้แล้ว · รอทบทวนรอบถัดไปพรุ่งนี้"
+                }
+            }
+        }
     }
 
     // Global Back Handler for Tabs & Root Exit Confirmation
     BackHandler(
-        enabled = !isInSession && !isInGrammarQuiz && selectedWordId == null && selectedGrammarId == null
+        enabled = !isInSession && selectedWordId == null
     ) {
         if (currentTab != NavigationTab.Today) {
             currentTab = NavigationTab.Today
@@ -133,7 +203,7 @@ fun MainScreen(
         )
     }
 
-    // Sub-screen 1: Word Detail Screen (can also be opened on top of lists)
+    // Sub-screen 1: Word Detail Screen
     if (selectedWordId != null) {
         val idx = wordsList.indexOfFirst { it.id == selectedWordId }
         val word = wordsList.getOrNull(idx)
@@ -157,83 +227,52 @@ fun MainScreen(
         }
     }
 
-    // Sub-screen 2: Grammar Detail Screen
-    if (selectedGrammarId != null) {
-        val idx = grammarList.indexOfFirst { it.id == selectedGrammarId }
-        val grammar = grammarList.getOrNull(idx)
-        if (grammar != null) {
-            GrammarDetailScreen(
-                grammar = grammar,
-                hasPrevious = idx > 0,
-                hasNext = idx in 0 until (grammarList.size - 1),
-                onPrevious = {
-                    if (idx > 0) selectedGrammarId = grammarList[idx - 1].id
-                },
-                onNext = {
-                    if (idx < grammarList.size - 1) selectedGrammarId = grammarList[idx + 1].id
-                },
-                onBack = { selectedGrammarId = null },
-                onPlayAudio = { audioPlayer.speak(it) },
-                onToggleMastered = { isMastered ->
-                    coroutineScope.launch {
-                        val updated = grammar.copy(isMastered = isMastered)
-                        database.grammarDao().updateGrammar(updated)
-                    }
-                }
-            )
-            return
-        } else {
-            selectedGrammarId = null
-        }
-    }
-
-    // Sub-screen 3: Grammar Comprehension Quiz
-    if (isInGrammarQuiz) {
-        val quizPool = remember(grammarList, grammarQuizFilterLevel) {
-            when (grammarQuizFilterLevel) {
-                "base" -> grammarList.filter { it.lvl == "base" }
-                "N5" -> grammarList.filter { it.lvl == "N5" }
-                "N4" -> grammarList.filter { it.lvl == "N4" }
-                else -> grammarList
-            }.ifEmpty { grammarList }
-        }
-        GrammarQuizScreen(
-            grammarPool = quizPool,
-            onPlayAudio = { audioPlayer.speak(it) },
-            onMarkMastered = { grammar, mastered ->
-                coroutineScope.launch {
-                    if (grammar.isMastered != mastered) {
-                        database.grammarDao().updateGrammar(grammar.copy(isMastered = mastered))
-                    }
-                }
-            },
-            onOpenGrammarDetail = { id ->
-                selectedGrammarId = id
-            },
-            onExitQuiz = { isInGrammarQuiz = false }
-        )
-        return
-    }
-
-    // Sub-screen 4: Flashcard Session with Real-time Progress Persistence
+    // Sub-screen 2: Flashcard Session with Real-time Progress Persistence & Re-queue on "จำไม่ได้"
     if (isInSession) {
         val wordMap = remember(wordsList) { wordsList.associateBy { it.id } }
-        val sessionWords: List<WordEntity> = remember(activeSessionWordIds, wordMap) {
-            activeSessionWordIds.mapNotNull { wordMap[it] }
+        val sessionWords: List<WordEntity> = remember(activeSessionWordIds, wordMap, sessionCountedNewIds.size) {
+            activeSessionWordIds.mapNotNull { id ->
+                val w = wordMap[id]
+                // If a card was already seen once in this session, ensure its badge shows "ทบทวน"
+                if (w != null && id in sessionCountedNewIds && w.state == "new") {
+                    w.copy(state = "learning")
+                } else {
+                    w
+                }
+            }
         }
         FlashcardSessionScreen(
             words = sessionWords,
             initialIndex = activeSessionStartIndex,
             desiredRetention = desiredRetention.toDouble(),
             onRateWord = { word, rating, nextIndex ->
-                // 1. Save session progress and increment daily counter immediately
-                preferences.recordCardReviewed()
-                preferences.saveSessionProgress(activeSessionWordIds, nextIndex)
-                activeSessionStartIndex = nextIndex
+                val isFirstTimeNew = (word.state == "new") && (word.id !in sessionCountedNewIds)
+                if (isFirstTimeNew) {
+                    sessionCountedNewIds.add(word.id)
+                }
 
-                // 2. Persist FSRS state to SQLite
+                // 1. Record review & new-word quota immediately
+                preferences.recordCardReviewed(isNewWord = isFirstTimeNew)
+
+                // 2. If user tapped "จำไม่ได้" (rating == 1), re-queue at end of session (up to 2 retries)
+                var updatedSessionIds = activeSessionWordIds
+                if (rating == 1) {
+                    val retriesSoFar = sessionRetries[word.id] ?: 0
+                    if (retriesSoFar < 2) {
+                        sessionRetries[word.id] = retriesSoFar + 1
+                        updatedSessionIds = activeSessionWordIds + word.id
+                        activeSessionWordIds = updatedSessionIds
+                    }
+                }
+
+                preferences.saveSessionProgress(updatedSessionIds, nextIndex, activeSessionIsExtra)
+                activeSessionStartIndex = nextIndex
+                nowMillis = System.currentTimeMillis()
+
+                // 3. Persist FSRS state to SQLite
                 coroutineScope.launch {
-                    val updated = fsrsEngine.review(word.copy(), rating)
+                    val latestWord = wordMap[word.id] ?: word
+                    val updated = fsrsEngine.review(latestWord.copy(), rating)
                     database.wordDao().updateWord(updated)
                 }
             },
@@ -242,6 +281,7 @@ fun MainScreen(
                 if (completedAll) {
                     preferences.clearSavedSession()
                 }
+                nowMillis = System.currentTimeMillis()
                 isInSession = false
             }
         )
@@ -249,7 +289,7 @@ fun MainScreen(
     }
 
     // Initial Seeding Loading State
-    if (wordsList.isEmpty() && grammarList.isEmpty()) {
+    if (wordsList.isEmpty()) {
         Box(
             modifier = Modifier.fillMaxSize(),
             contentAlignment = Alignment.Center
@@ -260,7 +300,7 @@ fun MainScreen(
             ) {
                 CircularProgressIndicator(color = MaterialTheme.colorScheme.primary)
                 Text(
-                    text = "กำลังเตรียมคลังคำศัพท์และไวยากรณ์ Kotoba...",
+                    text = "กำลังเตรียมคลังคำศัพท์ JLPT N5 – N3...",
                     fontSize = 14.sp,
                     color = MaterialTheme.colorScheme.secondary
                 )
@@ -269,7 +309,7 @@ fun MainScreen(
         return
     }
 
-    // Main 5-tab layout
+    // Clean 4-tab layout (Today, Words, Stats, Settings)
     Scaffold(
         bottomBar = {
             NavigationBar(
@@ -279,7 +319,6 @@ fun MainScreen(
                 listOf(
                     NavigationTab.Today,
                     NavigationTab.Words,
-                    NavigationTab.Grammar,
                     NavigationTab.Stats,
                     NavigationTab.Settings
                 ).forEach { tab ->
@@ -311,38 +350,68 @@ fun MainScreen(
             ) { tab ->
                 when (tab) {
                     NavigationTab.Today -> TodayScreen(
+                        words = wordsList,
                         dueCount = dueWords.size,
                         newCount = newWords.size,
+                        newDoneToday = effectiveNewDoneToday,
+                        dailyNewLimit = dailyNewLimit,
                         streakDays = streakDays,
                         doneToday = doneToday,
-                        totalVocabCount = wordsList.size,
-                        totalGrammarCount = grammarList.size,
-                        masteredGrammarCount = grammarList.count { it.isMastered },
+                        learnedCount = learnedWords.size,
+                        nextDueHint = nextDueHint,
+                        selectedLevelFilter = selectedLevelFilter,
                         savedSession = savedSession,
                         themeMode = themeMode,
+                        onSelectLevelFilter = { level ->
+                            preferences.setNewWordLevelFilter(level)
+                            // If a saved session hasn't started or has unstudied new words, clear so new filter applies cleanly
+                            if (savedSession.isActive && !savedSession.isExtraReview) {
+                                preferences.clearSavedSession()
+                            }
+                        },
                         onToggleTheme = { preferences.cycleThemeMode() },
                         onStartSession = {
-                            val queue = (dueWords + newWords).ifEmpty {
-                                wordsList.shuffled().take(dailyNewLimit)
-                            }.shuffled()
-                            val ids = queue.map { it.id }
-                            activeSessionWordIds = ids
-                            activeSessionStartIndex = 0
-                            preferences.saveSessionProgress(ids, 0)
-                            isInSession = true
-                        },
-                        onResumeSession = {
-                            if (savedSession.isActive) {
-                                activeSessionWordIds = savedSession.wordIds
-                                activeSessionStartIndex = savedSession.currentIndex
+                            // Strictly due reviews + today's remaining new-word quota ONLY
+                            val queue = dueWords + newWords.shuffled()
+                            if (queue.isNotEmpty()) {
+                                val ids = queue.map { it.id }
+                                sessionRetries.clear()
+                                sessionCountedNewIds.clear()
+                                activeSessionWordIds = ids
+                                activeSessionStartIndex = 0
+                                activeSessionIsExtra = false
+                                preferences.saveSessionProgress(ids, 0, isExtraReview = false)
                                 isInSession = true
                             }
                         },
-                        onNavigateGrammar = { currentTab = NavigationTab.Grammar },
-                        onStartGrammarQuiz = {
-                            grammarQuizFilterLevel = "all"
-                            isInGrammarQuiz = true
-                        }
+                        onStartExtraReview = {
+                            // Extra Review ONLY ever pulls ALREADY-LEARNED words (state != "new"), sorted by weakest/soonest due
+                            val reviewOnlyQueue = learnedWords
+                                .sortedWith(compareBy<WordEntity> { it.stability }.thenBy { it.nextReview })
+                                .take(20)
+                                .shuffled()
+                            if (reviewOnlyQueue.isNotEmpty()) {
+                                val ids = reviewOnlyQueue.map { it.id }
+                                sessionRetries.clear()
+                                sessionCountedNewIds.clear()
+                                activeSessionWordIds = ids
+                                activeSessionStartIndex = 0
+                                activeSessionIsExtra = true
+                                preferences.saveSessionProgress(ids, 0, isExtraReview = true)
+                                isInSession = true
+                            }
+                        },
+                        onResumeSession = {
+                            if (savedSession.isActive) {
+                                sessionRetries.clear()
+                                sessionCountedNewIds.clear()
+                                activeSessionWordIds = savedSession.wordIds
+                                activeSessionStartIndex = savedSession.currentIndex
+                                activeSessionIsExtra = savedSession.isExtraReview
+                                isInSession = true
+                            }
+                        },
+                        onNavigateWords = { currentTab = NavigationTab.Words }
                     )
 
                     NavigationTab.Words -> WordsScreen(
@@ -350,19 +419,10 @@ fun MainScreen(
                         onSelectWord = { id -> selectedWordId = id }
                     )
 
-                    NavigationTab.Grammar -> GrammarScreen(
-                        grammarList = grammarList,
-                        onSelectGrammar = { id -> selectedGrammarId = id },
-                        onStartQuiz = { level ->
-                            grammarQuizFilterLevel = level
-                            isInGrammarQuiz = true
-                        }
-                    )
-
                     NavigationTab.Stats -> StatsScreen(
                         words = wordsList,
-                        grammarList = grammarList,
                         doneToday = doneToday,
+                        newDoneToday = effectiveNewDoneToday,
                         streakDays = streakDays
                     )
 
@@ -373,7 +433,13 @@ fun MainScreen(
                         desiredRetention = desiredRetention,
                         speechRate = speechRate,
                         onChangeThemeMode = { preferences.setThemeMode(it) },
-                        onChangeDailyNewLimit = { preferences.setDailyNewLimit(it) },
+                        onChangeDailyNewLimit = { newLimit ->
+                            preferences.setDailyNewLimit(newLimit)
+                            // If a saved session had queued more new words than the updated limit allows, clear it so the new limit applies immediately
+                            if (savedSession.isActive && !savedSession.isExtraReview) {
+                                preferences.clearSavedSession()
+                            }
+                        },
                         onChangeDesiredRetention = { preferences.setDesiredRetention(it) },
                         onChangeSpeechRate = {
                             preferences.setSpeechRate(it)

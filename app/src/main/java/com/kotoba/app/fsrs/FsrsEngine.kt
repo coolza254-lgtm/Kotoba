@@ -9,7 +9,8 @@ import kotlin.math.roundToInt
 
 /**
  * Pure Kotlin Implementation of Free Spaced Repetition Scheduler (FSRS v5)
- * Reference: https://github.com/open-spaced-repetition/fsrs4anki/wiki/The-Algorithm
+ * with short-term same-day learning/relearning steps (10m / 1h) so forgotten or difficult words
+ * come back for review later the same day without pulling additional new words.
  */
 class FsrsEngine(
     var desiredRetention: Double = 0.90,
@@ -26,6 +27,9 @@ class FsrsEngine(
         )
         const val DECAY = -0.5
         const val FACTOR = 19.0 / 81.0
+        const val MINUTE_MS = 60_000L
+        const val HOUR_MS = 3_600_000L
+        const val DAY_MS = 86_400_000L
     }
 
     enum class Rating(val value: Int) {
@@ -52,6 +56,12 @@ class FsrsEngine(
         return min(10.0, max(1.0, d))
     }
 
+    private fun updateDifficulty(currentD: Double, rating: Rating): Double {
+        val dNext = currentD - weights[6] * (rating.value - 3) * (10.0 - currentD) / 9.0
+        val meanReversionD = weights[7] * initDifficulty(Rating.EASY) + (1.0 - weights[7]) * dNext
+        return min(10.0, max(1.0, meanReversionD))
+    }
+
     private fun nextStabilitySuccess(d: Double, s: Double, r: Double, rating: Rating): Double {
         val w = weights
         val hardPenalty = if (rating == Rating.HARD) w[15] else 1.0
@@ -62,63 +72,171 @@ class FsrsEngine(
     private fun nextStabilityFailure(d: Double, s: Double, r: Double): Double {
         val w = weights
         val res = w[11] * d.pow(-w[12]) * ((s + 1.0).pow(w[13]) - 1.0) * exp(w[14] * (1.0 - r))
-        return min(s, max(0.1, res))
+        return min(s, max(0.2, res))
     }
 
     fun previewIntervals(word: WordEntity): Map<Int, String> {
-        val s = max(0.1, word.stability)
-        return mapOf(
-            1 to "10m",
-            2 to "${max(1, (nextInterval(s) * 0.5).roundToInt())}d",
-            3 to "${nextInterval(s)}d",
-            4 to "${max(4, (nextInterval(s) * 1.5).roundToInt())}d"
-        )
+        val now = System.currentTimeMillis()
+        return (1..4).associateWith { ratingVal ->
+            val simulated = review(word.copy(), ratingVal, now)
+            formatDelta(simulated.nextReview - now)
+        }
     }
 
-    fun review(word: WordEntity, ratingValue: Int): WordEntity {
+    private fun formatDelta(deltaMs: Long): String {
+        val minutes = (deltaMs / MINUTE_MS).coerceAtLeast(1)
+        if (minutes < 60) return "${minutes} นาที"
+        val hours = minutes / 60
+        if (deltaMs < DAY_MS) return "${hours} ชม."
+        val days = (deltaMs.toDouble() / DAY_MS).roundToInt().coerceAtLeast(1)
+        return "${days} วัน"
+    }
+
+    fun review(word: WordEntity, ratingValue: Int, now: Long = System.currentTimeMillis()): WordEntity {
         val rating = when (ratingValue) {
             1 -> Rating.AGAIN
             2 -> Rating.HARD
             3 -> Rating.GOOD
             else -> Rating.EASY
         }
-        return review(word, rating)
+        return review(word, rating, now)
     }
 
-    fun review(word: WordEntity, rating: Rating): WordEntity {
-        val now = System.currentTimeMillis()
-        if (word.state == "new") {
-            val initialStability = weights[rating.value - 1]
-            val initialDifficulty = initDifficulty(rating)
-            word.stability = initialStability
-            word.difficulty = initialDifficulty
-            word.state = "review"
-            word.reps = 1
-            word.lapses = 0
-            word.elapsedDays = 0
-            word.scheduledDays = nextInterval(initialStability)
-            word.lastReview = now
-            word.nextReview = now + word.scheduledDays * 86400000L
+    fun review(word: WordEntity, rating: Rating, now: Long = System.currentTimeMillis()): WordEntity {
+        val actualElapsedDays = if (word.lastReview > 0L) {
+            max(0.0, (now - word.lastReview).toDouble() / DAY_MS)
         } else {
-            val r = retrievability(word.elapsedDays.toDouble(), word.stability)
-            val newStability = if (rating == Rating.AGAIN) {
-                word.lapses++
-                nextStabilityFailure(word.difficulty, word.stability, r)
-            } else {
-                nextStabilitySuccess(word.difficulty, word.stability, r, rating)
+            0.0
+        }
+        if (word.firstStudiedAt == 0L) {
+            word.firstStudiedAt = now
+        }
+
+        when (word.state) {
+            "new" -> {
+                val initialDifficulty = initDifficulty(rating)
+                word.difficulty = initialDifficulty
+                word.reps = 1
+                word.elapsedDays = 0
+
+                when (rating) {
+                    Rating.AGAIN -> {
+                        word.stability = weights[0]
+                        word.state = "learning"
+                        word.lapses = 0
+                        word.scheduledDays = 0
+                        word.nextReview = now + 10 * MINUTE_MS
+                    }
+                    Rating.HARD -> {
+                        word.stability = weights[1]
+                        word.state = "learning"
+                        word.lapses = 0
+                        word.scheduledDays = 0
+                        word.nextReview = now + 60 * MINUTE_MS
+                    }
+                    Rating.GOOD -> {
+                        word.stability = max(1.2, weights[1])
+                        word.state = "review"
+                        word.lapses = 0
+                        word.scheduledDays = 1
+                        word.nextReview = now + 1 * DAY_MS
+                    }
+                    Rating.EASY -> {
+                        word.stability = max(4.0, weights[2] * 1.35)
+                        word.state = "review"
+                        word.lapses = 0
+                        val days = max(4, min(7, nextInterval(word.stability)))
+                        word.scheduledDays = days
+                        word.nextReview = now + days * DAY_MS
+                    }
+                }
+                word.lastReview = now
             }
 
-            val dNext = word.difficulty - weights[6] * (rating.value - 3) * (10.0 - word.difficulty) / 9.0
-            val meanReversionD = weights[7] * initDifficulty(Rating.EASY) + (1.0 - weights[7]) * dNext
-            val newDifficulty = min(10.0, max(1.0, meanReversionD))
+            "learning", "relearning" -> {
+                val currentS = max(0.4, word.stability)
+                val currentD = if (word.difficulty > 0.0) word.difficulty else 5.0
+                word.difficulty = updateDifficulty(currentD, rating)
+                word.reps++
+                word.elapsedDays = actualElapsedDays.roundToInt()
 
-            word.stability = newStability
-            word.difficulty = newDifficulty
-            word.reps++
-            word.elapsedDays = 0
-            word.scheduledDays = if (rating == Rating.AGAIN) 1 else nextInterval(newStability)
-            word.lastReview = now
-            word.nextReview = now + word.scheduledDays * 86400000L
+                when (rating) {
+                    Rating.AGAIN -> {
+                        word.stability = max(0.3, currentS * 0.7)
+                        word.scheduledDays = 0
+                        word.nextReview = now + 10 * MINUTE_MS
+                    }
+                    Rating.HARD -> {
+                        word.stability = max(0.6, currentS)
+                        word.scheduledDays = 0
+                        word.nextReview = now + 60 * MINUTE_MS
+                    }
+                    Rating.GOOD -> {
+                        val gradS = if (word.state == "relearning") max(1.2, currentS) else max(1.5, weights[1] * 1.2)
+                        word.stability = gradS
+                        word.state = "review"
+                        val days = max(1, nextInterval(gradS))
+                        word.scheduledDays = days
+                        word.nextReview = now + days * DAY_MS
+                    }
+                    Rating.EASY -> {
+                        val easyS = max(3.5, currentS * 2.2)
+                        word.stability = easyS
+                        word.state = "review"
+                        val days = max(3, nextInterval(easyS))
+                        word.scheduledDays = days
+                        word.nextReview = now + days * DAY_MS
+                    }
+                }
+                word.lastReview = now
+            }
+
+            else -> {
+                // Graduated "review" card
+                val currentS = max(0.5, word.stability)
+                val currentD = if (word.difficulty > 0.0) word.difficulty else 5.0
+                val r = retrievability(actualElapsedDays, currentS)
+                word.difficulty = updateDifficulty(currentD, rating)
+                word.reps++
+                word.elapsedDays = actualElapsedDays.roundToInt()
+
+                if (rating == Rating.AGAIN) {
+                    word.lapses++
+                    word.stability = nextStabilityFailure(currentD, currentS, r)
+                    word.state = "relearning"
+                    word.scheduledDays = 0
+                    word.nextReview = now + 10 * MINUTE_MS
+                } else {
+                    val sHard = nextStabilitySuccess(currentD, currentS, r, Rating.HARD)
+                    val sGood = nextStabilitySuccess(currentD, currentS, r, Rating.GOOD)
+                    val sEasy = nextStabilitySuccess(currentD, currentS, r, Rating.EASY)
+
+                    val hardDays = max(1, nextInterval(sHard))
+                    val goodDays = max(hardDays + if (actualElapsedDays >= 0.5) 1 else 0, nextInterval(sGood))
+                    val easyDays = max(goodDays + 1, nextInterval(sEasy))
+
+                    when (rating) {
+                        Rating.HARD -> {
+                            word.stability = sHard
+                            word.scheduledDays = hardDays
+                            word.nextReview = now + hardDays * DAY_MS
+                        }
+                        Rating.GOOD -> {
+                            word.stability = sGood
+                            word.scheduledDays = goodDays
+                            word.nextReview = now + goodDays * DAY_MS
+                        }
+                        Rating.EASY -> {
+                            word.stability = sEasy
+                            word.scheduledDays = easyDays
+                            word.nextReview = now + easyDays * DAY_MS
+                        }
+                        else -> {}
+                    }
+                    word.state = "review"
+                }
+                word.lastReview = now
+            }
         }
         return word
     }

@@ -161,8 +161,8 @@ fun SettingsScreen(
         SettingsCard {
             ActionRow(
                 icon = Icons.Default.Sync,
-                title = "ซิงก์คลังคำศัพท์และไวยากรณ์",
-                subtitle = "เพิ่มเนื้อหาใหม่ โดยไม่ลบความคืบหน้าเดิม",
+                title = "ซิงก์คลังคำศัพท์",
+                subtitle = "อัปเดตคลังศัพท์ N5 – N3 ล่าสุดโดยไม่ลบความคืบหน้าเดิม",
                 onClick = {
                     onReloadContent()
                     Toast.makeText(context, "ซิงก์ข้อมูลเรียบร้อย", Toast.LENGTH_SHORT).show()
@@ -175,7 +175,7 @@ fun SettingsScreen(
         SettingsCard {
             InfoRow("เวอร์ชัน", updater.currentVersion)
             RowDivider()
-            InfoRow("เนื้อหา", "JLPT N5 – N4")
+            InfoRow("เนื้อหา", "JLPT N5 – N3")
             RowDivider()
             ActionRow(
                 icon = Icons.AutoMirrored.Filled.OpenInNew,

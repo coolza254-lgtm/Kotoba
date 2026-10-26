@@ -15,7 +15,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.kotoba.app.data.model.GrammarEntity
 import com.kotoba.app.data.model.WordEntity
 import com.kotoba.app.ui.theme.AccentAmber
 import com.kotoba.app.ui.theme.AccentBlue
@@ -25,11 +24,12 @@ import com.kotoba.app.ui.theme.AccentPurple
 @Composable
 fun StatsScreen(
     words: List<WordEntity>,
-    grammarList: List<GrammarEntity> = emptyList(),
     doneToday: Int = 0,
+    newDoneToday: Int = 0,
     streakDays: Int = 1
 ) {
     val totalWords = words.size
+    val studiedTotal = words.count { it.state != "new" }
     val newCount = words.count { it.state == "new" }
     val learningCount = words.count { it.state != "new" && it.stability < 7.0 }
     val reviewCount = words.count { it.state != "new" && it.stability in 7.0..20.99 }
@@ -37,10 +37,10 @@ fun StatsScreen(
 
     val n5Words = words.filter { it.lvl == "N5" }
     val n4Words = words.filter { it.lvl == "N4" }
+    val n3Words = words.filter { it.lvl == "N3" }
     val n5Studied = n5Words.count { it.state != "new" }
     val n4Studied = n4Words.count { it.state != "new" }
-
-    val masteredGrammar = grammarList.count { it.isMastered }
+    val n3Studied = n3Words.count { it.state != "new" }
 
     Column(
         modifier = Modifier
@@ -50,22 +50,21 @@ fun StatsScreen(
             .padding(top = 16.dp, bottom = 24.dp),
         verticalArrangement = Arrangement.spacedBy(14.dp)
     ) {
-        // Clean Header without clutter eyebrow text
         Text(
             text = "สถิติ",
             fontSize = 28.sp,
             fontWeight = FontWeight.Bold
         )
 
-        // Top KPI Row: Today Done, Streak, Grammar Mastered
+        // Top KPI Row: New Today, Streak, Total Learned
         Row(
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.spacedBy(10.dp)
         ) {
             KpiStatCard(
                 modifier = Modifier.weight(1f),
-                title = "เรียนวันนี้",
-                value = "$doneToday ใบ",
+                title = "คำใหม่วันนี้",
+                value = "$newDoneToday คำ",
                 accent = AccentBlue
             )
             KpiStatCard(
@@ -76,8 +75,8 @@ fun StatsScreen(
             )
             KpiStatCard(
                 modifier = Modifier.weight(1f),
-                title = "ไวยากรณ์",
-                value = "$masteredGrammar/${grammarList.size}",
+                title = "เริ่มเรียนแล้ว",
+                value = "$studiedTotal/$totalWords",
                 accent = AccentGreen
             )
         }
@@ -100,7 +99,7 @@ fun StatsScreen(
                 ) {
                     Text("สถานะความจำคำศัพท์", fontSize = 15.sp, fontWeight = FontWeight.Bold)
                     Text(
-                        "ทั้งหมด $totalWords คำ",
+                        "ตอบวันนี้ $doneToday ครั้ง",
                         fontSize = 12.sp,
                         color = MaterialTheme.colorScheme.secondary,
                         fontWeight = FontWeight.SemiBold
@@ -124,7 +123,6 @@ fun StatsScreen(
                     }
                 }
 
-                // Legend
                 Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
                     StateLegendRow("จำขึ้นใจ (ความเสถียร ≥ 21 วัน)", "$masteredCount คำ", AccentGreen)
                     StateLegendRow("ทบทวนระยะกลาง (7–20 วัน)", "$reviewCount คำ", AccentBlue)
@@ -134,7 +132,7 @@ fun StatsScreen(
             }
         }
 
-        // JLPT Level Progress
+        // JLPT Level Progress (N5, N4, N3)
         Surface(
             modifier = Modifier.fillMaxWidth(),
             shape = RoundedCornerShape(22.dp),
@@ -166,10 +164,10 @@ fun StatsScreen(
                 HorizontalDivider(color = MaterialTheme.colorScheme.outline.copy(alpha = 0.5f))
 
                 LevelProgressRow(
-                    levelTitle = "หลักสูตรไวยากรณ์ (พื้นฐาน – N4)",
-                    studied = masteredGrammar,
-                    total = grammarList.size,
-                    color = AccentGreen
+                    levelTitle = "JLPT N3 (ระดับกลาง)",
+                    studied = n3Studied,
+                    total = n3Words.size,
+                    color = AccentAmber
                 )
             }
         }
@@ -223,7 +221,7 @@ private fun LevelProgressRow(
             )
         }
         LinearProgressIndicator(
-            progress = ratio,
+            progress = { ratio },
             modifier = Modifier
                 .fillMaxWidth()
                 .height(8.dp)

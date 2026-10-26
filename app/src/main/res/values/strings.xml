@@ -2,4 +2,5 @@
     <string name="app_name">Kotoba</string>
     <string name="deck_n5">JLPT N5</string>
     <string name="deck_n4">JLPT N4</string>
+    <string name="deck_n3">JLPT N3</string>
 </resources>
