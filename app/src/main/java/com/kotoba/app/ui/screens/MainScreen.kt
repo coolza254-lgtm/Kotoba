@@ -13,14 +13,12 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.kotoba.app.audio.NativeAudioPlayer
 import com.kotoba.app.data.db.KotobaDatabase
-import com.kotoba.app.data.model.GrammarEntity
-import com.kotoba.app.data.model.WordEntity
 import com.kotoba.app.fsrs.FsrsEngine
+import com.kotoba.app.updater.GitHubRelease
 import com.kotoba.app.updater.GitHubUpdater
 import com.kotoba.app.updater.UpdateState
 import kotlinx.coroutines.launch
@@ -39,7 +37,6 @@ fun MainScreen(
     audioPlayer: NativeAudioPlayer,
     updater: GitHubUpdater
 ) {
-    val context = LocalContext.current
     val coroutineScope = rememberCoroutineScope()
     val fsrsEngine = remember { FsrsEngine() }
 
@@ -72,7 +69,7 @@ fun MainScreen(
             words = sessionWords,
             onRateWord = { word, rating ->
                 coroutineScope.launch {
-                    val updated = fsrsEngine.nextInterval(word, rating)
+                    val updated = fsrsEngine.review(word, rating)
                     database.wordDao().updateWord(updated)
                 }
             },
@@ -181,7 +178,7 @@ fun MainScreen(
                         showUpdateDialog = false
                         updater.resetState()
                     },
-                    onConfirmDownload = { release ->
+                    onConfirmDownload = { release: GitHubRelease ->
                         val apkUrl = release.getApkDownloadUrl()
                         if (apkUrl != null) {
                             updater.downloadAndInstallApk(apkUrl, release.tagName)

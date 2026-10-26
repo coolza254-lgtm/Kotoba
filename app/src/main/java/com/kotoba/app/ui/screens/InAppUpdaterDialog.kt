@@ -6,20 +6,20 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
 import com.kotoba.app.ui.theme.AccentGreen
-import com.kotoba.app.updater.ReleaseInfo
+import com.kotoba.app.updater.GitHubRelease
 import com.kotoba.app.updater.UpdateState
 
 @Composable
 fun InAppUpdaterDialog(
     updateState: UpdateState,
     onDismiss: () -> Unit,
-    onConfirmDownload: (ReleaseInfo) -> Unit
+    onConfirmDownload: (GitHubRelease) -> Unit
 ) {
     Dialog(onDismissRequest = onDismiss) {
         Surface(
@@ -99,9 +99,11 @@ fun InAppUpdaterDialog(
                             fontWeight = FontWeight.Bold
                         )
                         LinearProgressIndicator(
-                            progress = { updateState.progress / 100f },
-                            modifier = Modifier.fillMaxWidth().height(8.dp),
-                            shape = RoundedCornerShape(4.dp)
+                            progress = updateState.progress / 100f,
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .height(8.dp)
+                                .clip(RoundedCornerShape(4.dp))
                         )
                         Text(
                             text = "${updateState.progress}%",

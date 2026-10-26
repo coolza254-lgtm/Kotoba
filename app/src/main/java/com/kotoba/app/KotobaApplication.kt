@@ -26,6 +26,6 @@ class KotobaApplication : Application() {
 
     override fun onTerminate() {
         super.onTerminate()
-        audioPlayer.shutdown()
+        audioPlayer.release()
     }
 }

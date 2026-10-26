@@ -81,7 +81,7 @@ fun FlashcardSessionScreen(
 
     val currentWord = words[currentIndex]
     val fsrsEngine = remember { FsrsEngine() }
-    val previewIntervals = remember(currentWord) {
+    val previewIntervals: Map<Int, String> = remember(currentWord) {
         fsrsEngine.previewIntervals(currentWord)
     }
 
@@ -123,7 +123,7 @@ fun FlashcardSessionScreen(
             }
 
             LinearProgressIndicator(
-                progress = { (currentIndex + 1).toFloat() / words.size },
+                progress = (currentIndex + 1).toFloat() / words.size,
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(6.dp)

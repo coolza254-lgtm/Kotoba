@@ -86,7 +86,8 @@ fun GrammarDetailScreen(
                             color = when (grammar.lvl) {
                                 "base" -> AccentGreen
                                 "N5" -> Color(0xFF1A73E8)
-                                else -> AccentPurple,
+                                else -> AccentPurple
+                            },
                             modifier = Modifier.padding(horizontal = 8.dp, vertical = 3.dp)
                         )
                     }

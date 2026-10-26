@@ -17,7 +17,6 @@ class FsrsEngine(
     var maxInterval: Int = 365
 ) {
     companion object {
-        // Standard FSRS v5 19 parameters
         val DEFAULT_WEIGHTS = doubleArrayOf(
             0.40255, 1.18385, 3.173, 15.69105,
             7.1949, 0.5345, 1.4604, 0.0046,
@@ -36,17 +35,11 @@ class FsrsEngine(
         EASY(4)
     }
 
-    /**
-     * Probability of recall at time t given stability S
-     */
     fun retrievability(elapsedDays: Double, stability: Double): Double {
         if (stability <= 0.0) return 0.0
         return (1.0 + FACTOR * elapsedDays / stability).pow(DECAY)
     }
 
-    /**
-     * Compute next interval in days for a target desired retention
-     */
     fun nextInterval(stability: Double): Int {
         if (stability <= 0.0) return 1
         val ivl = (stability / FACTOR * (desiredRetention.pow(1.0 / DECAY) - 1.0)).roundToInt()
@@ -72,9 +65,26 @@ class FsrsEngine(
         return min(s, max(0.1, res))
     }
 
-    /**
-     * Grade a word card and return updated stability, difficulty, and scheduled days
-     */
+    fun previewIntervals(word: WordEntity): Map<Int, String> {
+        val s = max(0.1, word.stability)
+        return mapOf(
+            1 to "10m",
+            2 to "${max(1, (nextInterval(s) * 0.5).roundToInt())}d",
+            3 to "${nextInterval(s)}d",
+            4 to "${max(4, (nextInterval(s) * 1.5).roundToInt())}d"
+        )
+    }
+
+    fun review(word: WordEntity, ratingValue: Int): WordEntity {
+        val rating = when (ratingValue) {
+            1 -> Rating.AGAIN
+            2 -> Rating.HARD
+            3 -> Rating.GOOD
+            else -> Rating.EASY
+        }
+        return review(word, rating)
+    }
+
     fun review(word: WordEntity, rating: Rating): WordEntity {
         val now = System.currentTimeMillis()
         if (word.state == "new") {

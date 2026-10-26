@@ -10,7 +10,12 @@ import android.os.Build
 import android.os.Environment
 import androidx.core.content.FileProvider
 import com.google.gson.Gson
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import okhttp3.OkHttpClient
 import okhttp3.Request
@@ -21,7 +26,10 @@ data class GitHubRelease(
     val name: String,
     val body: String,
     val assets: List<GitHubAsset>
-)
+) {
+    val tagName: String get() = tag_name
+    fun getApkDownloadUrl(): String? = assets.firstOrNull { it.name.endsWith(".apk") }?.browser_download_url
+}
 
 data class GitHubAsset(
     val name: String,
@@ -29,14 +37,51 @@ data class GitHubAsset(
     val browser_download_url: String
 )
 
+sealed class UpdateState {
+    data object Idle : UpdateState()
+    data object Checking : UpdateState()
+    data class UpdateAvailable(val release: GitHubRelease) : UpdateState()
+    data class Downloading(val progress: Int) : UpdateState()
+    data object UpToDate : UpdateState()
+    data class Error(val message: String) : UpdateState()
+}
+
 class GitHubUpdater(private val context: Context) {
 
     private val client = OkHttpClient()
     private val gson = Gson()
     private val repoOwner = "coolza254-lgtm"
     private val repoName = "Kotoba"
+    private val currentVersion = "v1.0.0"
 
-    suspend fun checkForUpdates(): GitHubRelease? = withContext(Dispatchers.IO) {
+    private val _updateState = MutableStateFlow<UpdateState>(UpdateState.Idle)
+    val updateState: StateFlow<UpdateState> = _updateState.asStateFlow()
+
+    fun resetState() {
+        _updateState.value = UpdateState.Idle
+    }
+
+    fun checkForUpdate(scope: CoroutineScope = CoroutineScope(Dispatchers.IO)) {
+        _updateState.value = UpdateState.Checking
+        scope.launch {
+            try {
+                val release = fetchLatestRelease()
+                if (release != null) {
+                    if (release.tagName != currentVersion && release.getApkDownloadUrl() != null) {
+                        _updateState.value = UpdateState.UpdateAvailable(release)
+                    } else {
+                        _updateState.value = UpdateState.UpToDate
+                    }
+                } else {
+                    _updateState.value = UpdateState.Error("ไม่สามารถเชื่อมต่อ GitHub Releases ได้")
+                }
+            } catch (e: Exception) {
+                _updateState.value = UpdateState.Error(e.message ?: "เกิดข้อผิดพลาดในการตรวจสอบ")
+            }
+        }
+    }
+
+    private suspend fun fetchLatestRelease(): GitHubRelease? = withContext(Dispatchers.IO) {
         try {
             val url = "https://api.github.com/repos/$repoOwner/$repoName/releases/latest"
             val request = Request.Builder()
@@ -62,6 +107,7 @@ class GitHubUpdater(private val context: Context) {
      */
     fun downloadAndInstallApk(apkUrl: String, fileName: String = "Kotoba-Update.apk") {
         try {
+            _updateState.value = UpdateState.Downloading(10)
             val uri = Uri.parse(apkUrl)
             val destinationFile = File(context.getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS), fileName)
             if (destinationFile.exists()) destinationFile.delete()
@@ -81,6 +127,7 @@ class GitHubUpdater(private val context: Context) {
                     val id = intent.getLongExtra(DownloadManager.EXTRA_DOWNLOAD_ID, -1)
                     if (id == downloadId) {
                         context.unregisterReceiver(this)
+                        _updateState.value = UpdateState.Idle
                         installApk(destinationFile)
                     }
                 }
@@ -99,6 +146,7 @@ class GitHubUpdater(private val context: Context) {
                 )
             }
         } catch (e: Exception) {
+            _updateState.value = UpdateState.Error(e.message ?: "ไม่สามารถเริ่มการดาวน์โหลดได้")
             e.printStackTrace()
         }
     }
