@@ -120,8 +120,8 @@ fun SettingsScreen(
                 title = "คำศัพท์ใหม่ต่อวัน",
                 valueText = "$dailyNewLimit คำ",
                 value = dailyNewLimit.toFloat(),
-                range = 5f..50f,
-                steps = 8,
+                range = 5f..100f,
+                steps = 18,
                 onChange = { onChangeDailyNewLimit(it.toInt()) }
             )
             RowDivider()

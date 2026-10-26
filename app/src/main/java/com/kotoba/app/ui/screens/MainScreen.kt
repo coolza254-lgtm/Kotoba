@@ -450,7 +450,7 @@ fun MainScreen(
                         },
                         onReloadContent = {
                             coroutineScope.launch(Dispatchers.IO) {
-                                KotobaDatabase.populateInitialData(context, database)
+                                KotobaDatabase.populateInitialData(context, database, force = true)
                             }
                         }
                     )

@@ -147,7 +147,7 @@ class AppPreferences(context: Context) {
     }
 
     fun setDailyNewLimit(limit: Int) {
-        val clamped = limit.coerceIn(5, 50)
+        val clamped = limit.coerceIn(5, 100)
         prefs.edit().putInt(KEY_DAILY_NEW_LIMIT, clamped).apply()
         _dailyNewLimit.value = clamped
     }

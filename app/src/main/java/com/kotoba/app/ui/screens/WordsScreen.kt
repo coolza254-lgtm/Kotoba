@@ -31,6 +31,12 @@ fun WordsScreen(
     var searchQuery by remember { mutableStateOf("") }
     var selectedSegment by remember { mutableStateOf("all") } // all, N5, N4, learning, mastered
 
+    val n5Count = remember(words) { words.count { it.lvl == "N5" } }
+    val n4Count = remember(words) { words.count { it.lvl == "N4" } }
+    val n3Count = remember(words) { words.count { it.lvl == "N3" } }
+    val learningCount = remember(words) { words.count { it.state != "new" && it.stability < 21.0 } }
+    val masteredCount = remember(words) { words.count { it.stability >= 21.0 } }
+
     val filteredWords = remember(words, searchQuery, selectedSegment) {
         words.filter { word ->
             val matchesQuery = searchQuery.isBlank() ||
@@ -109,11 +115,11 @@ fun WordsScreen(
         ) {
             listOf(
                 "all" to "ทั้งหมด (${words.size})",
-                "N5" to "JLPT N5",
-                "N4" to "JLPT N4",
-                "N3" to "JLPT N3",
-                "learning" to "กำลังจำ",
-                "mastered" to "จำแม่น"
+                "N5" to "N5 ($n5Count)",
+                "N4" to "N4 ($n4Count)",
+                "N3" to "N3 ($n3Count)",
+                "learning" to "กำลังจำ ($learningCount)",
+                "mastered" to "จำแม่น ($masteredCount)"
             ).forEach { (key, label) ->
                 val isSelected = selectedSegment == key
                 FilterChip(

@@ -15,6 +15,8 @@ import com.kotoba.app.data.model.WordEntity
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.sync.Mutex
+import kotlinx.coroutines.sync.withLock
 import java.io.InputStreamReader
 
 @Database(entities = [WordEntity::class], version = 4, exportSchema = false)
@@ -23,10 +25,10 @@ abstract class KotobaDatabase : RoomDatabase() {
 
     abstract fun wordDao(): WordDao
 
-    fun checkAndSeedData(context: Context, scope: CoroutineScope) {
+    fun checkAndSeedData(context: Context, scope: CoroutineScope, force: Boolean = false) {
         scope.launch(Dispatchers.IO) {
             try {
-                populateInitialData(context, this@KotobaDatabase)
+                populateInitialData(context, this@KotobaDatabase, force = force)
             } catch (e: Exception) {
                 Log.e(TAG, "Failed to check or seed data", e)
             }
@@ -35,6 +37,9 @@ abstract class KotobaDatabase : RoomDatabase() {
 
     companion object {
         private const val TAG = "KotobaDB"
+        private const val VOCAB_ASSET_VERSION = 2 // Full ~3,000-word JLPT N5-N3 edition
+        private const val KEY_SYNCED_VOCAB_VERSION = "synced_vocab_asset_version"
+        private val syncMutex = Mutex()
 
         @Volatile
         private var INSTANCE: KotobaDatabase? = null
@@ -64,8 +69,8 @@ abstract class KotobaDatabase : RoomDatabase() {
                     .build()
                 INSTANCE = instance
 
-                // Smart sync: adds new N5-N3 words while preserving user FSRS progress
-                instance.checkAndSeedData(context, scope)
+                // Smart sync: only parses JSON when curriculum version bumps or DB is incomplete
+                instance.checkAndSeedData(context, scope, force = false)
 
                 instance
             }
@@ -79,16 +84,7 @@ abstract class KotobaDatabase : RoomDatabase() {
                 super.onCreate(db)
                 scope.launch(Dispatchers.IO) {
                     INSTANCE?.let { database ->
-                        populateInitialData(context, database)
-                    }
-                }
-            }
-
-            override fun onOpen(db: SupportSQLiteDatabase) {
-                super.onOpen(db)
-                scope.launch(Dispatchers.IO) {
-                    INSTANCE?.let { database ->
-                        populateInitialData(context, database)
+                        populateInitialData(context, database, force = true)
                     }
                 }
             }
@@ -96,54 +92,65 @@ abstract class KotobaDatabase : RoomDatabase() {
 
         /**
          * Smart Non-Destructive Sync:
-         * Loads all JLPT N5, N4, and N3 vocabulary from assets, preserves existing FSRS study state
-         * and firstStudiedAt timestamps, and inserts/updates the full library.
+         * Loads all ~3,000 JLPT N5, N4, and N3 vocabulary items from assets when needed,
+         * preserving existing FSRS study state and firstStudiedAt timestamps.
          */
-        suspend fun populateInitialData(context: Context, database: KotobaDatabase) {
-            try {
-                val gson = Gson()
-                val existingWordsMap = database.wordDao().getAllWordsOnce().associateBy { it.id }
+        suspend fun populateInitialData(context: Context, database: KotobaDatabase, force: Boolean = false) {
+            syncMutex.withLock {
+                try {
+                    val prefs = context.applicationContext.getSharedPreferences("kotoba_prefs", Context.MODE_PRIVATE)
+                    val syncedVersion = prefs.getInt(KEY_SYNCED_VOCAB_VERSION, 0)
+                    val currentCount = database.wordDao().getWordCount()
 
-                context.assets.open("data/vocab_n5_n3.json").use { stream ->
-                    val reader = InputStreamReader(stream, Charsets.UTF_8)
-                    val rawListType = object : TypeToken<List<RawWordJson>>() {}.type
-                    val rawWords: List<RawWordJson> = gson.fromJson(reader, rawListType)
-                    val mergedWords = rawWords.map { raw ->
-                        val existing = existingWordsMap[raw.id]
-                        WordEntity(
-                            id = raw.id,
-                            kanji = raw.kanji,
-                            kana = raw.kana,
-                            rubyJson = gson.toJson(raw.ruby),
-                            meanTh = raw.meanTh,
-                            meanEn = raw.meanEn,
-                            pos = raw.pos,
-                            lvl = raw.lvl,
-                            moraeJson = gson.toJson(raw.morae),
-                            dropMora = raw.dropMora,
-                            pitchPattern = raw.pitchPattern,
-                            exampleJp = raw.exampleJp,
-                            exampleTh = raw.exampleTh,
-                            exampleEn = raw.exampleEn,
-                            note = raw.note,
-                            state = existing?.state ?: "new",
-                            stability = existing?.stability ?: 0.0,
-                            difficulty = existing?.difficulty ?: 0.0,
-                            elapsedDays = existing?.elapsedDays ?: 0,
-                            scheduledDays = existing?.scheduledDays ?: 0,
-                            reps = existing?.reps ?: 0,
-                            lapses = existing?.lapses ?: 0,
-                            lastReview = existing?.lastReview ?: 0L,
-                            nextReview = existing?.nextReview ?: 0L,
-                            isSuspended = existing?.isSuspended ?: false,
-                            firstStudiedAt = existing?.firstStudiedAt ?: 0L
-                        )
+                    if (!force && syncedVersion == VOCAB_ASSET_VERSION && currentCount >= 2900) {
+                        return
                     }
-                    database.wordDao().insertAll(mergedWords)
-                    Log.d(TAG, "Synced ${mergedWords.size} vocabulary items (N5-N3)")
+
+                    val gson = Gson()
+                    val existingWordsMap = database.wordDao().getAllWordsOnce().associateBy { it.id }
+
+                    context.assets.open("data/vocab_n5_n3.json").use { stream ->
+                        val reader = InputStreamReader(stream, Charsets.UTF_8)
+                        val rawListType = object : TypeToken<List<RawWordJson>>() {}.type
+                        val rawWords: List<RawWordJson> = gson.fromJson(reader, rawListType)
+                        val mergedWords = rawWords.map { raw ->
+                            val existing = existingWordsMap[raw.id]
+                            WordEntity(
+                                id = raw.id,
+                                kanji = raw.kanji,
+                                kana = raw.kana,
+                                rubyJson = gson.toJson(raw.ruby),
+                                meanTh = raw.meanTh,
+                                meanEn = raw.meanEn,
+                                pos = raw.pos,
+                                lvl = raw.lvl,
+                                moraeJson = gson.toJson(raw.morae),
+                                dropMora = raw.dropMora,
+                                pitchPattern = raw.pitchPattern,
+                                exampleJp = raw.exampleJp,
+                                exampleTh = raw.exampleTh,
+                                exampleEn = raw.exampleEn,
+                                note = raw.note,
+                                state = existing?.state ?: "new",
+                                stability = existing?.stability ?: 0.0,
+                                difficulty = existing?.difficulty ?: 0.0,
+                                elapsedDays = existing?.elapsedDays ?: 0,
+                                scheduledDays = existing?.scheduledDays ?: 0,
+                                reps = existing?.reps ?: 0,
+                                lapses = existing?.lapses ?: 0,
+                                lastReview = existing?.lastReview ?: 0L,
+                                nextReview = existing?.nextReview ?: 0L,
+                                isSuspended = existing?.isSuspended ?: false,
+                                firstStudiedAt = existing?.firstStudiedAt ?: 0L
+                            )
+                        }
+                        database.wordDao().insertAll(mergedWords)
+                        prefs.edit().putInt(KEY_SYNCED_VOCAB_VERSION, VOCAB_ASSET_VERSION).apply()
+                        Log.d(TAG, "Synced ${mergedWords.size} vocabulary items (N5-N3)")
+                    }
+                } catch (e: Exception) {
+                    Log.e(TAG, "Error seeding Kotoba database", e)
                 }
-            } catch (e: Exception) {
-                Log.e(TAG, "Error seeding Kotoba database", e)
             }
         }
     }
