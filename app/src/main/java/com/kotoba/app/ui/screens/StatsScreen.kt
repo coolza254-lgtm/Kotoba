@@ -15,6 +15,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.kotoba.app.data.model.GrammarEntity
 import com.kotoba.app.data.model.WordEntity
 import com.kotoba.app.ui.theme.AccentAmber
 import com.kotoba.app.ui.theme.AccentBlue
@@ -23,56 +24,62 @@ import com.kotoba.app.ui.theme.AccentPurple
 
 @Composable
 fun StatsScreen(
-    words: List<WordEntity>
+    words: List<WordEntity>,
+    grammarList: List<GrammarEntity> = emptyList(),
+    doneToday: Int = 0,
+    streakDays: Int = 1
 ) {
     val totalWords = words.size
     val newCount = words.count { it.state == "new" }
-    val learningCount = words.count { it.state == "learning" || it.state == "relearning" }
-    val reviewCount = words.count { it.state == "review" && it.stability < 21.0 }
+    val learningCount = words.count { it.state != "new" && it.stability < 7.0 }
+    val reviewCount = words.count { it.state != "new" && it.stability in 7.0..20.99 }
     val masteredCount = words.count { it.stability >= 21.0 }
 
-    val n5Count = words.count { it.lvl == "N5" }
-    val n4Count = words.count { it.lvl == "N4" }
+    val n5Words = words.filter { it.lvl == "N5" }
+    val n4Words = words.filter { it.lvl == "N4" }
+    val n5Studied = n5Words.count { it.state != "new" }
+    val n4Studied = n4Words.count { it.state != "new" }
+
+    val masteredGrammar = grammarList.count { it.isMastered }
 
     Column(
         modifier = Modifier
             .fillMaxSize()
             .verticalScroll(rememberScrollState())
-            .padding(18.dp),
-        verticalArrangement = Arrangement.spacedBy(16.dp)
+            .padding(horizontal = 18.dp)
+            .padding(top = 16.dp, bottom = 24.dp),
+        verticalArrangement = Arrangement.spacedBy(14.dp)
     ) {
-        Text("統計 · Analytics", fontSize = 12.sp, fontWeight = FontWeight.SemiBold, color = MaterialTheme.colorScheme.secondary)
-        Text("สถิติการเรียนรู้", fontSize = 28.sp, fontWeight = FontWeight.Bold)
+        // Clean Header without clutter eyebrow text
+        Text(
+            text = "สถิติ",
+            fontSize = 28.sp,
+            fontWeight = FontWeight.Bold
+        )
 
-        // Hero Card: Retention & Stability
-        Surface(
+        // Top KPI Row: Today Done, Streak, Grammar Mastered
+        Row(
             modifier = Modifier.fillMaxWidth(),
-            shape = RoundedCornerShape(22.dp),
-            color = MaterialTheme.colorScheme.surface,
-            border = CardDefaults.outlinedCardBorder()
+            horizontalArrangement = Arrangement.spacedBy(10.dp)
         ) {
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(20.dp),
-                horizontalArrangement = Arrangement.SpaceBetween,
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
-                    Text("อัตราการจดจำเป้าหมาย (Retention)", fontSize = 13.sp, color = MaterialTheme.colorScheme.secondary)
-                    Text("91.2%", fontSize = 32.sp, fontWeight = FontWeight.Bold, color = AccentGreen)
-                    Text("ตามอัลกอริทึม FSRS-5 ล่าสุด", fontSize = 12.sp, color = MaterialTheme.colorScheme.secondary)
-                }
-                Surface(
-                    shape = CircleShape,
-                    color = AccentGreen.copy(alpha = 0.12f),
-                    modifier = Modifier.size(54.dp)
-                ) {
-                    Box(contentAlignment = Alignment.Center) {
-                        Text("🎯", fontSize = 24.sp)
-                    }
-                }
-            }
+            KpiStatCard(
+                modifier = Modifier.weight(1f),
+                title = "เรียนวันนี้",
+                value = "$doneToday ใบ",
+                accent = AccentBlue
+            )
+            KpiStatCard(
+                modifier = Modifier.weight(1f),
+                title = "ต่อเนื่อง",
+                value = "$streakDays วัน",
+                accent = AccentAmber
+            )
+            KpiStatCard(
+                modifier = Modifier.weight(1f),
+                title = "ไวยากรณ์",
+                value = "$masteredGrammar/${grammarList.size}",
+                accent = AccentGreen
+            )
         }
 
         // Memory State Distribution
@@ -86,7 +93,19 @@ fun StatsScreen(
                 modifier = Modifier.padding(20.dp),
                 verticalArrangement = Arrangement.spacedBy(14.dp)
             ) {
-                Text("สถานะความจำคำศัพท์ (Memory States)", fontSize = 14.sp, fontWeight = FontWeight.Bold)
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Text("สถานะความจำคำศัพท์", fontSize = 15.sp, fontWeight = FontWeight.Bold)
+                    Text(
+                        "ทั้งหมด $totalWords คำ",
+                        fontSize = 12.sp,
+                        color = MaterialTheme.colorScheme.secondary,
+                        fontWeight = FontWeight.SemiBold
+                    )
+                }
 
                 // Multi-segment progress bar
                 Row(
@@ -99,23 +118,23 @@ fun StatsScreen(
                         if (masteredCount > 0) Box(modifier = Modifier.weight(masteredCount.toFloat()).fillMaxHeight().background(AccentGreen))
                         if (reviewCount > 0) Box(modifier = Modifier.weight(reviewCount.toFloat()).fillMaxHeight().background(AccentBlue))
                         if (learningCount > 0) Box(modifier = Modifier.weight(learningCount.toFloat()).fillMaxHeight().background(AccentAmber))
-                        if (newCount > 0) Box(modifier = Modifier.weight(newCount.toFloat()).fillMaxHeight().background(Color.Gray.copy(alpha = 0.3f)))
+                        if (newCount > 0) Box(modifier = Modifier.weight(newCount.toFloat()).fillMaxHeight().background(Color.Gray.copy(alpha = 0.25f)))
                     } else {
-                        Box(modifier = Modifier.fillMaxSize().background(Color.Gray.copy(alpha = 0.3f)))
+                        Box(modifier = Modifier.fillMaxSize().background(Color.Gray.copy(alpha = 0.25f)))
                     }
                 }
 
                 // Legend
                 Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
-                    StateLegendRow("จำขึ้นใจ (Mastered / S ≥ 21d)", "$masteredCount คำ", AccentGreen)
-                    StateLegendRow("ทบทวนระยะยาว (Review)", "$reviewCount คำ", AccentBlue)
-                    StateLegendRow("กำลังเรียนรู้ (Learning)", "$learningCount คำ", AccentAmber)
-                    StateLegendRow("ยังไม่เริ่ม (New)", "$newCount คำ", Color.Gray)
+                    StateLegendRow("จำขึ้นใจ (ความเสถียร ≥ 21 วัน)", "$masteredCount คำ", AccentGreen)
+                    StateLegendRow("ทบทวนระยะกลาง (7–20 วัน)", "$reviewCount คำ", AccentBlue)
+                    StateLegendRow("กำลังเรียนรู้ (< 7 วัน)", "$learningCount คำ", AccentAmber)
+                    StateLegendRow("คำใหม่ที่ยังไม่เริ่ม", "$newCount คำ", Color.Gray)
                 }
             }
         }
 
-        // JLPT Level breakdown
+        // JLPT Level Progress
         Surface(
             modifier = Modifier.fillMaxWidth(),
             shape = RoundedCornerShape(22.dp),
@@ -126,46 +145,92 @@ fun StatsScreen(
                 modifier = Modifier.padding(20.dp),
                 verticalArrangement = Arrangement.spacedBy(14.dp)
             ) {
-                Text("คลังคำศัพท์ตามระดับ JLPT", fontSize = 14.sp, fontWeight = FontWeight.Bold)
+                Text("ความคืบหน้าตามระดับ JLPT", fontSize = 15.sp, fontWeight = FontWeight.Bold)
 
-                Row(
-                    modifier = Modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement.spacedBy(12.dp)
-                ) {
-                    Surface(
-                        modifier = Modifier.weight(1f),
-                        shape = RoundedCornerShape(16.dp),
-                        color = Color.Gray.copy(alpha = 0.06f)
-                    ) {
-                        Column(
-                            modifier = Modifier.padding(14.dp),
-                            verticalArrangement = Arrangement.spacedBy(4.dp)
-                        ) {
-                            Text("JLPT N5", fontSize = 12.sp, fontWeight = FontWeight.SemiBold, color = AccentBlue)
-                            Text("$n5Count คำ", fontSize = 22.sp, fontWeight = FontWeight.Bold)
-                            Text("พื้นฐานระดับต้น", fontSize = 11.sp, color = MaterialTheme.colorScheme.secondary)
-                        }
-                    }
+                LevelProgressRow(
+                    levelTitle = "JLPT N5 (พื้นฐานระดับต้น)",
+                    studied = n5Studied,
+                    total = n5Words.size,
+                    color = AccentBlue
+                )
 
-                    Surface(
-                        modifier = Modifier.weight(1f),
-                        shape = RoundedCornerShape(16.dp),
-                        color = Color.Gray.copy(alpha = 0.06f)
-                    ) {
-                        Column(
-                            modifier = Modifier.padding(14.dp),
-                            verticalArrangement = Arrangement.spacedBy(4.dp)
-                        ) {
-                            Text("JLPT N4", fontSize = 12.sp, fontWeight = FontWeight.SemiBold, color = AccentPurple)
-                            Text("$n4Count คำ", fontSize = 22.sp, fontWeight = FontWeight.Bold)
-                            Text("ระดับกลางตอนต้น", fontSize = 11.sp, color = MaterialTheme.colorScheme.secondary)
-                        }
-                    }
-                }
+                HorizontalDivider(color = MaterialTheme.colorScheme.outline.copy(alpha = 0.5f))
+
+                LevelProgressRow(
+                    levelTitle = "JLPT N4 (ระดับกลางตอนต้น)",
+                    studied = n4Studied,
+                    total = n4Words.size,
+                    color = AccentPurple
+                )
+
+                HorizontalDivider(color = MaterialTheme.colorScheme.outline.copy(alpha = 0.5f))
+
+                LevelProgressRow(
+                    levelTitle = "หลักสูตรไวยากรณ์ (พื้นฐาน – N4)",
+                    studied = masteredGrammar,
+                    total = grammarList.size,
+                    color = AccentGreen
+                )
             }
         }
+    }
+}
 
-        Spacer(modifier = Modifier.height(70.dp))
+@Composable
+private fun KpiStatCard(
+    modifier: Modifier = Modifier,
+    title: String,
+    value: String,
+    accent: Color
+) {
+    Surface(
+        modifier = modifier,
+        shape = RoundedCornerShape(18.dp),
+        color = MaterialTheme.colorScheme.surface,
+        border = CardDefaults.outlinedCardBorder()
+    ) {
+        Column(
+            modifier = Modifier.padding(14.dp),
+            verticalArrangement = Arrangement.spacedBy(4.dp)
+        ) {
+            Text(title, fontSize = 12.sp, color = MaterialTheme.colorScheme.secondary, fontWeight = FontWeight.Medium)
+            Text(value, fontSize = 18.sp, fontWeight = FontWeight.Bold, color = accent)
+        }
+    }
+}
+
+@Composable
+private fun LevelProgressRow(
+    levelTitle: String,
+    studied: Int,
+    total: Int,
+    color: Color
+) {
+    val safeTotal = total.coerceAtLeast(1)
+    val ratio = (studied.toFloat() / safeTotal).coerceIn(0f, 1f)
+
+    Column(verticalArrangement = Arrangement.spacedBy(6.dp)) {
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.SpaceBetween
+        ) {
+            Text(levelTitle, fontSize = 13.sp, fontWeight = FontWeight.SemiBold)
+            Text(
+                "$studied / $total (${(ratio * 100).toInt()}%)",
+                fontSize = 12.sp,
+                fontWeight = FontWeight.Bold,
+                color = color
+            )
+        }
+        LinearProgressIndicator(
+            progress = ratio,
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(8.dp)
+                .clip(RoundedCornerShape(4.dp)),
+            color = color,
+            trackColor = MaterialTheme.colorScheme.surfaceVariant
+        )
     }
 }
 

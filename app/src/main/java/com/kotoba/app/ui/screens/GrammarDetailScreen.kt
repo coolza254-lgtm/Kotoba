@@ -1,16 +1,18 @@
 package com.kotoba.app.ui.screens
 
+import androidx.activity.compose.BackHandler
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material.icons.automirrored.filled.ArrowForward
+import androidx.compose.material.icons.automirrored.filled.VolumeUp
 import androidx.compose.material.icons.filled.Check
-import androidx.compose.material.icons.filled.VolumeUp
+import androidx.compose.material.icons.filled.Refresh
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -20,36 +22,68 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.kotoba.app.data.model.GrammarEntity
+import com.kotoba.app.ui.theme.AccentBlue
 import com.kotoba.app.ui.theme.AccentGreen
 import com.kotoba.app.ui.theme.AccentPurple
 import com.kotoba.app.ui.theme.AccentRed
 
+private data class LessonQuizChoice(
+    val text: String,
+    val isCorrect: Boolean
+)
+
 @Composable
 fun GrammarDetailScreen(
     grammar: GrammarEntity,
+    hasPrevious: Boolean = false,
+    hasNext: Boolean = false,
+    onPrevious: () -> Unit = {},
+    onNext: () -> Unit = {},
     onBack: () -> Unit,
     onPlayAudio: (String) -> Unit,
     onToggleMastered: (Boolean) -> Unit
 ) {
-    var selectedQuizChoice by remember { mutableStateOf<Int?>(null) }
-    var quizSubmitted by remember { mutableStateOf(false) }
+    BackHandler { onBack() }
+
+    var quizAttempt by remember(grammar.id) { mutableIntStateOf(0) }
+    var selectedQuizChoice by remember(grammar.id, quizAttempt) { mutableStateOf<Int?>(null) }
+    var quizSubmitted by remember(grammar.id, quizAttempt) { mutableStateOf(false) }
+
+    val shuffledChoices = remember(grammar.id, quizAttempt) {
+        val raw = grammar.getQuizChoices()
+        raw.mapIndexed { idx, choice ->
+            LessonQuizChoice(choice, idx == grammar.quizAnswer)
+        }.shuffled()
+    }
 
     Column(
         modifier = Modifier
             .fillMaxSize()
             .verticalScroll(rememberScrollState())
             .padding(18.dp),
-        verticalArrangement = Arrangement.spacedBy(16.dp)
+        verticalArrangement = Arrangement.spacedBy(14.dp)
     ) {
         // Top Nav
         Row(
             modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
         ) {
-            IconButton(onClick = onBack) {
-                Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back")
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                IconButton(onClick = onBack) {
+                    Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back")
+                }
+                Text("รายละเอียดไวยากรณ์", fontSize = 16.sp, fontWeight = FontWeight.SemiBold)
             }
-            Text("ไวยากรณ์", fontSize = 16.sp, fontWeight = FontWeight.SemiBold)
+
+            Row(horizontalArrangement = Arrangement.spacedBy(4.dp)) {
+                IconButton(onClick = onPrevious, enabled = hasPrevious) {
+                    Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Previous Lesson")
+                }
+                IconButton(onClick = onNext, enabled = hasNext) {
+                    Icon(Icons.AutoMirrored.Filled.ArrowForward, contentDescription = "Next Lesson")
+                }
+            }
         }
 
         // Hero Card
@@ -71,21 +105,18 @@ fun GrammarDetailScreen(
                     Surface(
                         shape = RoundedCornerShape(6.dp),
                         color = when (grammar.lvl) {
-                            "base" -> Color(0x140F9D58)
-                            "N5" -> Color(0x141A73E8)
-                            else -> Color(0x146941C6)
+                            "base" -> AccentGreen.copy(alpha = 0.14f)
+                            "N5" -> AccentBlue.copy(alpha = 0.14f)
+                            else -> AccentPurple.copy(alpha = 0.14f)
                         }
                     ) {
                         Text(
-                            text = when (grammar.lvl) {
-                                "base" -> "พื้นฐาน"
-                                else -> grammar.lvl
-                            },
+                            text = if (grammar.lvl == "base") "พื้นฐาน" else grammar.lvl,
                             fontSize = 11.sp,
                             fontWeight = FontWeight.Bold,
                             color = when (grammar.lvl) {
                                 "base" -> AccentGreen
-                                "N5" -> Color(0xFF1A73E8)
+                                "N5" -> AccentBlue
                                 else -> AccentPurple
                             },
                             modifier = Modifier.padding(horizontal = 8.dp, vertical = 3.dp)
@@ -102,7 +133,7 @@ fun GrammarDetailScreen(
 
                 Text(
                     text = grammar.title,
-                    fontSize = 28.sp,
+                    fontSize = 26.sp,
                     fontWeight = FontWeight.Bold,
                     color = MaterialTheme.colorScheme.onSurface
                 )
@@ -138,38 +169,32 @@ fun GrammarDetailScreen(
                     verticalArrangement = Arrangement.spacedBy(10.dp)
                 ) {
                     Text(
-                        text = "โครงสร้างไวยากรณ์ (接続 · Setsuzoku)",
+                        text = "โครงสร้างการเชื่อม (接続)",
                         fontSize = 13.sp,
                         fontWeight = FontWeight.Bold,
                         color = MaterialTheme.colorScheme.secondary
                     )
 
                     formulas.forEach { item ->
-                        Row(
+                        Column(
                             modifier = Modifier
                                 .fillMaxWidth()
-                                .background(Color.Gray.copy(alpha = 0.08f), RoundedCornerShape(10.dp))
-                                .padding(horizontal = 12.dp, vertical = 10.dp),
-                            verticalAlignment = Alignment.CenterVertically,
-                            horizontalArrangement = Arrangement.spacedBy(10.dp)
+                                .background(MaterialTheme.colorScheme.surfaceVariant, RoundedCornerShape(12.dp))
+                                .padding(horizontal = 14.dp, vertical = 10.dp),
+                            verticalArrangement = Arrangement.spacedBy(4.dp)
                         ) {
-                            Surface(
-                                shape = RoundedCornerShape(6.dp),
-                                color = MaterialTheme.colorScheme.primary.copy(alpha = 0.1f)
-                            ) {
-                                Text(
-                                    text = item.tag,
-                                    fontSize = 12.sp,
-                                    fontWeight = FontWeight.Bold,
-                                    color = MaterialTheme.colorScheme.primary,
-                                    modifier = Modifier.padding(horizontal = 6.dp, vertical = 2.dp)
-                                )
-                            }
+                            Text(
+                                text = item.tag,
+                                fontSize = 12.sp,
+                                fontWeight = FontWeight.Bold,
+                                color = AccentBlue
+                            )
                             Text(
                                 text = item.rule,
                                 fontSize = 14.sp,
                                 fontWeight = FontWeight.SemiBold,
-                                color = MaterialTheme.colorScheme.onSurface
+                                color = MaterialTheme.colorScheme.onSurface,
+                                lineHeight = 20.sp
                             )
                         }
                     }
@@ -182,7 +207,7 @@ fun GrammarDetailScreen(
             Surface(
                 modifier = Modifier.fillMaxWidth(),
                 shape = RoundedCornerShape(20.dp),
-                color = Color(0x0C1A73E8),
+                color = AccentBlue.copy(alpha = 0.08f),
                 border = CardDefaults.outlinedCardBorder()
             ) {
                 Column(
@@ -190,10 +215,10 @@ fun GrammarDetailScreen(
                     verticalArrangement = Arrangement.spacedBy(6.dp)
                 ) {
                     Text(
-                        text = "จุดสังเกตและข้อควรระวัง (Nuance)",
+                        text = "💡 จุดสังเกตและข้อควรระวัง (Nuance)",
                         fontSize = 13.sp,
                         fontWeight = FontWeight.Bold,
-                        color = Color(0xFF1A73E8)
+                        color = AccentBlue
                     )
                     Text(
                         text = grammar.nuanceTh,
@@ -229,7 +254,7 @@ fun GrammarDetailScreen(
                         Column(
                             modifier = Modifier
                                 .fillMaxWidth()
-                                .background(Color.Gray.copy(alpha = 0.05f), RoundedCornerShape(12.dp))
+                                .background(MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.6f), RoundedCornerShape(12.dp))
                                 .padding(14.dp),
                             verticalArrangement = Arrangement.spacedBy(6.dp)
                         ) {
@@ -247,13 +272,13 @@ fun GrammarDetailScreen(
                                 )
                                 IconButton(
                                     onClick = { onPlayAudio(ex.jp) },
-                                    modifier = Modifier.size(32.dp)
+                                    modifier = Modifier.size(34.dp)
                                 ) {
                                     Icon(
-                                        Icons.Default.VolumeUp,
+                                        Icons.AutoMirrored.Filled.VolumeUp,
                                         contentDescription = "Play Audio",
                                         tint = MaterialTheme.colorScheme.primary,
-                                        modifier = Modifier.size(18.dp)
+                                        modifier = Modifier.size(20.dp)
                                     )
                                 }
                             }
@@ -268,9 +293,8 @@ fun GrammarDetailScreen(
             }
         }
 
-        // Mini Quiz (Cloze Practice)
-        val choices = grammar.getQuizChoices()
-        if (!grammar.quizQuestion.isNullOrBlank() && choices.isNotEmpty()) {
+        // Mini Quiz (Cloze Practice with Shuffled Options)
+        if (!grammar.quizQuestion.isNullOrBlank() && shuffledChoices.isNotEmpty()) {
             Surface(
                 modifier = Modifier.fillMaxWidth(),
                 shape = RoundedCornerShape(20.dp),
@@ -281,12 +305,28 @@ fun GrammarDetailScreen(
                     modifier = Modifier.padding(18.dp),
                     verticalArrangement = Arrangement.spacedBy(12.dp)
                 ) {
-                    Text(
-                        text = "แบบฝึกหัดทบทวน (Mini Quiz)",
-                        fontSize = 13.sp,
-                        fontWeight = FontWeight.Bold,
-                        color = MaterialTheme.colorScheme.secondary
-                    )
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.SpaceBetween,
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        Text(
+                            text = "แบบฝึกหัดตรวจสอบความเข้าใจ",
+                            fontSize = 13.sp,
+                            fontWeight = FontWeight.Bold,
+                            color = MaterialTheme.colorScheme.secondary
+                        )
+                        if (quizSubmitted) {
+                            TextButton(
+                                onClick = { quizAttempt++ },
+                                contentPadding = PaddingValues(horizontal = 8.dp, vertical = 0.dp)
+                            ) {
+                                Icon(Icons.Default.Refresh, contentDescription = null, modifier = Modifier.size(15.dp))
+                                Spacer(modifier = Modifier.width(4.dp))
+                                Text("สุ่มใหม่", fontSize = 12.sp)
+                            }
+                        }
+                    }
 
                     Text(
                         text = grammar.quizQuestion,
@@ -295,9 +335,9 @@ fun GrammarDetailScreen(
                         color = MaterialTheme.colorScheme.onSurface
                     )
 
-                    choices.forEachIndexed { index, choice ->
+                    shuffledChoices.forEachIndexed { index, option ->
                         val isSelected = selectedQuizChoice == index
-                        val isCorrect = index == grammar.quizAnswer
+                        val isCorrect = option.isCorrect
 
                         val btnBg = when {
                             !quizSubmitted && isSelected -> MaterialTheme.colorScheme.primary.copy(alpha = 0.1f)
@@ -310,7 +350,7 @@ fun GrammarDetailScreen(
                             !quizSubmitted && isSelected -> MaterialTheme.colorScheme.primary
                             quizSubmitted && isCorrect -> AccentGreen
                             quizSubmitted && isSelected && !isCorrect -> AccentRed
-                            else -> Color.Gray.copy(alpha = 0.3f)
+                            else -> MaterialTheme.colorScheme.outline
                         }
 
                         OutlinedButton(
@@ -318,26 +358,32 @@ fun GrammarDetailScreen(
                                 if (!quizSubmitted) {
                                     selectedQuizChoice = index
                                     quizSubmitted = true
+                                    if (option.isCorrect && !grammar.isMastered) {
+                                        onToggleMastered(true)
+                                    }
                                 }
                             },
                             modifier = Modifier.fillMaxWidth(),
                             shape = RoundedCornerShape(12.dp),
                             colors = ButtonDefaults.outlinedButtonColors(containerColor = btnBg),
-                            border = androidx.compose.foundation.BorderStroke(1.dp, borderColor)
+                            border = BorderStroke(1.dp, borderColor)
                         ) {
                             Text(
-                                text = "${index + 1}. $choice",
+                                text = "${index + 1}.  ${option.text}",
                                 fontSize = 14.sp,
                                 fontWeight = if (isSelected || (quizSubmitted && isCorrect)) FontWeight.Bold else FontWeight.Normal,
-                                color = MaterialTheme.colorScheme.onSurface
+                                color = MaterialTheme.colorScheme.onSurface,
+                                modifier = Modifier.fillMaxWidth()
                             )
                         }
                     }
 
                     if (quizSubmitted) {
-                        val wasCorrect = selectedQuizChoice == grammar.quizAnswer
+                        val chosen = selectedQuizChoice?.let { shuffledChoices.getOrNull(it) }
+                        val wasCorrect = chosen?.isCorrect == true
+                        val rightText = shuffledChoices.firstOrNull { it.isCorrect }?.text ?: ""
                         Text(
-                            text = if (wasCorrect) "ถูกต้อง! 🎉" else "ยังไม่ถูกต้อง คำตอบคือตัวเลือกที่ ${grammar.quizAnswer + 1}",
+                            text = if (wasCorrect) "✓ ถูกต้อง! บันทึกสถานะเข้าใจแล้วเรียบร้อย" else "✕ ยังไม่ถูกต้อง คำตอบที่ถูกคือ: $rightText",
                             fontSize = 14.sp,
                             fontWeight = FontWeight.Bold,
                             color = if (wasCorrect) AccentGreen else AccentRed
@@ -367,6 +413,6 @@ fun GrammarDetailScreen(
             )
         }
 
-        Spacer(modifier = Modifier.height(40.dp))
+        Spacer(modifier = Modifier.height(24.dp))
     }
 }

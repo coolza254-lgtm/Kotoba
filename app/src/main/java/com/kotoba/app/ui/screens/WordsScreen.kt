@@ -1,9 +1,11 @@
 package com.kotoba.app.ui.screens
 
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Search
@@ -16,7 +18,9 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.kotoba.app.data.model.WordEntity
+import com.kotoba.app.ui.theme.AccentAmber
 import com.kotoba.app.ui.theme.AccentBlue
+import com.kotoba.app.ui.theme.AccentGreen
 import com.kotoba.app.ui.theme.AccentPurple
 
 @Composable
@@ -25,39 +29,68 @@ fun WordsScreen(
     onSelectWord: (Int) -> Unit
 ) {
     var searchQuery by remember { mutableStateOf("") }
-    var selectedSegment by remember { mutableStateOf("all") } // all, learning, mastered
+    var selectedSegment by remember { mutableStateOf("all") } // all, N5, N4, learning, mastered
 
-    val filteredWords = words.filter { word ->
-        val matchesQuery = searchQuery.isBlank() ||
-                word.kanji.contains(searchQuery, ignoreCase = true) ||
-                word.kana.contains(searchQuery, ignoreCase = true) ||
-                word.meanTh.contains(searchQuery, ignoreCase = true) ||
-                word.meanEn.contains(searchQuery, ignoreCase = true) ||
-                word.lvl.contains(searchQuery, ignoreCase = true)
+    val filteredWords = remember(words, searchQuery, selectedSegment) {
+        words.filter { word ->
+            val matchesQuery = searchQuery.isBlank() ||
+                    word.kanji.contains(searchQuery, ignoreCase = true) ||
+                    word.kana.contains(searchQuery, ignoreCase = true) ||
+                    word.meanTh.contains(searchQuery, ignoreCase = true) ||
+                    word.meanEn.contains(searchQuery, ignoreCase = true) ||
+                    word.lvl.contains(searchQuery, ignoreCase = true)
 
-        val matchesSeg = when (selectedSegment) {
-            "mastered" -> word.stability >= 21.0
-            "learning" -> word.state != "new" && word.stability < 21.0
-            else -> true
+            val matchesSeg = when (selectedSegment) {
+                "N5" -> word.lvl == "N5"
+                "N4" -> word.lvl == "N4"
+                "mastered" -> word.stability >= 21.0
+                "learning" -> word.state != "new" && word.stability < 21.0
+                else -> true
+            }
+
+            matchesQuery && matchesSeg
         }
-
-        matchesQuery && matchesSeg
     }
 
     Column(
         modifier = Modifier
             .fillMaxSize()
             .padding(horizontal = 18.dp)
-            .padding(top = 18.dp)
+            .padding(top = 16.dp)
     ) {
-        Text("単語 · N5–N4", fontSize = 12.sp, fontWeight = FontWeight.SemiBold, color = MaterialTheme.colorScheme.secondary)
-        Text("คำศัพท์", fontSize = 28.sp, fontWeight = FontWeight.Bold, modifier = Modifier.padding(bottom = 12.dp))
+        // Clean Header Row without eyebrow clutter
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(bottom = 12.dp),
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Text(
+                text = "คำศัพท์",
+                fontSize = 28.sp,
+                fontWeight = FontWeight.Bold
+            )
+
+            Surface(
+                shape = RoundedCornerShape(99.dp),
+                color = MaterialTheme.colorScheme.surfaceVariant
+            ) {
+                Text(
+                    text = "${filteredWords.size} คำ",
+                    fontSize = 12.sp,
+                    fontWeight = FontWeight.Bold,
+                    color = MaterialTheme.colorScheme.secondary,
+                    modifier = Modifier.padding(horizontal = 12.dp, vertical = 6.dp)
+                )
+            }
+        }
 
         // Search bar
         OutlinedTextField(
             value = searchQuery,
             onValueChange = { searchQuery = it },
-            placeholder = { Text("ค้นหาคันจิ คานะ หรือคำแปล...") },
+            placeholder = { Text("ค้นหาคันจิ คานะ หรือคำแปลไทย/อังกฤษ...") },
             leadingIcon = { Icon(Icons.Default.Search, contentDescription = null) },
             shape = RoundedCornerShape(14.dp),
             modifier = Modifier.fillMaxWidth(),
@@ -68,15 +101,29 @@ fun WordsScreen(
 
         // Segment Tabs
         Row(
-            modifier = Modifier.fillMaxWidth(),
+            modifier = Modifier
+                .fillMaxWidth()
+                .horizontalScroll(rememberScrollState()),
             horizontalArrangement = Arrangement.spacedBy(8.dp)
         ) {
-            listOf("all" to "ทั้งหมด", "learning" to "กำลังจำ", "mastered" to "จำขึ้นใจ").forEach { (key, label) ->
+            listOf(
+                "all" to "ทั้งหมด (${words.size})",
+                "N5" to "JLPT N5",
+                "N4" to "JLPT N4",
+                "learning" to "กำลังจำ",
+                "mastered" to "จำแม่น"
+            ).forEach { (key, label) ->
                 val isSelected = selectedSegment == key
                 FilterChip(
                     selected = isSelected,
                     onClick = { selectedSegment = key },
-                    label = { Text(label, fontWeight = if (isSelected) FontWeight.Bold else FontWeight.Normal) },
+                    label = {
+                        Text(
+                            text = label,
+                            fontSize = 12.sp,
+                            fontWeight = if (isSelected) FontWeight.Bold else FontWeight.Normal
+                        )
+                    },
                     shape = RoundedCornerShape(99.dp)
                 )
             }
@@ -86,64 +133,106 @@ fun WordsScreen(
 
         // Words List
         Surface(
-            modifier = Modifier.fillMaxWidth().weight(1f),
+            modifier = Modifier
+                .fillMaxWidth()
+                .weight(1f),
             shape = RoundedCornerShape(18.dp),
             color = MaterialTheme.colorScheme.surface,
             border = CardDefaults.outlinedCardBorder()
         ) {
-            LazyColumn(modifier = Modifier.fillMaxSize()) {
-                items(filteredWords, key = { it.id }) { word ->
-                    Row(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .clickable { onSelectWord(word.id) }
-                            .padding(horizontal = 16.dp, vertical = 12.dp),
-                        verticalAlignment = Alignment.CenterVertically,
-                        horizontalArrangement = Arrangement.SpaceBetween
-                    ) {
-                        Column(modifier = Modifier.weight(1f)) {
-                            Row(
-                                verticalAlignment = Alignment.CenterVertically,
-                                horizontalArrangement = Arrangement.spacedBy(8.dp)
-                            ) {
-                                Text(word.kanji, fontSize = 20.sp, fontWeight = FontWeight.SemiBold)
-                                Text(word.kana, fontSize = 13.sp, color = MaterialTheme.colorScheme.secondary)
-                                Surface(
-                                    shape = RoundedCornerShape(6.dp),
-                                    color = if (word.lvl == "N4") Color(0x186941C6) else Color(0x180066CC)
+            if (filteredWords.isEmpty()) {
+                Box(
+                    modifier = Modifier.fillMaxSize(),
+                    contentAlignment = Alignment.Center
+                ) {
+                    Text(
+                        text = "ไม่พบคำศัพท์ในหมวดหมู่นี้",
+                        fontSize = 14.sp,
+                        color = MaterialTheme.colorScheme.secondary
+                    )
+                }
+            } else {
+                LazyColumn(
+                    modifier = Modifier.fillMaxSize(),
+                    contentPadding = PaddingValues(vertical = 4.dp)
+                ) {
+                    items(
+                        items = filteredWords,
+                        key = { it.id },
+                        contentType = { "word_row" }
+                    ) { word ->
+                        Row(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .clickable { onSelectWord(word.id) }
+                                .padding(horizontal = 16.dp, vertical = 12.dp),
+                            verticalAlignment = Alignment.CenterVertically,
+                            horizontalArrangement = Arrangement.SpaceBetween
+                        ) {
+                            Column(modifier = Modifier.weight(1f)) {
+                                Row(
+                                    verticalAlignment = Alignment.CenterVertically,
+                                    horizontalArrangement = Arrangement.spacedBy(8.dp)
                                 ) {
                                     Text(
-                                        word.lvl,
-                                        fontSize = 11.sp,
-                                        fontWeight = FontWeight.Bold,
-                                        color = if (word.lvl == "N4") AccentPurple else AccentBlue,
-                                        modifier = Modifier.padding(horizontal = 6.dp, vertical = 2.dp)
+                                        text = word.kanji.ifBlank { word.kana },
+                                        fontSize = 20.sp,
+                                        fontWeight = FontWeight.SemiBold
                                     )
+                                    if (word.kanji.isNotBlank()) {
+                                        Text(
+                                            text = word.kana,
+                                            fontSize = 13.sp,
+                                            color = MaterialTheme.colorScheme.secondary
+                                        )
+                                    }
+                                    Surface(
+                                        shape = RoundedCornerShape(6.dp),
+                                        color = if (word.lvl == "N4") AccentPurple.copy(alpha = 0.14f) else AccentBlue.copy(alpha = 0.14f)
+                                    ) {
+                                        Text(
+                                            text = word.lvl,
+                                            fontSize = 11.sp,
+                                            fontWeight = FontWeight.Bold,
+                                            color = if (word.lvl == "N4") AccentPurple else AccentBlue,
+                                            modifier = Modifier.padding(horizontal = 6.dp, vertical = 2.dp)
+                                        )
+                                    }
                                 }
+                                Text(
+                                    text = word.meanTh,
+                                    fontSize = 13.sp,
+                                    color = MaterialTheme.colorScheme.secondary,
+                                    modifier = Modifier.padding(top = 2.dp)
+                                )
                             }
-                            Text(
-                                word.meanTh,
-                                fontSize = 13.sp,
-                                color = MaterialTheme.colorScheme.secondary,
-                                modifier = Modifier.padding(top = 2.dp)
-                            )
-                        }
 
-                        // Status Badge
-                        Surface(
-                            shape = RoundedCornerShape(8.dp),
-                            color = MaterialTheme.colorScheme.surfaceVariant
-                        ) {
-                            Text(
-                                text = if (word.state == "new") "คำใหม่" else if (word.stability >= 21) "จำแม่น" else "ทบทวน",
-                                fontSize = 11.sp,
-                                fontWeight = FontWeight.SemiBold,
-                                color = MaterialTheme.colorScheme.secondary,
-                                modifier = Modifier.padding(horizontal = 8.dp, vertical = 4.dp)
-                            )
+                            // Status Badge
+                            val statusText = when {
+                                word.state == "new" -> "คำใหม่"
+                                word.stability >= 21.0 -> "จำแม่น"
+                                else -> "กำลังจำ"
+                            }
+                            val statusColor = when {
+                                word.state == "new" -> MaterialTheme.colorScheme.secondary
+                                word.stability >= 21.0 -> AccentGreen
+                                else -> AccentAmber
+                            }
+                            Surface(
+                                shape = RoundedCornerShape(8.dp),
+                                color = if (word.state == "new") MaterialTheme.colorScheme.surfaceVariant else statusColor.copy(alpha = 0.12f)
+                            ) {
+                                Text(
+                                    text = statusText,
+                                    fontSize = 11.sp,
+                                    fontWeight = FontWeight.SemiBold,
+                                    color = statusColor,
+                                    modifier = Modifier.padding(horizontal = 8.dp, vertical = 4.dp)
+                                )
+                            }
                         }
+                        HorizontalDivider(color = MaterialTheme.colorScheme.outline.copy(alpha = 0.5f))
                     }
-                    HorizontalDivider(color = MaterialTheme.colorScheme.outline.copy(alpha = 0.5f))
                 }
             }
         }

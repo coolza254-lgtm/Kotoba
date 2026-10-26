@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+
+    <!-- Warm Washi Card Base -->
+    <path
+        android:fillColor="#FAF9F5"
+        android:pathData="M34,25h40c4.42,0 8,3.58 8,8v42c0,4.42 -3.58,8 -8,8H34c-4.42,0 -8,-3.58 -8,-8V33c0,-4.42 3.58,-8 8,-8z" />
+
+    <!-- Japanese Vermilion Hanko Accent Dot (Top Stroke of 言) -->
+    <path
+        android:fillColor="#DC2626"
+        android:pathData="M47,33h14c1.38,0 2.5,1.12 2.5,2.5S62.38,38 61,38H47c-1.38,0 -2.5,-1.12 -2.5,-2.5S45.62,33 47,33z" />
+
+    <!-- Second Primary Horizontal Stroke of 言 -->
+    <path
+        android:fillColor="#111318"
+        android:pathData="M36,42h36c1.38,0 2.5,1.12 2.5,2.5S73.38,47 72,47H36c-1.38,0 -2.5,-1.12 -2.5,-2.5S34.62,42 36,42z" />
+
+    <!-- Third Horizontal Stroke of 言 -->
+    <path
+        android:fillColor="#111318"
+        android:pathData="M42,50.5h24c1.2,0 2.2,1 2.2,2.2s-1,2.2 -2.2,2.2H42c-1.2,0 -2.2,-1 -2.2,-2.2s1,-2.2 2.2,-2.2z" />
+
+    <!-- Fourth Horizontal Stroke of 言 -->
+    <path
+        android:fillColor="#111318"
+        android:pathData="M42,58h24c1.2,0 2.2,1 2.2,2.2s-1,2.2 -2.2,2.2H42c-1.2,0 -2.2,-1 -2.2,-2.2s1,-2.2 2.2,-2.2z" />
+
+    <!-- Bottom 口 (Mouth / Speech Box) Outer Frame -->
+    <path
+        android:fillColor="#111318"
+        android:pathData="M41,65.5h26c1.66,0 3,1.34 3,3v7c0,1.66 -1.34,3 -3,3H41c-1.66,0 -3,-1.34 -3,-3v-7c0,-1.66 1.34,-3 3,-3z" />
+
+    <!-- Bottom 口 Inner Hollow -->
+    <path
+        android:fillColor="#FAF9F5"
+        android:pathData="M43.5,69.5h21v5h-21z" />
+
+    <!-- Pitch Accent Drop Indicator Corner Badge -->
+    <path
+        android:fillColor="#2563EB"
+        android:pathData="M71,25h3c4.42,0 8,3.58 8,8v3h-6v-5h-5z" />
+</vector>

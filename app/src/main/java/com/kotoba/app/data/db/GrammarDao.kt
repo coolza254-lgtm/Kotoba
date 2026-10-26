@@ -13,6 +13,9 @@ interface GrammarDao {
     @Query("SELECT * FROM grammar ORDER BY id ASC")
     fun getAllGrammar(): Flow<List<GrammarEntity>>
 
+    @Query("SELECT * FROM grammar ORDER BY id ASC")
+    suspend fun getAllGrammarOnce(): List<GrammarEntity>
+
     @Query("SELECT * FROM grammar WHERE lvl = :level ORDER BY id ASC")
     fun getGrammarByLevel(level: String): Flow<List<GrammarEntity>>
 
@@ -24,6 +27,9 @@ interface GrammarDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAll(grammar: List<GrammarEntity>)
+
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    suspend fun insertNewGrammar(grammar: List<GrammarEntity>)
 
     @Update
     suspend fun updateGrammar(grammar: GrammarEntity)

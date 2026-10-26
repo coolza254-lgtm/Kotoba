@@ -20,7 +20,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.io.InputStreamReader
 
-@Database(entities = [WordEntity::class, GrammarEntity::class], version = 2, exportSchema = false)
+@Database(entities = [WordEntity::class, GrammarEntity::class], version = 3, exportSchema = false)
 @TypeConverters(WordConverters::class, GrammarConverters::class)
 abstract class KotobaDatabase : RoomDatabase() {
 
@@ -30,13 +30,9 @@ abstract class KotobaDatabase : RoomDatabase() {
     fun checkAndSeedData(context: Context, scope: CoroutineScope) {
         scope.launch(Dispatchers.IO) {
             try {
-                val count = wordDao().getWordCount()
-                if (count == 0) {
-                    Log.d("KotobaDB", "Database empty. Seeding initial data...")
-                    populateInitialData(context, this@KotobaDatabase)
-                }
+                populateInitialData(context, this@KotobaDatabase)
             } catch (e: Exception) {
-                Log.e("KotobaDB", "Failed to check or seed data", e)
+                Log.e(TAG, "Failed to check or seed data", e)
             }
         }
     }
@@ -58,10 +54,10 @@ abstract class KotobaDatabase : RoomDatabase() {
                     .addCallback(DatabaseCallback(context, scope))
                     .build()
                 INSTANCE = instance
-                
-                // Immediately ensure data is seeded
+
+                // Smart sync: adds any new words/grammar while preserving user progress
                 instance.checkAndSeedData(context, scope)
-                
+
                 instance
             }
         }
@@ -83,24 +79,29 @@ abstract class KotobaDatabase : RoomDatabase() {
                 super.onOpen(db)
                 scope.launch(Dispatchers.IO) {
                     INSTANCE?.let { database ->
-                        if (database.wordDao().getWordCount() == 0) {
-                            populateInitialData(context, database)
-                        }
+                        populateInitialData(context, database)
                     }
                 }
             }
         }
 
+        /**
+         * Smart Non-Destructive Sync:
+         * Loads all vocabulary and grammar from assets, preserves any existing FSRS study state
+         * and grammar mastery flags, and inserts/updates the full curriculum.
+         */
         suspend fun populateInitialData(context: Context, database: KotobaDatabase) {
             try {
                 val gson = Gson()
 
-                // 1. Populate Vocabulary N5 & N4
+                // 1. Smart Sync Vocabulary N5 & N4
+                val existingWordsMap = database.wordDao().getAllWordsOnce().associateBy { it.id }
                 context.assets.open("data/vocab_n5_n4.json").use { stream ->
-                    val reader = InputStreamReader(stream)
+                    val reader = InputStreamReader(stream, Charsets.UTF_8)
                     val rawListType = object : TypeToken<List<RawWordJson>>() {}.type
                     val rawWords: List<RawWordJson> = gson.fromJson(reader, rawListType)
-                    val words = rawWords.map { raw ->
+                    val mergedWords = rawWords.map { raw ->
+                        val existing = existingWordsMap[raw.id]
                         WordEntity(
                             id = raw.id,
                             kanji = raw.kanji,
@@ -116,19 +117,32 @@ abstract class KotobaDatabase : RoomDatabase() {
                             exampleJp = raw.exampleJp,
                             exampleTh = raw.exampleTh,
                             exampleEn = raw.exampleEn,
-                            note = raw.note
+                            note = raw.note,
+                            // Preserve user FSRS progress if already studied
+                            state = existing?.state ?: "new",
+                            stability = existing?.stability ?: 0.0,
+                            difficulty = existing?.difficulty ?: 0.0,
+                            elapsedDays = existing?.elapsedDays ?: 0,
+                            scheduledDays = existing?.scheduledDays ?: 0,
+                            reps = existing?.reps ?: 0,
+                            lapses = existing?.lapses ?: 0,
+                            lastReview = existing?.lastReview ?: 0L,
+                            nextReview = existing?.nextReview ?: 0L,
+                            isSuspended = existing?.isSuspended ?: false
                         )
                     }
-                    database.wordDao().insertAll(words)
-                    Log.d(TAG, "Successfully seeded ${words.size} vocabulary items.")
+                    database.wordDao().insertAll(mergedWords)
+                    Log.d(TAG, "Successfully synced ${mergedWords.size} vocabulary items.")
                 }
 
-                // 2. Populate Grammar Foundations, N5 & N4
+                // 2. Smart Sync Grammar Foundations, N5 & N4
+                val existingGrammarMap = database.grammarDao().getAllGrammarOnce().associateBy { it.id }
                 context.assets.open("data/grammar_n5_n4.json").use { stream ->
-                    val reader = InputStreamReader(stream)
+                    val reader = InputStreamReader(stream, Charsets.UTF_8)
                     val rawListType = object : TypeToken<List<RawGrammarJson>>() {}.type
                     val rawGrammar: List<RawGrammarJson> = gson.fromJson(reader, rawListType)
-                    val grammarList = rawGrammar.map { raw ->
+                    val mergedGrammar = rawGrammar.map { raw ->
+                        val existing = existingGrammarMap[raw.id]
                         GrammarEntity(
                             id = raw.id,
                             title = raw.title,
@@ -142,11 +156,12 @@ abstract class KotobaDatabase : RoomDatabase() {
                             examplesJson = gson.toJson(raw.examples),
                             quizQuestion = raw.quizQuestion,
                             quizChoicesJson = gson.toJson(raw.quizChoices),
-                            quizAnswer = raw.quizAnswer
+                            quizAnswer = raw.quizAnswer,
+                            isMastered = existing?.isMastered ?: false
                         )
                     }
-                    database.grammarDao().insertAll(grammarList)
-                    Log.d(TAG, "Successfully seeded ${grammarList.size} grammar items.")
+                    database.grammarDao().insertAll(mergedGrammar)
+                    Log.d(TAG, "Successfully synced ${mergedGrammar.size} grammar items.")
                 }
             } catch (e: Exception) {
                 Log.e(TAG, "Error populating initial data", e)

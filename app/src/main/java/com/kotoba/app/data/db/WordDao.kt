@@ -13,6 +13,9 @@ interface WordDao {
     @Query("SELECT * FROM words ORDER BY id ASC")
     fun getAllWords(): Flow<List<WordEntity>>
 
+    @Query("SELECT * FROM words ORDER BY id ASC")
+    suspend fun getAllWordsOnce(): List<WordEntity>
+
     @Query("SELECT * FROM words WHERE lvl = :level ORDER BY id ASC")
     fun getWordsByLevel(level: String): Flow<List<WordEntity>>
 
@@ -30,6 +33,9 @@ interface WordDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAll(words: List<WordEntity>)
+
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    suspend fun insertNewWords(words: List<WordEntity>)
 
     @Update
     suspend fun updateWord(word: WordEntity)

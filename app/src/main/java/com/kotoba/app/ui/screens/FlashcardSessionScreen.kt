@@ -1,19 +1,22 @@
 package com.kotoba.app.ui.screens
 
+import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.VolumeUp
 import androidx.compose.material.icons.filled.Close
-import androidx.compose.material.icons.filled.VolumeUp
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.hapticfeedback.HapticFeedbackType
+import androidx.compose.ui.platform.LocalHapticFeedback
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -30,14 +33,55 @@ import com.kotoba.app.ui.theme.AccentRed
 @Composable
 fun FlashcardSessionScreen(
     words: List<WordEntity>,
-    onRateWord: (WordEntity, Int) -> Unit,
+    initialIndex: Int = 0,
+    desiredRetention: Double = 0.90,
+    onRateWord: (WordEntity, Int, Int) -> Unit,
     onPlayAudio: (String) -> Unit,
-    onFinishSession: () -> Unit
+    onFinishSession: (Boolean) -> Unit // true = completed all, false = paused mid-session
 ) {
-    var currentIndex by remember { mutableIntStateOf(0) }
+    val haptic = LocalHapticFeedback.current
+    var currentIndex by remember { mutableIntStateOf(initialIndex.coerceIn(0, words.size.coerceAtLeast(1))) }
     var isRevealed by remember { mutableStateOf(false) }
+    var showPauseDialog by remember { mutableStateOf(false) }
 
-    if (words.isEmpty() || currentIndex >= words.size) {
+    val isSessionComplete = words.isEmpty() || currentIndex >= words.size
+
+    BackHandler {
+        if (!isSessionComplete) {
+            showPauseDialog = true
+        } else {
+            onFinishSession(true)
+        }
+    }
+
+    if (showPauseDialog) {
+        AlertDialog(
+            onDismissRequest = { showPauseDialog = false },
+            title = { Text("พักการท่องศัพท์ชั่วคราว?", fontWeight = FontWeight.Bold) },
+            text = {
+                Text(
+                    "บันทึกความคืบหน้าไว้ที่ใบที่ ${currentIndex + 1} จาก ${words.size} เรียบร้อยแล้ว คุณสามารถกลับมาเรียนต่อจากจุดเดิมได้ทุกเมื่อ"
+                )
+            },
+            confirmButton = {
+                TextButton(
+                    onClick = {
+                        showPauseDialog = false
+                        onFinishSession(false)
+                    }
+                ) {
+                    Text("บันทึกและออก", fontWeight = FontWeight.Bold)
+                }
+            },
+            dismissButton = {
+                Button(onClick = { showPauseDialog = false }) {
+                    Text("เรียนต่อ")
+                }
+            }
+        )
+    }
+
+    if (isSessionComplete) {
         // Completion Card
         Box(
             modifier = Modifier
@@ -54,24 +98,24 @@ fun FlashcardSessionScreen(
                 Column(
                     modifier = Modifier.padding(28.dp),
                     horizontalAlignment = Alignment.CenterHorizontally,
-                    verticalArrangement = Arrangement.spacedBy(16.dp)
+                    verticalArrangement = Arrangement.spacedBy(14.dp)
                 ) {
                     Text("🎉", fontSize = 48.sp)
-                    Text("ยอดเยี่ยมมาก!", fontSize = 24.sp, fontWeight = FontWeight.Bold)
+                    Text("ทบทวนครบชุดเรียบร้อย!", fontSize = 22.sp, fontWeight = FontWeight.Bold)
                     Text(
-                        "คุณทบทวนคำศัพท์ชุดนี้ครบเรียบร้อยแล้ว",
+                        "คุณเรียนคำศัพท์ครบทั้ง ${words.size} ใบในรอบนี้แล้ว ระบบ FSRS-5 ได้คำนวณวันทบทวนถัดไปให้เรียบร้อย",
                         fontSize = 14.sp,
                         color = MaterialTheme.colorScheme.secondary
                     )
-                    Spacer(modifier = Modifier.height(10.dp))
+                    Spacer(modifier = Modifier.height(8.dp))
                     Button(
-                        onClick = onFinishSession,
+                        onClick = { onFinishSession(true) },
                         modifier = Modifier
                             .fillMaxWidth()
-                            .height(50.dp),
+                            .height(52.dp),
                         shape = RoundedCornerShape(16.dp)
                     ) {
-                        Text("กลับหน้าหลัก", fontSize = 16.sp, fontWeight = FontWeight.SemiBold)
+                        Text("กลับหน้าหลัก", fontSize = 16.sp, fontWeight = FontWeight.Bold)
                     }
                 }
             }
@@ -80,8 +124,8 @@ fun FlashcardSessionScreen(
     }
 
     val currentWord = words[currentIndex]
-    val fsrsEngine = remember { FsrsEngine() }
-    val previewIntervals: Map<Int, String> = remember(currentWord) {
+    val fsrsEngine = remember(desiredRetention) { FsrsEngine(desiredRetention = desiredRetention) }
+    val previewIntervals: Map<Int, String> = remember(currentWord, fsrsEngine) {
         fsrsEngine.previewIntervals(currentWord)
     }
 
@@ -98,25 +142,24 @@ fun FlashcardSessionScreen(
                 horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                IconButton(onClick = onFinishSession) {
-                    Icon(Icons.Default.Close, contentDescription = "Exit Session")
+                IconButton(onClick = { showPauseDialog = true }) {
+                    Icon(Icons.Default.Close, contentDescription = "Pause Session")
                 }
                 Text(
-                    text = "${currentIndex + 1} / ${words.size}",
+                    text = "ใบที่ ${currentIndex + 1} / ${words.size}",
                     fontSize = 14.sp,
                     fontWeight = FontWeight.Bold,
-                    color = MaterialTheme.colorScheme.secondary
+                    color = MaterialTheme.colorScheme.onSurface
                 )
                 Surface(
                     shape = RoundedCornerShape(6.dp),
-                    color = MaterialTheme.colorScheme.surface,
-                    border = CardDefaults.outlinedCardBorder()
+                    color = if (currentWord.lvl == "N4") AccentPurple.copy(alpha = 0.14f) else AccentBlue.copy(alpha = 0.14f)
                 ) {
                     Text(
                         text = currentWord.lvl,
                         fontSize = 12.sp,
                         fontWeight = FontWeight.Bold,
-                        color = AccentPurple,
+                        color = if (currentWord.lvl == "N4") AccentPurple else AccentBlue,
                         modifier = Modifier.padding(horizontal = 8.dp, vertical = 4.dp)
                     )
                 }
@@ -129,7 +172,7 @@ fun FlashcardSessionScreen(
                     .height(6.dp)
                     .clip(RoundedCornerShape(3.dp)),
                 color = MaterialTheme.colorScheme.primary,
-                trackColor = Color.Gray.copy(alpha = 0.2f)
+                trackColor = MaterialTheme.colorScheme.surfaceVariant
             )
         }
 
@@ -141,6 +184,7 @@ fun FlashcardSessionScreen(
                 .padding(vertical = 14.dp)
                 .clickable {
                     if (!isRevealed) {
+                        haptic.performHapticFeedback(HapticFeedbackType.TextHandleMove)
                         isRevealed = true
                         onPlayAudio(currentWord.kana)
                     }
@@ -161,42 +205,49 @@ fun FlashcardSessionScreen(
                     // Front side: Word prompt
                     Text(
                         text = currentWord.kanji.ifBlank { currentWord.kana },
-                        fontSize = 44.sp,
+                        fontSize = 46.sp,
                         fontWeight = FontWeight.Bold,
                         color = MaterialTheme.colorScheme.onSurface
                     )
                     Spacer(modifier = Modifier.height(10.dp))
+                    Surface(
+                        shape = RoundedCornerShape(99.dp),
+                        color = MaterialTheme.colorScheme.surfaceVariant
+                    ) {
+                        Text(
+                            text = currentWord.pos,
+                            fontSize = 12.sp,
+                            color = MaterialTheme.colorScheme.secondary,
+                            modifier = Modifier.padding(horizontal = 12.dp, vertical = 4.dp)
+                        )
+                    }
+                    Spacer(modifier = Modifier.height(32.dp))
                     Text(
-                        text = currentWord.pos,
+                        text = "แตะที่การ์ดเพื่อดูคำอ่านและคำแปล",
                         fontSize = 13.sp,
-                        color = MaterialTheme.colorScheme.secondary
-                    )
-                    Spacer(modifier = Modifier.height(30.dp))
-                    Text(
-                        text = "แตะที่การ์ดเพื่อดูเฉลย",
-                        fontSize = 13.sp,
-                        color = MaterialTheme.colorScheme.secondary.copy(alpha = 0.6f)
+                        color = MaterialTheme.colorScheme.secondary.copy(alpha = 0.65f)
                     )
                 } else {
                     // Back side: Full revealed info
                     Column(
                         modifier = Modifier.fillMaxWidth(),
                         horizontalAlignment = Alignment.CenterHorizontally,
-                        verticalArrangement = Arrangement.spacedBy(14.dp)
+                        verticalArrangement = Arrangement.spacedBy(12.dp)
                     ) {
                         FuriganaText(
                             tokens = currentWord.getRubyTokens(),
-                            kanjiSize = 38.sp,
+                            kanjiSize = 40.sp,
                             furiSize = 13.sp
                         )
 
                         Row(
                             verticalAlignment = Alignment.CenterVertically,
-                            horizontalArrangement = Arrangement.spacedBy(8.dp)
+                            horizontalArrangement = Arrangement.spacedBy(6.dp)
                         ) {
                             Text(
-                                text = currentWord.pitchPattern,
+                                text = "${currentWord.kana} · ${currentWord.pitchPattern}",
                                 fontSize = 13.sp,
+                                fontWeight = FontWeight.SemiBold,
                                 color = MaterialTheme.colorScheme.secondary
                             )
                             IconButton(
@@ -204,7 +255,7 @@ fun FlashcardSessionScreen(
                                 modifier = Modifier.size(32.dp)
                             ) {
                                 Icon(
-                                    Icons.Default.VolumeUp,
+                                    Icons.AutoMirrored.Filled.VolumeUp,
                                     contentDescription = "Audio",
                                     tint = MaterialTheme.colorScheme.primary,
                                     modifier = Modifier.size(20.dp)
@@ -220,13 +271,13 @@ fun FlashcardSessionScreen(
 
                         HorizontalDivider(
                             modifier = Modifier.padding(vertical = 4.dp),
-                            color = Color.Gray.copy(alpha = 0.15f)
+                            color = MaterialTheme.colorScheme.outline
                         )
 
                         // Meaning Thai & English
                         Text(
                             text = currentWord.meanTh,
-                            fontSize = 20.sp,
+                            fontSize = 21.sp,
                             fontWeight = FontWeight.Bold,
                             color = MaterialTheme.colorScheme.onSurface
                         )
@@ -243,22 +294,38 @@ fun FlashcardSessionScreen(
                             Surface(
                                 modifier = Modifier.fillMaxWidth(),
                                 shape = RoundedCornerShape(14.dp),
-                                color = Color.Gray.copy(alpha = 0.06f)
+                                color = MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.65f)
                             ) {
-                                Column(
+                                Row(
                                     modifier = Modifier.padding(12.dp),
-                                    verticalArrangement = Arrangement.spacedBy(4.dp)
+                                    horizontalArrangement = Arrangement.SpaceBetween,
+                                    verticalAlignment = Alignment.CenterVertically
                                 ) {
-                                    Text(
-                                        text = currentWord.exampleJp,
-                                        fontSize = 14.sp,
-                                        fontWeight = FontWeight.SemiBold
-                                    )
-                                    Text(
-                                        text = currentWord.exampleTh,
-                                        fontSize = 12.sp,
-                                        color = MaterialTheme.colorScheme.secondary
-                                    )
+                                    Column(
+                                        modifier = Modifier.weight(1f),
+                                        verticalArrangement = Arrangement.spacedBy(4.dp)
+                                    ) {
+                                        Text(
+                                            text = currentWord.exampleJp,
+                                            fontSize = 14.sp,
+                                            fontWeight = FontWeight.SemiBold
+                                        )
+                                        Text(
+                                            text = currentWord.exampleTh,
+                                            fontSize = 12.sp,
+                                            color = MaterialTheme.colorScheme.secondary
+                                        )
+                                    }
+                                    IconButton(
+                                        onClick = { onPlayAudio(currentWord.exampleJp) },
+                                        modifier = Modifier.size(30.dp)
+                                    ) {
+                                        Icon(
+                                            Icons.AutoMirrored.Filled.VolumeUp,
+                                            contentDescription = "Play Sentence",
+                                            modifier = Modifier.size(18.dp)
+                                        )
+                                    }
                                 }
                             }
                         }
@@ -272,19 +339,29 @@ fun FlashcardSessionScreen(
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(bottom = 8.dp),
+                    .padding(bottom = 4.dp),
                 horizontalArrangement = Arrangement.spacedBy(8.dp)
             ) {
+                val submitRating: (Int) -> Unit = { rating ->
+                    haptic.performHapticFeedback(HapticFeedbackType.LongPress)
+                    val nextIdx = currentIndex + 1
+                    onRateWord(currentWord, rating, nextIdx)
+                    isRevealed = false
+                    currentIndex = nextIdx
+                }
+
                 // 1 = Again
                 Button(
-                    onClick = {
-                        onRateWord(currentWord, 1)
-                        isRevealed = false
-                        currentIndex++
-                    },
-                    modifier = Modifier.weight(1f).height(56.dp),
+                    onClick = { submitRating(1) },
+                    modifier = Modifier
+                        .weight(1f)
+                        .height(56.dp),
                     shape = RoundedCornerShape(14.dp),
-                    colors = ButtonDefaults.buttonColors(containerColor = AccentRed.copy(alpha = 0.12f), contentColor = AccentRed)
+                    contentPadding = PaddingValues(horizontal = 4.dp),
+                    colors = ButtonDefaults.buttonColors(
+                        containerColor = AccentRed.copy(alpha = 0.14f),
+                        contentColor = AccentRed
+                    )
                 ) {
                     Column(horizontalAlignment = Alignment.CenterHorizontally) {
                         Text("ลืม", fontSize = 13.sp, fontWeight = FontWeight.Bold)
@@ -294,14 +371,16 @@ fun FlashcardSessionScreen(
 
                 // 2 = Hard
                 Button(
-                    onClick = {
-                        onRateWord(currentWord, 2)
-                        isRevealed = false
-                        currentIndex++
-                    },
-                    modifier = Modifier.weight(1f).height(56.dp),
+                    onClick = { submitRating(2) },
+                    modifier = Modifier
+                        .weight(1f)
+                        .height(56.dp),
                     shape = RoundedCornerShape(14.dp),
-                    colors = ButtonDefaults.buttonColors(containerColor = AccentAmber.copy(alpha = 0.12f), contentColor = AccentAmber)
+                    contentPadding = PaddingValues(horizontal = 4.dp),
+                    colors = ButtonDefaults.buttonColors(
+                        containerColor = AccentAmber.copy(alpha = 0.14f),
+                        contentColor = AccentAmber
+                    )
                 ) {
                     Column(horizontalAlignment = Alignment.CenterHorizontally) {
                         Text("ยาก", fontSize = 13.sp, fontWeight = FontWeight.Bold)
@@ -311,14 +390,16 @@ fun FlashcardSessionScreen(
 
                 // 3 = Good
                 Button(
-                    onClick = {
-                        onRateWord(currentWord, 3)
-                        isRevealed = false
-                        currentIndex++
-                    },
-                    modifier = Modifier.weight(1f).height(56.dp),
+                    onClick = { submitRating(3) },
+                    modifier = Modifier
+                        .weight(1f)
+                        .height(56.dp),
                     shape = RoundedCornerShape(14.dp),
-                    colors = ButtonDefaults.buttonColors(containerColor = AccentGreen.copy(alpha = 0.15f), contentColor = AccentGreen)
+                    contentPadding = PaddingValues(horizontal = 4.dp),
+                    colors = ButtonDefaults.buttonColors(
+                        containerColor = AccentGreen.copy(alpha = 0.15f),
+                        contentColor = AccentGreen
+                    )
                 ) {
                     Column(horizontalAlignment = Alignment.CenterHorizontally) {
                         Text("จำได้", fontSize = 13.sp, fontWeight = FontWeight.Bold)
@@ -328,14 +409,16 @@ fun FlashcardSessionScreen(
 
                 // 4 = Easy
                 Button(
-                    onClick = {
-                        onRateWord(currentWord, 4)
-                        isRevealed = false
-                        currentIndex++
-                    },
-                    modifier = Modifier.weight(1f).height(56.dp),
+                    onClick = { submitRating(4) },
+                    modifier = Modifier
+                        .weight(1f)
+                        .height(56.dp),
                     shape = RoundedCornerShape(14.dp),
-                    colors = ButtonDefaults.buttonColors(containerColor = AccentBlue.copy(alpha = 0.15f), contentColor = AccentBlue)
+                    contentPadding = PaddingValues(horizontal = 4.dp),
+                    colors = ButtonDefaults.buttonColors(
+                        containerColor = AccentBlue.copy(alpha = 0.15f),
+                        contentColor = AccentBlue
+                    )
                 ) {
                     Column(horizontalAlignment = Alignment.CenterHorizontally) {
                         Text("ง่าย", fontSize = 13.sp, fontWeight = FontWeight.Bold)
@@ -346,6 +429,7 @@ fun FlashcardSessionScreen(
         } else {
             Button(
                 onClick = {
+                    haptic.performHapticFeedback(HapticFeedbackType.TextHandleMove)
                     isRevealed = true
                     onPlayAudio(currentWord.kana)
                 },
@@ -354,7 +438,7 @@ fun FlashcardSessionScreen(
                     .height(54.dp),
                 shape = RoundedCornerShape(16.dp)
             ) {
-                Text("ดูเฉลย (Show Answer)", fontSize = 16.sp, fontWeight = FontWeight.SemiBold)
+                Text("ดูเฉลย (Show Answer)", fontSize = 16.sp, fontWeight = FontWeight.Bold)
             }
         }
     }

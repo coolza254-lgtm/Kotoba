@@ -22,7 +22,7 @@
     "exampleJp": "古い橋を渡る。",
     "exampleTh": "ข้ามสะพานเก่าแก่",
     "exampleEn": "Cross the old bridge.",
-    "note": "ระวังเสียงพ้อง: 箸 [1] (ตะเกียบ) เสียงตกพยางค์แรก, 端 [0] (ริม/ขอบ) เสียงเรียบ"
+    "note": "เสียงพ้อง: 箸 [1] (ตะเกียบ) เสียงตกพยางค์แรก, 端 [0] (ริม/ขอบ) เสียงเรียบ"
   },
   {
     "id": 2,
@@ -45,9 +45,9 @@
     "dropMora": 1,
     "pitchPattern": "頭高 [1]",
     "exampleJp": "箸でご飯を食べます。",
-    "exampleTh": "กินข้าวด้วยตะเกียบ",
+    "exampleTh": "รับประทานข้าวด้วยตะเกียบ",
     "exampleEn": "Eat rice with chopsticks.",
-    "note": "เสียงสูงพยางค์แรก は แล้วตกลงที่ し"
+    "note": "เสียงสูงที่พยางค์แรก は แล้วตกลงที่ し"
   },
   {
     "id": 3,
@@ -69,9 +69,9 @@
     ],
     "dropMora": 1,
     "pitchPattern": "頭高 [1]",
-    "exampleJp": "雨が降っています。",
-    "exampleTh": "ฝนกำลังตกอยู่",
-    "exampleEn": "It is raining.",
+    "exampleJp": "外は雨が降っています。",
+    "exampleTh": "ข้างนอกฝนกำลังตกอยู่",
+    "exampleEn": "It is raining outside.",
     "note": "คู่เสียงพ้องกับ 飴 [0] (ลูกอม)"
   },
   {
@@ -94,43 +94,195 @@
     ],
     "dropMora": 0,
     "pitchPattern": "平板 [0]",
-    "exampleJp": "甘い飴をなめる。",
-    "exampleTh": "อมลูกอมรสหวาน",
-    "exampleEn": "Lick sweet candy.",
-    "note": "เสียงเรียบ อาเมะกะ ไม่มีจุดตก"
+    "exampleJp": "甘い飴を一つどうぞ。",
+    "exampleTh": "เชิญรับลูกอมหวานๆ สักเม็ดครับ",
+    "exampleEn": "Please have a piece of sweet candy.",
+    "note": "เสียงเรียบ [0] ไม่ตกเสียง"
   },
   {
     "id": 5,
-    "kanji": "静か",
-    "kana": "しずか",
+    "kanji": "朝",
+    "kana": "あさ",
     "ruby": [
       [
-        "静",
-        "しず"
-      ],
-      [
-        "か",
-        ""
+        "朝",
+        "あさ"
       ]
     ],
-    "meanTh": "เงียบสงบ",
-    "meanEn": "quiet, peaceful",
-    "pos": "คุณศัพท์ な",
+    "meanTh": "ตอนเช้า",
+    "meanEn": "morning",
+    "pos": "คำนาม",
     "lvl": "N5",
     "morae": [
-      "し",
-      "ず",
-      "か"
+      "あ",
+      "さ"
     ],
     "dropMora": 1,
     "pitchPattern": "頭高 [1]",
-    "exampleJp": "夜の公園はとても静かです。",
-    "exampleTh": "สวนสาธารณะตอนกลางคืนเงียบสงบมาก",
-    "exampleEn": "The park at night is very quiet.",
-    "note": "ขยายคำนามต้องเติม な เสมอ เช่น 静かな部屋"
+    "exampleJp": "毎朝六時に起きます。",
+    "exampleTh": "ตื่นนอนตอนหกโมงเช้าทุกวัน",
+    "exampleEn": "I wake up at 6 AM every morning.",
+    "note": "朝ご飯 (あさごはん) = อาหารเช้า"
   },
   {
     "id": 6,
+    "kanji": "昼",
+    "kana": "ひる",
+    "ruby": [
+      [
+        "昼",
+        "ひる"
+      ]
+    ],
+    "meanTh": "ตอนกลางวัน, เที่ยง",
+    "meanEn": "daytime, noon",
+    "pos": "คำนาม",
+    "lvl": "N5",
+    "morae": [
+      "ひ",
+      "る"
+    ],
+    "dropMora": 2,
+    "pitchPattern": "尾高 [2]",
+    "exampleJp": "昼休みに弁当を食べる。",
+    "exampleTh": "กินข้าวกล่องตอนพักเที่ยง",
+    "exampleEn": "Eat a bento during lunch break.",
+    "note": "昼ご飯 (ひるごはん) = อาหารกลางวัน"
+  },
+  {
+    "id": 7,
+    "kanji": "夜",
+    "kana": "よる",
+    "ruby": [
+      [
+        "夜",
+        "よる"
+      ]
+    ],
+    "meanTh": "ตอนกลางคืน",
+    "meanEn": "night, evening",
+    "pos": "คำนาม",
+    "lvl": "N5",
+    "morae": [
+      "よ",
+      "る"
+    ],
+    "dropMora": 1,
+    "pitchPattern": "頭高 [1]",
+    "exampleJp": "夜は静かに本を読みます。",
+    "exampleTh": "ตอนกลางคืนอ่านหนังสืออย่างเงียบๆ",
+    "exampleEn": "Read a book quietly at night.",
+    "note": "晩ご飯 (ばんごはん) = อาหารเย็น"
+  },
+  {
+    "id": 8,
+    "kanji": "今日",
+    "kana": "きょう",
+    "ruby": [
+      [
+        "今日",
+        "きょう"
+      ]
+    ],
+    "meanTh": "วันนี้",
+    "meanEn": "today",
+    "pos": "คำนาม",
+    "lvl": "N5",
+    "morae": [
+      "きょ",
+      "う"
+    ],
+    "dropMora": 1,
+    "pitchPattern": "頭高 [1]",
+    "exampleJp": "今日はとてもいい天気ですね。",
+    "exampleTh": "วันนี้อากาศดีมากเลยนะครับ",
+    "exampleEn": "The weather is very nice today.",
+    "note": "คำอ่านพิเศษ (熟字訓) อ่านรวบทั้งคำว่า きょう"
+  },
+  {
+    "id": 9,
+    "kanji": "明日",
+    "kana": "あした",
+    "ruby": [
+      [
+        "明日",
+        "あした"
+      ]
+    ],
+    "meanTh": "พรุ่งนี้",
+    "meanEn": "tomorrow",
+    "pos": "คำนาม",
+    "lvl": "N5",
+    "morae": [
+      "あ",
+      "し",
+      "た"
+    ],
+    "dropMora": 0,
+    "pitchPattern": "平板 [0]",
+    "exampleJp": "また明日会いましょう。",
+    "exampleTh": "ไว้พรุ่งนี้เจอกันใหม่นะครับ",
+    "exampleEn": "Let's meet again tomorrow.",
+    "note": "ในภาษาทางการสามารถอ่านว่า あす [2] ได้"
+  },
+  {
+    "id": 10,
+    "kanji": "昨日",
+    "kana": "きのう",
+    "ruby": [
+      [
+        "昨日",
+        "きのう"
+      ]
+    ],
+    "meanTh": "เมื่อวานนี้",
+    "meanEn": "yesterday",
+    "pos": "คำนาม",
+    "lvl": "N5",
+    "morae": [
+      "き",
+      "の",
+      "う"
+    ],
+    "dropMora": 2,
+    "pitchPattern": "中高 [2]",
+    "exampleJp": "昨日は早く寝ました。",
+    "exampleTh": "เมื่อวานนี้เข้านอนเร็ว",
+    "exampleEn": "I went to bed early yesterday.",
+    "note": "คำอ่านพิเศษ (熟字訓)"
+  },
+  {
+    "id": 11,
+    "kanji": "時間",
+    "kana": "じかん",
+    "ruby": [
+      [
+        "時",
+        "じ"
+      ],
+      [
+        "間",
+        "かん"
+      ]
+    ],
+    "meanTh": "เวลา, ชั่วโมง",
+    "meanEn": "time, hour",
+    "pos": "คำนาม",
+    "lvl": "N5",
+    "morae": [
+      "じ",
+      "か",
+      "ん"
+    ],
+    "dropMora": 0,
+    "pitchPattern": "平板 [0]",
+    "exampleJp": "少し時間がありますか。",
+    "exampleTh": "พอจะมีเวลาสักครู่ไหมครับ",
+    "exampleEn": "Do you have a little time?",
+    "note": "三時間 (さんじかん) = 3 ชั่วโมง"
+  },
+  {
+    "id": 12,
     "kanji": "約束",
     "kana": "やくそく",
     "ruby": [
@@ -161,7 +313,390 @@
     "note": "約束を守る (รักษาสัญญา) vs 約束を破る (ผิดสัญญา)"
   },
   {
-    "id": 7,
+    "id": 13,
+    "kanji": "友達",
+    "kana": "ともだち",
+    "ruby": [
+      [
+        "友",
+        "とも"
+      ],
+      [
+        "達",
+        "だち"
+      ]
+    ],
+    "meanTh": "เพื่อน",
+    "meanEn": "friend",
+    "pos": "คำนาม",
+    "lvl": "N5",
+    "morae": [
+      "と",
+      "も",
+      "だ",
+      "ち"
+    ],
+    "dropMora": 0,
+    "pitchPattern": "平板 [0]",
+    "exampleJp": "週末に友達と映画を見ます。",
+    "exampleTh": "ดูหนังกับเพื่อนช่วงสุดสัปดาห์",
+    "exampleEn": "Watch a movie with friends on the weekend.",
+    "note": "ออกเสียง ダチ (เสียงขุ่น Rendaku)"
+  },
+  {
+    "id": 14,
+    "kanji": "家族",
+    "kana": "かぞく",
+    "ruby": [
+      [
+        "家",
+        "か"
+      ],
+      [
+        "族",
+        "ぞく"
+      ]
+    ],
+    "meanTh": "ครอบครัว",
+    "meanEn": "family",
+    "pos": "คำนาม",
+    "lvl": "N5",
+    "morae": [
+      "か",
+      "ぞ",
+      "く"
+    ],
+    "dropMora": 1,
+    "pitchPattern": "頭高 [1]",
+    "exampleJp": "私の家族は四人です。",
+    "exampleTh": "ครอบครัวของฉันมี 4 คน",
+    "exampleEn": "There are four people in my family.",
+    "note": "เมื่อพูดถึงครอบครัวคนอื่นอย่างสุภาพใช้ ご家族 (ごかぞく)"
+  },
+  {
+    "id": 15,
+    "kanji": "先生",
+    "kana": "せんせい",
+    "ruby": [
+      [
+        "先",
+        "せん"
+      ],
+      [
+        "生",
+        "せい"
+      ]
+    ],
+    "meanTh": "คุณครู, อาจารย์, คุณหมอ",
+    "meanEn": "teacher, doctor",
+    "pos": "คำนาม",
+    "lvl": "N5",
+    "morae": [
+      "せ",
+      "ん",
+      "せ",
+      "い"
+    ],
+    "dropMora": 3,
+    "pitchPattern": "中高 [3]",
+    "exampleJp": "日本語の先生はとても親切です。",
+    "exampleTh": "อาจารย์สอนภาษาญี่ปุ่นใจดีมาก",
+    "exampleEn": "The Japanese teacher is very kind.",
+    "note": "เสียงตกที่พยางค์ せ ตัวที่สอง"
+  },
+  {
+    "id": 16,
+    "kanji": "学生",
+    "kana": "がくせい",
+    "ruby": [
+      [
+        "学",
+        "がく"
+      ],
+      [
+        "生",
+        "せい"
+      ]
+    ],
+    "meanTh": "นักเรียน, นักศึกษา",
+    "meanEn": "student",
+    "pos": "คำนาม",
+    "lvl": "N5",
+    "morae": [
+      "が",
+      "く",
+      "せ",
+      "い"
+    ],
+    "dropMora": 0,
+    "pitchPattern": "平板 [0]",
+    "exampleJp": "私は大学の学生です。",
+    "exampleTh": "ฉันเป็นนักศึกษามหาวิทยาลัย",
+    "exampleEn": "I am a university student.",
+    "note": "大学生 (だいがくせい) = นักศึกษามหาวิทยาลัย"
+  },
+  {
+    "id": 17,
+    "kanji": "会社",
+    "kana": "かいしゃ",
+    "ruby": [
+      [
+        "会",
+        "かい"
+      ],
+      [
+        "社",
+        "しゃ"
+      ]
+    ],
+    "meanTh": "บริษัท",
+    "meanEn": "company, office",
+    "pos": "คำนาม",
+    "lvl": "N5",
+    "morae": [
+      "か",
+      "い",
+      "しゃ"
+    ],
+    "dropMora": 0,
+    "pitchPattern": "平板 [0]",
+    "exampleJp": "毎日電車で会社へ行きます。",
+    "exampleTh": "ไปบริษัทด้วยรถไฟทุกวัน",
+    "exampleEn": "I go to the office by train every day.",
+    "note": "会社員 (かいしゃいん) = พนักงานบริษัท"
+  },
+  {
+    "id": 18,
+    "kanji": "病院",
+    "kana": "びょういん",
+    "ruby": [
+      [
+        "病",
+        "びょう"
+      ],
+      [
+        "院",
+        "いん"
+      ]
+    ],
+    "meanTh": "โรงพยาบาล",
+    "meanEn": "hospital",
+    "pos": "คำนาม",
+    "lvl": "N5",
+    "morae": [
+      "びょ",
+      "う",
+      "い",
+      "ん"
+    ],
+    "dropMora": 0,
+    "pitchPattern": "平板 [0]",
+    "exampleJp": "風邪をひいたので病院へ行く。",
+    "exampleTh": "เพราะเป็นหวัดจึงไปโรงพยาบาล",
+    "exampleEn": "Go to the hospital because I caught a cold.",
+    "note": "ระวังสับสนกับ 美容院 (びよういん = ร้านเสริมสวย)"
+  },
+  {
+    "id": 19,
+    "kanji": "駅",
+    "kana": "えき",
+    "ruby": [
+      [
+        "駅",
+        "えき"
+      ]
+    ],
+    "meanTh": "สถานีรถไฟ",
+    "meanEn": "train station",
+    "pos": "คำนาม",
+    "lvl": "N5",
+    "morae": [
+      "え",
+      "き"
+    ],
+    "dropMora": 1,
+    "pitchPattern": "頭高 [1]",
+    "exampleJp": "次の駅で降ります。",
+    "exampleTh": "จะลงที่สถานีถัดไปครับ",
+    "exampleEn": "I will get off at the next station.",
+    "note": "駅前 (えきまえ) = หน้าสถานีรถไฟ"
+  },
+  {
+    "id": 20,
+    "kanji": "電車",
+    "kana": "でんしゃ",
+    "ruby": [
+      [
+        "電",
+        "でん"
+      ],
+      [
+        "車",
+        "しゃ"
+      ]
+    ],
+    "meanTh": "รถไฟ",
+    "meanEn": "electric train",
+    "pos": "คำนาม",
+    "lvl": "N5",
+    "morae": [
+      "で",
+      "ん",
+      "しゃ"
+    ],
+    "dropMora": 0,
+    "pitchPattern": "平板 [0]",
+    "exampleJp": "電車に乗る前に切符を買う。",
+    "exampleTh": "ซื้อตั๋วก่อนขึ้นรถไฟ",
+    "exampleEn": "Buy a ticket before boarding the train.",
+    "note": "電車に乗る (ขึ้นรถไฟ) vs 電車を降りる (ลงรถไฟ)"
+  },
+  {
+    "id": 21,
+    "kanji": "天気",
+    "kana": "てんき",
+    "ruby": [
+      [
+        "天",
+        "てん"
+      ],
+      [
+        "気",
+        "き"
+      ]
+    ],
+    "meanTh": "สภาพอากาศ",
+    "meanEn": "weather",
+    "pos": "คำนาม",
+    "lvl": "N5",
+    "morae": [
+      "て",
+      "ん",
+      "き"
+    ],
+    "dropMora": 1,
+    "pitchPattern": "頭高 [1]",
+    "exampleJp": "明日の天気はどうですか。",
+    "exampleTh": "อากาศวันพรุ่งนี้เป็นอย่างไรบ้าง",
+    "exampleEn": "How is the weather tomorrow?",
+    "note": "天気予報 (てんきよほう) = พยากรณ์อากาศ"
+  },
+  {
+    "id": 22,
+    "kanji": "水",
+    "kana": "みず",
+    "ruby": [
+      [
+        "水",
+        "みず"
+      ]
+    ],
+    "meanTh": "น้ำ (น้ำเย็น/น้ำเปล่า)",
+    "meanEn": "water",
+    "pos": "คำนาม",
+    "lvl": "N5",
+    "morae": [
+      "み",
+      "ず"
+    ],
+    "dropMora": 0,
+    "pitchPattern": "平板 [0]",
+    "exampleJp": "お水をもう一杯ください。",
+    "exampleTh": "ขอน้ำเปล่าอีกสักแก้วครับ",
+    "exampleEn": "Please give me another glass of water.",
+    "note": "ถ้าเป็นน้ำร้อนใช้คำว่า お湯 (おゆ)"
+  },
+  {
+    "id": 23,
+    "kanji": "お茶",
+    "kana": "おちゃ",
+    "ruby": [
+      [
+        "お",
+        ""
+      ],
+      [
+        "茶",
+        "ちゃ"
+      ]
+    ],
+    "meanTh": "ชา, น้ำชา (โดยเฉพาะชาเขียว)",
+    "meanEn": "tea, green tea",
+    "pos": "คำนาม",
+    "lvl": "N5",
+    "morae": [
+      "お",
+      "ちゃ"
+    ],
+    "dropMora": 0,
+    "pitchPattern": "平板 [0]",
+    "exampleJp": "温かいお茶を飲みませんか。",
+    "exampleTh": "ดื่มชาอุ่นๆ ด้วยกันไหมครับ",
+    "exampleEn": "Won't you drink some warm tea?",
+    "note": "ชาฝรั่งเรียก 紅茶 (こうちゃ)"
+  },
+  {
+    "id": 24,
+    "kanji": "野菜",
+    "kana": "やさい",
+    "ruby": [
+      [
+        "野",
+        "や"
+      ],
+      [
+        "菜",
+        "さい"
+      ]
+    ],
+    "meanTh": "ผัก",
+    "meanEn": "vegetable",
+    "pos": "คำนาม",
+    "lvl": "N5",
+    "morae": [
+      "や",
+      "さ",
+      "い"
+    ],
+    "dropMora": 0,
+    "pitchPattern": "平板 [0]",
+    "exampleJp": "健康のために野菜を食べます。",
+    "exampleTh": "กินผักเพื่อสุขภาพ",
+    "exampleEn": "Eat vegetables for health.",
+    "note": "果物 (くだもの) = ผลไม้"
+  },
+  {
+    "id": 25,
+    "kanji": "お金",
+    "kana": "おかね",
+    "ruby": [
+      [
+        "お",
+        ""
+      ],
+      [
+        "金",
+        "かね"
+      ]
+    ],
+    "meanTh": "เงิน",
+    "meanEn": "money",
+    "pos": "คำนาม",
+    "lvl": "N5",
+    "morae": [
+      "お",
+      "か",
+      "ね"
+    ],
+    "dropMora": 0,
+    "pitchPattern": "平板 [0]",
+    "exampleJp": "銀行でお金をおろします。",
+    "exampleTh": "ถอนเงินที่ธนาคาร",
+    "exampleEn": "Withdraw money at the bank.",
+    "note": "お金を払う = จ่ายเงิน"
+  },
+  {
+    "id": 26,
     "kanji": "食べる",
     "kana": "たべる",
     "ruby": [
@@ -191,7 +726,7 @@
     "note": "ผัน て形 = 食べて, ない形 = 食べない"
   },
   {
-    "id": 8,
+    "id": 27,
     "kanji": "飲む",
     "kana": "のむ",
     "ruby": [
@@ -214,13 +749,13 @@
     ],
     "dropMora": 1,
     "pitchPattern": "頭高 [1]",
-    "exampleJp": "冷たい水を一杯飲みました。",
-    "exampleTh": "ดื่มน้ำเย็นไปหนึ่งแก้ว",
-    "exampleEn": "Drank a glass of cold water.",
-    "note": "ผัน て形 = 飲んで, ない形 = 飲まない"
+    "exampleJp": "毎朝コーヒーを飲みます。",
+    "exampleTh": "ดื่มกาแฟทุกเช้า",
+    "exampleEn": "Drink coffee every morning.",
+    "note": "ใช้กับคำว่ากินยาก็ได้: 薬を飲む (กินยา)"
   },
   {
-    "id": 9,
+    "id": 28,
     "kanji": "行く",
     "kana": "いく",
     "ruby": [
@@ -243,13 +778,13 @@
     ],
     "dropMora": 0,
     "pitchPattern": "平板 [0]",
-    "exampleJp": "明日、東京へ行きます。",
-    "exampleTh": "พรุ่งนี้จะไปโตเกียว",
-    "exampleEn": "I will go to Tokyo tomorrow.",
+    "exampleJp": "来月、日本へ行きます。",
+    "exampleTh": "เดือนหน้าจะไปญี่ปุ่น",
+    "exampleEn": "I will go to Japan next month.",
     "note": "ข้อยกเว้นการผัน て形: 行く → 行って (ไม่ใช่ いいて)"
   },
   {
-    "id": 10,
+    "id": 29,
     "kanji": "来る",
     "kana": "くる",
     "ruby": [
@@ -272,13 +807,13 @@
     ],
     "dropMora": 1,
     "pitchPattern": "頭高 [1]",
-    "exampleJp": "先生が教室に来ました。",
-    "exampleTh": "อาจารย์มาที่ห้องเรียนแล้ว",
-    "exampleEn": "The teacher came to the classroom.",
+    "exampleJp": "バスがもうすぐ来ます。",
+    "exampleTh": "รถบัสกำลังจะมาในอีกไม่ช้า",
+    "exampleEn": "The bus will come soon.",
     "note": "กริยาผันพิเศษ: きます, きて, こない"
   },
   {
-    "id": 11,
+    "id": 30,
     "kanji": "帰る",
     "kana": "かえる",
     "ruby": [
@@ -302,13 +837,13 @@
     ],
     "dropMora": 1,
     "pitchPattern": "頭高 [1]",
-    "exampleJp": "夕方六時に家に帰ります。",
-    "exampleTh": "กลับบ้านตอนหกโมงเย็น",
-    "exampleEn": "Return home at 6 PM.",
+    "exampleJp": "仕事が終わってから家に帰る。",
+    "exampleTh": "หลังจากเลิกงานแล้วค่อยกลับบ้าน",
+    "exampleEn": "Return home after work finishes.",
     "note": "ลงท้ายด้วย る แต่เป็นกริยากลุ่ม 1 (かえります / かえって)"
   },
   {
-    "id": 12,
+    "id": 31,
     "kanji": "見る",
     "kana": "みる",
     "ruby": [
@@ -331,13 +866,13 @@
     ],
     "dropMora": 1,
     "pitchPattern": "頭高 [1]",
-    "exampleJp": "週末に映画を見ました。",
-    "exampleTh": "ดูหนังช่วงสุดสัปดาห์",
-    "exampleEn": "Watched a movie on the weekend.",
+    "exampleJp": "夜空の星を見ました。",
+    "exampleTh": "มองดูดาวบนท้องฟ้าตอนกลางคืน",
+    "exampleEn": "Looked at the stars in the night sky.",
     "note": "ผัน みます, みて, みない"
   },
   {
-    "id": 13,
+    "id": 32,
     "kanji": "聞く",
     "kana": "きく",
     "ruby": [
@@ -360,13 +895,13 @@
     ],
     "dropMora": 0,
     "pitchPattern": "平板 [0]",
-    "exampleJp": "毎朝日本のラジオを聞きます。",
-    "exampleTh": "ฟังวิทยุญี่ปุ่นทุกเช้า",
-    "exampleEn": "Listen to Japanese radio every morning.",
+    "exampleJp": "わからない時は先生に聞きます。",
+    "exampleTh": "เวลาไม่เข้าใจจะถามอาจารย์",
+    "exampleEn": "Ask the teacher when I don't understand.",
     "note": "先生に聞く = ถามอาจารย์, 音楽を聞く = ฟังเพลง"
   },
   {
-    "id": 14,
+    "id": 33,
     "kanji": "読む",
     "kana": "よむ",
     "ruby": [
@@ -389,13 +924,13 @@
     ],
     "dropMora": 1,
     "pitchPattern": "頭高 [1]",
-    "exampleJp": "図書館で日本語の本を読む。",
-    "exampleTh": "อ่านหนังสือภาษาญี่ปุ่นที่ห้องสมุด",
-    "exampleEn": "Read a Japanese book at the library.",
+    "exampleJp": "寝る前に本を読みます。",
+    "exampleTh": "อ่านหนังสือก่อนนอน",
+    "exampleEn": "Read a book before going to sleep.",
     "note": "ผัน よみます, よんで, よまない"
   },
   {
-    "id": 15,
+    "id": 34,
     "kanji": "書く",
     "kana": "かく",
     "ruby": [
@@ -408,7 +943,7 @@
         ""
       ]
     ],
-    "meanTh": "เขียน, วาด",
+    "meanTh": "เขียน",
     "meanEn": "to write",
     "pos": "กริยากลุ่ม 1",
     "lvl": "N5",
@@ -418,13 +953,13 @@
     ],
     "dropMora": 1,
     "pitchPattern": "頭高 [1]",
-    "exampleJp": "家族に手紙を書きました。",
-    "exampleTh": "เขียนจดหมายถึงครอบครัว",
-    "exampleEn": "Wrote a letter to my family.",
+    "exampleJp": "ここに名前と住所を書いてください。",
+    "exampleTh": "กรุณาเขียนชื่อและที่อยู่ตรงนี้ครับ",
+    "exampleEn": "Please write your name and address here.",
     "note": "ผัน かきます, かいて, かかない"
   },
   {
-    "id": 16,
+    "id": 35,
     "kanji": "話す",
     "kana": "はなす",
     "ruby": [
@@ -448,13 +983,13 @@
     ],
     "dropMora": 2,
     "pitchPattern": "中高 [2]",
-    "exampleJp": "日本語で友達と話します。",
-    "exampleTh": "คุยกับเพื่อนเป็นภาษาญี่ปุ่น",
-    "exampleEn": "Talk with friends in Japanese.",
+    "exampleJp": "もっとゆっくり話してください。",
+    "exampleTh": "กรุณาพูดให้ช้าลงอีกนิดครับ",
+    "exampleEn": "Please speak more slowly.",
     "note": "ผัน はなします, はなして, はなさない"
   },
   {
-    "id": 17,
+    "id": 36,
     "kanji": "買う",
     "kana": "かう",
     "ruby": [
@@ -477,13 +1012,13 @@
     ],
     "dropMora": 0,
     "pitchPattern": "平板 [0]",
-    "exampleJp": "スーパーでリンゴを買った。",
-    "exampleTh": "ซื้อแอปเปิ้ลที่ซูเปอร์มาร์เก็ต",
-    "exampleEn": "Bought apples at the supermarket.",
-    "note": "ผัน かいます, かって, かわない"
+    "exampleJp": "デパートで新しい靴を買った。",
+    "exampleTh": "ซื้อรองเท้าคู่ใหม่ที่ห้างสรรพสินค้า",
+    "exampleEn": "Bought new shoes at the department store.",
+    "note": "ผัน かいます, かって, かわない (ระวังเป็น わ ไม่ใช่ あ)"
   },
   {
-    "id": 18,
+    "id": 37,
     "kanji": "会う",
     "kana": "あう",
     "ruby": [
@@ -506,13 +1041,13 @@
     ],
     "dropMora": 1,
     "pitchPattern": "頭高 [1]",
-    "exampleJp": "駅の前で友達に会いました。",
-    "exampleTh": "เจอเพื่อนที่หน้าสถานีรถไฟ",
-    "exampleEn": "Met a friend in front of the station.",
-    "note": "ใช้คำช่วย に กับคนที่ไปพบ เช่น 友達に会う"
+    "exampleJp": "改札口の前で友達に会う。",
+    "exampleTh": "พบเพื่อนที่หน้าช่องตรวจตั๋ว",
+    "exampleEn": "Meet a friend in front of the ticket gate.",
+    "note": "ใช้คำช่วย に กับคนที่ไปพบเสมอ (友達に会う)"
   },
   {
-    "id": 19,
+    "id": 38,
     "kanji": "待つ",
     "kana": "まつ",
     "ruby": [
@@ -525,7 +1060,7 @@
         ""
       ]
     ],
-    "meanTh": "รอ",
+    "meanTh": "รอ, คอย",
     "meanEn": "to wait",
     "pos": "กริยากลุ่ม 1",
     "lvl": "N5",
@@ -535,13 +1070,13 @@
     ],
     "dropMora": 1,
     "pitchPattern": "頭高 [1]",
-    "exampleJp": "ちょっと待ってください。",
-    "exampleTh": "กรุณารอสักครู่ครับ",
-    "exampleEn": "Please wait a moment.",
+    "exampleJp": "ここで五分ぐらい待ってください。",
+    "exampleTh": "กรุณารอตรงนี้ประมาณ 5 นาทีครับ",
+    "exampleEn": "Please wait here for about five minutes.",
     "note": "ผัน まちます, まって, またない"
   },
   {
-    "id": 20,
+    "id": 39,
     "kanji": "教える",
     "kana": "おしえる",
     "ruby": [
@@ -566,13 +1101,800 @@
     ],
     "dropMora": 0,
     "pitchPattern": "平板 [0]",
-    "exampleJp": "電話番号を教えてください。",
-    "exampleTh": "ช่วยบอกเบอร์โทรศัพท์หน่อยครับ",
-    "exampleEn": "Please tell me your phone number.",
-    "note": "ผัน おしえます, おしえて, おしえない"
+    "exampleJp": "駅までの道を教えてください。",
+    "exampleTh": "ช่วยบอกทางไปสถานีรถไฟหน่อยครับ",
+    "exampleEn": "Please tell me the way to the station.",
+    "note": "คู่กับ 習う (ならう = เรียนจากผู้สอน)"
   },
   {
-    "id": 21,
+    "id": 40,
+    "kanji": "習う",
+    "kana": "ならう",
+    "ruby": [
+      [
+        "習",
+        "なら"
+      ],
+      [
+        "う",
+        ""
+      ]
+    ],
+    "meanTh": "เรียน, ฝึกฝน (จากครู)",
+    "meanEn": "to learn (from someone)",
+    "pos": "กริยากลุ่ม 1",
+    "lvl": "N5",
+    "morae": [
+      "な",
+      "ら",
+      "う"
+    ],
+    "dropMora": 2,
+    "pitchPattern": "中高 [2]",
+    "exampleJp": "日本人の先生に日本語を習っています。",
+    "exampleTh": "กำลังเรียนภาษาญี่ปุ่นกับอาจารย์ชาวญี่ปุ่น",
+    "exampleEn": "I am learning Japanese from a Japanese teacher.",
+    "note": "ผัน ならいます, ならって, ならわない"
+  },
+  {
+    "id": 41,
+    "kanji": "貸す",
+    "kana": "かす",
+    "ruby": [
+      [
+        "貸",
+        "か"
+      ],
+      [
+        "す",
+        ""
+      ]
+    ],
+    "meanTh": "ให้ยืม",
+    "meanEn": "to lend",
+    "pos": "กริยากลุ่ม 1",
+    "lvl": "N5",
+    "morae": [
+      "か",
+      "す"
+    ],
+    "dropMora": 0,
+    "pitchPattern": "平板 [0]",
+    "exampleJp": "友達に傘を貸しました。",
+    "exampleTh": "ให้เพื่อนยืมร่ม",
+    "exampleEn": "Lent an umbrella to a friend.",
+    "note": "คู่ตรงข้ามกับ 借りる (かりる = ขอยืม)"
+  },
+  {
+    "id": 42,
+    "kanji": "借りる",
+    "kana": "かりる",
+    "ruby": [
+      [
+        "借",
+        "か"
+      ],
+      [
+        "りる",
+        ""
+      ]
+    ],
+    "meanTh": "ขอยืม, เช่า",
+    "meanEn": "to borrow, rent",
+    "pos": "กริยากลุ่ม 2",
+    "lvl": "N5",
+    "morae": [
+      "か",
+      "り",
+      "る"
+    ],
+    "dropMora": 0,
+    "pitchPattern": "平板 [0]",
+    "exampleJp": "図書館で本を三冊借りました。",
+    "exampleTh": "ยืมหนังสือจากห้องสมุดมา 3 เล่ม",
+    "exampleEn": "Borrowed three books from the library.",
+    "note": "เมื่อยืมมาแล้วต้อง 返す (かえす = คืน)"
+  },
+  {
+    "id": 43,
+    "kanji": "起きる",
+    "kana": "おきる",
+    "ruby": [
+      [
+        "起",
+        "お"
+      ],
+      [
+        "きる",
+        ""
+      ]
+    ],
+    "meanTh": "ตื่นนอน, เกิดขึ้น",
+    "meanEn": "to wake up, occur",
+    "pos": "กริยากลุ่ม 2",
+    "lvl": "N5",
+    "morae": [
+      "お",
+      "き",
+      "る"
+    ],
+    "dropMora": 2,
+    "pitchPattern": "中高 [2]",
+    "exampleJp": "休みの日は遅く起きます。",
+    "exampleTh": "วันหยุดจะตื่นสาย",
+    "exampleEn": "I wake up late on holidays.",
+    "note": "ระวัง: 置く (おく = วาง) เป็นกริยากลุ่ม 1"
+  },
+  {
+    "id": 44,
+    "kanji": "寝る",
+    "kana": "ねる",
+    "ruby": [
+      [
+        "寝",
+        "ね"
+      ],
+      [
+        "る",
+        ""
+      ]
+    ],
+    "meanTh": "เข้านอน, นอนหลับ",
+    "meanEn": "to sleep, go to bed",
+    "pos": "กริยากลุ่ม 2",
+    "lvl": "N5",
+    "morae": [
+      "ね",
+      "る"
+    ],
+    "dropMora": 0,
+    "pitchPattern": "平板 [0]",
+    "exampleJp": "毎晩十一時に寝ます。",
+    "exampleTh": "เข้านอนตอนห้าทุ่มทุกคืน",
+    "exampleEn": "I go to bed at 11 PM every night.",
+    "note": "ผัน ねます, ねて, ねない"
+  },
+  {
+    "id": 45,
+    "kanji": "働く",
+    "kana": "はたらく",
+    "ruby": [
+      [
+        "働",
+        "はたら"
+      ],
+      [
+        "く",
+        ""
+      ]
+    ],
+    "meanTh": "ทำงาน",
+    "meanEn": "to work",
+    "pos": "กริยากลุ่ม 1",
+    "lvl": "N5",
+    "morae": [
+      "は",
+      "た",
+      "ら",
+      "く"
+    ],
+    "dropMora": 0,
+    "pitchPattern": "平板 [0]",
+    "exampleJp": "兄は日本の銀行で働いています。",
+    "exampleTh": "พี่ชายทำงานอยู่ที่ธนาคารในญี่ปุ่น",
+    "exampleEn": "My older brother works at a bank in Japan.",
+    "note": "ใช้คำช่วย で บอกสถานที่ทำงาน"
+  },
+  {
+    "id": 46,
+    "kanji": "休む",
+    "kana": "やすむ",
+    "ruby": [
+      [
+        "休",
+        "やす"
+      ],
+      [
+        "む",
+        ""
+      ]
+    ],
+    "meanTh": "พักผ่อน, หยุดงาน/ลาหยุด",
+    "meanEn": "to rest, take a day off",
+    "pos": "กริยากลุ่ม 1",
+    "lvl": "N5",
+    "morae": [
+      "や",
+      "す",
+      "む"
+    ],
+    "dropMora": 2,
+    "pitchPattern": "中高 [2]",
+    "exampleJp": "疲れたので少し休みましょう。",
+    "exampleTh": "เพราะเหนื่อยแล้ว พักกันสักหน่อยเถอะ",
+    "exampleEn": "Since we're tired, let's rest a little.",
+    "note": "会社を休む = ลาหยุดงาน"
+  },
+  {
+    "id": 47,
+    "kanji": "乗る",
+    "kana": "のる",
+    "ruby": [
+      [
+        "乗",
+        "の"
+      ],
+      [
+        "る",
+        ""
+      ]
+    ],
+    "meanTh": "ขึ้น (ยานพาหนะ), โดยสาร",
+    "meanEn": "to ride, board",
+    "pos": "กริยากลุ่ม 1",
+    "lvl": "N5",
+    "morae": [
+      "の",
+      "る"
+    ],
+    "dropMora": 0,
+    "pitchPattern": "平板 [0]",
+    "exampleJp": "東京駅から新幹線に乗ります。",
+    "exampleTh": "ขึ้นรถไฟชินคันเซ็นจากสถานีโตเกียว",
+    "exampleEn": "Board the Shinkansen from Tokyo Station.",
+    "note": "ใช้คู่กับคำช่วย に เสมอ (電車に乗る)"
+  },
+  {
+    "id": 48,
+    "kanji": "降りる",
+    "kana": "おりる",
+    "ruby": [
+      [
+        "降",
+        "お"
+      ],
+      [
+        "りる",
+        ""
+      ]
+    ],
+    "meanTh": "ลง (จากยานพาหนะ/บันได)",
+    "meanEn": "to get off, descend",
+    "pos": "กริยากลุ่ม 2",
+    "lvl": "N5",
+    "morae": [
+      "お",
+      "り",
+      "る"
+    ],
+    "dropMora": 2,
+    "pitchPattern": "中高 [2]",
+    "exampleJp": "次のバス停でバスを降ります。",
+    "exampleTh": "ลงรถบัสที่ป้ายถัดไป",
+    "exampleEn": "Get off the bus at the next stop.",
+    "note": "ใช้คู่กับคำช่วย を เพื่อบอกยานพาหนะที่ลง"
+  },
+  {
+    "id": 49,
+    "kanji": "使う",
+    "kana": "つかう",
+    "ruby": [
+      [
+        "使",
+        "つか"
+      ],
+      [
+        "う",
+        ""
+      ]
+    ],
+    "meanTh": "ใช้, ใช้งาน",
+    "meanEn": "to use",
+    "pos": "กริยากลุ่ม 1",
+    "lvl": "N5",
+    "morae": [
+      "つ",
+      "か",
+      "う"
+    ],
+    "dropMora": 0,
+    "pitchPattern": "平板 [0]",
+    "exampleJp": "このパソコンを使ってもいいですか。",
+    "exampleTh": "ขอใช้คอมพิวเตอร์เครื่องนี้ได้ไหมครับ",
+    "exampleEn": "May I use this computer?",
+    "note": "ผัน つかいます, つかって, つかわない"
+  },
+  {
+    "id": 50,
+    "kanji": "作る",
+    "kana": "つくる",
+    "ruby": [
+      [
+        "作",
+        "つく"
+      ],
+      [
+        "る",
+        ""
+      ]
+    ],
+    "meanTh": "ทำ, สร้าง, ผลิต, ทำอาหาร",
+    "meanEn": "to make, cook",
+    "pos": "กริยากลุ่ม 1",
+    "lvl": "N5",
+    "morae": [
+      "つ",
+      "く",
+      "る"
+    ],
+    "dropMora": 2,
+    "pitchPattern": "中高 [2]",
+    "exampleJp": "母は毎朝おいしい朝ご飯を作る。",
+    "exampleTh": "คุณแม่ทำอาหารเช้าอร่อยๆ ทุกเช้า",
+    "exampleEn": "My mother makes delicious breakfast every morning.",
+    "note": "ผัน つくります, つくって, つくらない"
+  },
+  {
+    "id": 51,
+    "kanji": "大きい",
+    "kana": "おおきい",
+    "ruby": [
+      [
+        "大",
+        "おお"
+      ],
+      [
+        "きい",
+        ""
+      ]
+    ],
+    "meanTh": "ใหญ่, กว้างใหญ่",
+    "meanEn": "big, large",
+    "pos": "คุณศัพท์ い",
+    "lvl": "N5",
+    "morae": [
+      "お",
+      "お",
+      "き",
+      "い"
+    ],
+    "dropMora": 3,
+    "pitchPattern": "中高 [3]",
+    "exampleJp": "あそこに大きいビルがあります。",
+    "exampleTh": "ตรงโน้นมีตึกขนาดใหญ่อยู่",
+    "exampleEn": "There is a large building over there.",
+    "note": "ขยายคำนามใช้ 大きい หรือ 大きな ก็ได้"
+  },
+  {
+    "id": 52,
+    "kanji": "小さい",
+    "kana": "ちいさい",
+    "ruby": [
+      [
+        "小",
+        "ちい"
+      ],
+      [
+        "さい",
+        ""
+      ]
+    ],
+    "meanTh": "เล็ก",
+    "meanEn": "small, little",
+    "pos": "คุณศัพท์ い",
+    "lvl": "N5",
+    "morae": [
+      "ち",
+      "い",
+      "さ",
+      "い"
+    ],
+    "dropMora": 3,
+    "pitchPattern": "中高 [3]",
+    "exampleJp": "小さい頃、よく川で泳ぎました。",
+    "exampleTh": "สมัยยังเด็ก มักจะว่ายน้ำที่แม่น้ำบ่อยๆ",
+    "exampleEn": "When I was small, I often swam in the river.",
+    "note": "ขยายคำนามใช้ 小さい หรือ 小さな ก็ได้"
+  },
+  {
+    "id": 53,
+    "kanji": "高い",
+    "kana": "たかい",
+    "ruby": [
+      [
+        "高",
+        "たか"
+      ],
+      [
+        "い",
+        ""
+      ]
+    ],
+    "meanTh": "สูง, แพง",
+    "meanEn": "high, tall, expensive",
+    "pos": "คุณศัพท์ い",
+    "lvl": "N5",
+    "morae": [
+      "た",
+      "か",
+      "い"
+    ],
+    "dropMora": 2,
+    "pitchPattern": "中高 [2]",
+    "exampleJp": "富士山は日本で一番高い山です。",
+    "exampleTh": "ภูเขาไฟฟูจิเป็นภูเขาที่สูงที่สุดในญี่ปุ่น",
+    "exampleEn": "Mt. Fuji is the highest mountain in Japan.",
+    "note": "แปลว่า สูง (ตรงข้ามกับ 低い) และ แพง (ตรงข้ามกับ 安い)"
+  },
+  {
+    "id": 54,
+    "kanji": "安い",
+    "kana": "やすい",
+    "ruby": [
+      [
+        "安",
+        "やす"
+      ],
+      [
+        "い",
+        ""
+      ]
+    ],
+    "meanTh": "ราคาถูก",
+    "meanEn": "cheap, inexpensive",
+    "pos": "คุณศัพท์ い",
+    "lvl": "N5",
+    "morae": [
+      "や",
+      "す",
+      "い"
+    ],
+    "dropMora": 2,
+    "pitchPattern": "中高 [2]",
+    "exampleJp": "このスーパーは野菜が安いです。",
+    "exampleTh": "ซูเปอร์มาร์เก็ตแห่งนี้ผักราคาถูก",
+    "exampleEn": "Vegetables are cheap at this supermarket.",
+    "note": "ผันปฏิเสธ = 安くない (ไม่ถูก)"
+  },
+  {
+    "id": 55,
+    "kanji": "新しい",
+    "kana": "あたらしい",
+    "ruby": [
+      [
+        "新",
+        "あたら"
+      ],
+      [
+        "しい",
+        ""
+      ]
+    ],
+    "meanTh": "ใหม่",
+    "meanEn": "new, fresh",
+    "pos": "คุณศัพท์ い",
+    "lvl": "N5",
+    "morae": [
+      "あ",
+      "た",
+      "ら",
+      "し",
+      "い"
+    ],
+    "dropMora": 4,
+    "pitchPattern": "中高 [4]",
+    "exampleJp": "新しいスマートフォンを買いました。",
+    "exampleTh": "ซื้อสมาร์ทโฟนเครื่องใหม่มาแล้ว",
+    "exampleEn": "Bought a new smartphone.",
+    "note": "ระวังตัวโอคูริงะนะ คือ しい (อ่านรวบ あたら + しい)"
+  },
+  {
+    "id": 56,
+    "kanji": "古い",
+    "kana": "ふるい",
+    "ruby": [
+      [
+        "古",
+        "ふる"
+      ],
+      [
+        "い",
+        ""
+      ]
+    ],
+    "meanTh": "เก่า (สิ่งของ/สถานที่)",
+    "meanEn": "old (things, not people)",
+    "pos": "คุณศัพท์ い",
+    "lvl": "N5",
+    "morae": [
+      "ふ",
+      "る",
+      "い"
+    ],
+    "dropMora": 2,
+    "pitchPattern": "中高 [2]",
+    "exampleJp": "京都には古いお寺がたくさんあります。",
+    "exampleTh": "ที่เกียวโตมีวัดเก่าแก่อยู่เป็นจำนวนมาก",
+    "exampleEn": "There are many old temples in Kyoto.",
+    "note": "ใช้กับสิ่งของหรือสถานที่เท่านั้น ห้ามใช้กับอายุคน"
+  },
+  {
+    "id": 57,
+    "kanji": "忙しい",
+    "kana": "いそがしい",
+    "ruby": [
+      [
+        "忙",
+        "いそが"
+      ],
+      [
+        "しい",
+        ""
+      ]
+    ],
+    "meanTh": "ยุ่ง, งานยุ่ง",
+    "meanEn": "busy",
+    "pos": "คุณศัพท์ い",
+    "lvl": "N5",
+    "morae": [
+      "い",
+      "そ",
+      "が",
+      "し",
+      "い"
+    ],
+    "dropMora": 4,
+    "pitchPattern": "中高 [4]",
+    "exampleJp": "今週は仕事がとても忙しいです。",
+    "exampleTh": "สัปดาห์นี้งานยุ่งมากครับ",
+    "exampleEn": "Work is very busy this week.",
+    "note": "ตรงข้ามกับ 暇 (ひま = ว่าง)"
+  },
+  {
+    "id": 58,
+    "kanji": "楽しい",
+    "kana": "たのしい",
+    "ruby": [
+      [
+        "楽",
+        "たの"
+      ],
+      [
+        "しい",
+        ""
+      ]
+    ],
+    "meanTh": "สนุกสนาน, เพลิดเพลิน",
+    "meanEn": "fun, enjoyable",
+    "pos": "คุณศัพท์ い",
+    "lvl": "N5",
+    "morae": [
+      "た",
+      "の",
+      "し",
+      "い"
+    ],
+    "dropMora": 3,
+    "pitchPattern": "中高 [3]",
+    "exampleJp": "昨日のパーティーはとても楽しかった。",
+    "exampleTh": "งานปาร์ตี้เมื่อวานสนุกมาก",
+    "exampleEn": "Yesterday's party was very fun.",
+    "note": "ระวังสับสนกับ 楽 (らく = สบาย/ง่าย)"
+  },
+  {
+    "id": 59,
+    "kanji": "難しい",
+    "kana": "むずかしい",
+    "ruby": [
+      [
+        "難",
+        "むずか"
+      ],
+      [
+        "しい",
+        ""
+      ]
+    ],
+    "meanTh": "ยาก",
+    "meanEn": "difficult, hard",
+    "pos": "คุณศัพท์ い",
+    "lvl": "N5",
+    "morae": [
+      "む",
+      "ず",
+      "か",
+      "し",
+      "い"
+    ],
+    "dropMora": 4,
+    "pitchPattern": "中高 [4]",
+    "exampleJp": "漢字の読み方は難しいですね。",
+    "exampleTh": "วิธีอ่านตัวคันจิยากจังเลยนะครับ",
+    "exampleEn": "How to read kanji is difficult, isn't it?",
+    "note": "ตรงข้ามกับ 易しい (やさしい = ง่าย) หรือ 簡単 (かんたん)"
+  },
+  {
+    "id": 60,
+    "kanji": "静か",
+    "kana": "しずか",
+    "ruby": [
+      [
+        "静",
+        "しず"
+      ],
+      [
+        "か",
+        ""
+      ]
+    ],
+    "meanTh": "เงียบสงบ",
+    "meanEn": "quiet, peaceful",
+    "pos": "คุณศัพท์ な",
+    "lvl": "N5",
+    "morae": [
+      "し",
+      "ず",
+      "か"
+    ],
+    "dropMora": 1,
+    "pitchPattern": "頭高 [1]",
+    "exampleJp": "夜の公園はとても静かです。",
+    "exampleTh": "สวนสาธารณะตอนกลางคืนเงียบสงบมาก",
+    "exampleEn": "The park at night is very quiet.",
+    "note": "ขยายคำนามต้องเติม な เสมอ เช่น 静かな部屋"
+  },
+  {
+    "id": 61,
+    "kanji": "有名",
+    "kana": "ゆうめい",
+    "ruby": [
+      [
+        "有",
+        "ゆう"
+      ],
+      [
+        "名",
+        "めい"
+      ]
+    ],
+    "meanTh": "มีชื่อเสียง, โด่งดัง",
+    "meanEn": "famous",
+    "pos": "คุณศัพท์ な",
+    "lvl": "N5",
+    "morae": [
+      "ゆ",
+      "う",
+      "め",
+      "い"
+    ],
+    "dropMora": 0,
+    "pitchPattern": "平板 [0]",
+    "exampleJp": "ここは桜で有名な公園です。",
+    "exampleTh": "ที่นี่คือสวนสาธารณะที่มีชื่อเสียงเรื่องซากุระ",
+    "exampleEn": "This is a park famous for cherry blossoms.",
+    "note": "ลงท้ายด้วย い แต่เป็นคุณศัพท์ な (有名な人)"
+  },
+  {
+    "id": 62,
+    "kanji": "便利",
+    "kana": "べんり",
+    "ruby": [
+      [
+        "便",
+        "べん"
+      ],
+      [
+        "利",
+        "り"
+      ]
+    ],
+    "meanTh": "สะดวกสบาย",
+    "meanEn": "convenient, handy",
+    "pos": "คุณศัพท์ な",
+    "lvl": "N5",
+    "morae": [
+      "べ",
+      "ん",
+      "り"
+    ],
+    "dropMora": 1,
+    "pitchPattern": "頭高 [1]",
+    "exampleJp": "駅の近くは買い物が便利です。",
+    "exampleTh": "แถวใกล้สถานีรถไฟซื้อของสะดวกมาก",
+    "exampleEn": "Near the station is convenient for shopping.",
+    "note": "ตรงข้ามกับ 不便 (ふべん = ไม่สะดวก)"
+  },
+  {
+    "id": 63,
+    "kanji": "元気",
+    "kana": "げんき",
+    "ruby": [
+      [
+        "元",
+        "げん"
+      ],
+      [
+        "気",
+        "き"
+      ]
+    ],
+    "meanTh": "แข็งแรง, ร่าเริง, สบายดี",
+    "meanEn": "healthy, energetic, fine",
+    "pos": "คุณศัพท์ な",
+    "lvl": "N5",
+    "morae": [
+      "げ",
+      "ん",
+      "き"
+    ],
+    "dropMora": 1,
+    "pitchPattern": "頭高 [1]",
+    "exampleJp": "お元気ですか。はい、元気です。",
+    "exampleTh": "สบายดีไหมครับ? ครับ สบายดี",
+    "exampleEn": "How are you? Yes, I'm fine.",
+    "note": "元気が出る = มีกำลังใจขึ้นมา"
+  },
+  {
+    "id": 64,
+    "kanji": "好き",
+    "kana": "すき",
+    "ruby": [
+      [
+        "好",
+        "す"
+      ],
+      [
+        "き",
+        ""
+      ]
+    ],
+    "meanTh": "ชอบ, ถูกใจ",
+    "meanEn": "liked, favorite",
+    "pos": "คุณศัพท์ な",
+    "lvl": "N5",
+    "morae": [
+      "す",
+      "き"
+    ],
+    "dropMora": 2,
+    "pitchPattern": "尾高 [2]",
+    "exampleJp": "私は日本の料理が大好きです。",
+    "exampleTh": "ฉันชอบอาหารญี่ปุ่นมากที่สุด",
+    "exampleEn": "I love Japanese food very much.",
+    "note": "ใช้คู่กับคำช่วย が เสมอ (〜が好き)"
+  },
+  {
+    "id": 65,
+    "kanji": "上手",
+    "kana": "じょうず",
+    "ruby": [
+      [
+        "上",
+        "じょう"
+      ],
+      [
+        "手",
+        "ず"
+      ]
+    ],
+    "meanTh": "เก่ง, ชำนาญ",
+    "meanEn": "skillful, good at",
+    "pos": "คุณศัพท์ な",
+    "lvl": "N5",
+    "morae": [
+      "じょ",
+      "う",
+      "ず"
+    ],
+    "dropMora": 3,
+    "pitchPattern": "尾高 [3]",
+    "exampleJp": "彼女は歌がとても上手です。",
+    "exampleTh": "เธอร้องเพลงเก่งมาก",
+    "exampleEn": "She is very good at singing.",
+    "note": "ใช้ชมผู้อื่น ไม่นิยมใช้ชมตัวเอง (ถ้าพูดถึงตัวเองใช้ 得意)"
+  },
+  {
+    "id": 66,
     "kanji": "案内する",
     "kana": "あんないする",
     "ruby": [
@@ -589,7 +1911,7 @@
         ""
       ]
     ],
-    "meanTh": "นำทาง, นำเที่ยว, แนะนำสถานที่",
+    "meanTh": "นำทาง, พาเที่ยว, แนะนำสถานที่",
     "meanEn": "to guide, show around",
     "pos": "กริยากลุ่ม 3",
     "lvl": "N4",
@@ -603,13 +1925,13 @@
     ],
     "dropMora": 0,
     "pitchPattern": "平板 [0]",
-    "exampleJp": "京都の町を案内します。",
-    "exampleTh": "จะพาเที่ยวเมืองเกียวโต",
-    "exampleEn": "I will show you around Kyoto.",
-    "note": "案内所 (あんないじょ = ศูนย์ประชาสัมพันธ์/ข้อมูลท่องเที่ยว)"
+    "exampleJp": "京都のお寺を案内します。",
+    "exampleTh": "จะพาเที่ยวชมวัดในเกียวโตครับ",
+    "exampleEn": "I will show you around the temples of Kyoto.",
+    "note": "案内所 (あんないじょ = ศูนย์ข้อมูลประชาสัมพันธ์)"
   },
   {
-    "id": 22,
+    "id": 67,
     "kanji": "準備する",
     "kana": "じゅんびする",
     "ruby": [
@@ -639,13 +1961,13 @@
     ],
     "dropMora": 1,
     "pitchPattern": "頭高 [1]",
-    "exampleJp": "旅行の準備ができました。",
-    "exampleTh": "เตรียมตัวไปเที่ยวพร้อมเรียบร้อยแล้ว",
-    "exampleEn": "Preparations for the trip are complete.",
-    "note": "準備ができる = เตรียมการเสร็จเรียบร้อยพร้อมใช้งาน"
+    "exampleJp": "会議の資料を準備してください。",
+    "exampleTh": "กรุณาเตรียมเอกสารสำหรับการประชุมครับ",
+    "exampleEn": "Please prepare the materials for the meeting.",
+    "note": "準備ができる = เตรียมการเสร็จพร้อมแล้ว"
   },
   {
-    "id": 23,
+    "id": 68,
     "kanji": "連絡する",
     "kana": "れんらくする",
     "ruby": [
@@ -662,8 +1984,8 @@
         ""
       ]
     ],
-    "meanTh": "ติดต่อ, แจ้งให้ทราบ",
-    "meanEn": "to contact, get in touch",
+    "meanTh": "ติดต่อ, แจ้งข่าวสาร",
+    "meanEn": "to contact, notify",
     "pos": "กริยากลุ่ม 3",
     "lvl": "N4",
     "morae": [
@@ -676,13 +1998,87 @@
     ],
     "dropMora": 0,
     "pitchPattern": "平板 [0]",
-    "exampleJp": "後でメールで連絡します。",
-    "exampleTh": "เดี๋ยวจะติดต่อทางอีเมลทีหลังครับ",
-    "exampleEn": "I will contact you by email later.",
-    "note": "ใช้คู่คำช่วย に เช่น 会社に連絡する (ติดต่อบริษัท)"
+    "exampleJp": "駅に着いたら連絡してください。",
+    "exampleTh": "ถ้าถึงสถานีรถไฟแล้วช่วยติดต่อมาด้วยนะครับ",
+    "exampleEn": "Please contact me when you arrive at the station.",
+    "note": "ใช้คำช่วย に กับผู้ที่เราติดต่อหา"
   },
   {
-    "id": 24,
+    "id": 69,
+    "kanji": "相談する",
+    "kana": "そうだんする",
+    "ruby": [
+      [
+        "相",
+        "そう"
+      ],
+      [
+        "談",
+        "だん"
+      ],
+      [
+        "する",
+        ""
+      ]
+    ],
+    "meanTh": "ปรึกษาหารือ",
+    "meanEn": "to consult, discuss",
+    "pos": "กริยากลุ่ม 3",
+    "lvl": "N4",
+    "morae": [
+      "そ",
+      "う",
+      "だ",
+      "ん",
+      "す",
+      "る"
+    ],
+    "dropMora": 0,
+    "pitchPattern": "平板 [0]",
+    "exampleJp": "将来のことについて両親に相談した。",
+    "exampleTh": "ปรึกษาคุณพ่อคุณแม่เกี่ยวกับเรื่องอนาคต",
+    "exampleEn": "Consulted my parents about the future.",
+    "note": "〜に相談する = ปรึกษากับ..."
+  },
+  {
+    "id": 70,
+    "kanji": "紹介する",
+    "kana": "しょうかいする",
+    "ruby": [
+      [
+        "紹",
+        "しょう"
+      ],
+      [
+        "介",
+        "かい"
+      ],
+      [
+        "する",
+        ""
+      ]
+    ],
+    "meanTh": "แนะนำ (บุคคล/สิ่งของให้รู้จัก)",
+    "meanEn": "to introduce",
+    "pos": "กริยากลุ่ม 3",
+    "lvl": "N4",
+    "morae": [
+      "しょ",
+      "う",
+      "か",
+      "い",
+      "す",
+      "る"
+    ],
+    "dropMora": 0,
+    "pitchPattern": "平板 [0]",
+    "exampleJp": "新しい友達を家族に紹介しました。",
+    "exampleTh": "แนะนำเพื่อนใหม่ให้ครอบครัวรู้จัก",
+    "exampleEn": "Introduced a new friend to my family.",
+    "note": "自己紹介 (じこしょうかい) = การแนะนำตัวเอง"
+  },
+  {
+    "id": 71,
     "kanji": "集める",
     "kana": "あつめる",
     "ruby": [
@@ -696,7 +2092,7 @@
       ]
     ],
     "meanTh": "รวบรวม, สะสม (สกรรมกริยา)",
-    "meanEn": "to collect, gather (transitive)",
+    "meanEn": "to collect, gather (vt)",
     "pos": "กริยากลุ่ม 2 (他動詞)",
     "lvl": "N4",
     "morae": [
@@ -707,13 +2103,13 @@
     ],
     "dropMora": 3,
     "pitchPattern": "中高 [3]",
-    "exampleJp": "切手をたくさん集めています。",
-    "exampleTh": "สะสมแสตมป์ไว้เป็นจำนวนมาก",
-    "exampleEn": "I collect a lot of stamps.",
-    "note": "คู่กริยา: 〜を集める (รวบรวมสิ่งของ) vs 〜が集まる (ผู้คนรวมตัวกันเอง)"
+    "exampleJp": "世界中の切手を集めています。",
+    "exampleTh": "กำลังสะสมแสตมป์จากทั่วโลก",
+    "exampleEn": "Collecting stamps from around the world.",
+    "note": "คู่กริยา: 〜を集める (คนรวบรวมของ) vs 〜が集まる (มารวมตัวกันเอง)"
   },
   {
-    "id": 25,
+    "id": 72,
     "kanji": "集まる",
     "kana": "あつまる",
     "ruby": [
@@ -727,7 +2123,7 @@
       ]
     ],
     "meanTh": "รวมตัวกัน, ชุมนุม (อกรรมกริยา)",
-    "meanEn": "to gather, assemble (intransitive)",
+    "meanEn": "to gather, assemble (vi)",
     "pos": "กริยากลุ่ม 1 (自動詞)",
     "lvl": "N4",
     "morae": [
@@ -738,13 +2134,13 @@
     ],
     "dropMora": 3,
     "pitchPattern": "中高 [3]",
-    "exampleJp": "駅前に大勢の人が集まりました。",
-    "exampleTh": "ผู้คนจำนวนมากมารวมตัวกันที่หน้าสถานี",
-    "exampleEn": "A large crowd gathered in front of the station.",
-    "note": "ประธานใช้คำช่วย が เช่น 人が集まる"
+    "exampleJp": "九時にロビーに集まってください。",
+    "exampleTh": "กรุณามารวมตัวกันที่ล็อบบี้ตอนเก้าโมงเช้า",
+    "exampleEn": "Please gather in the lobby at 9 o'clock.",
+    "note": "ประธานใช้คำช่วย が"
   },
   {
-    "id": 26,
+    "id": 73,
     "kanji": "始める",
     "kana": "はじめる",
     "ruby": [
@@ -757,8 +2153,8 @@
         ""
       ]
     ],
-    "meanTh": "เริ่มต้นทำบางสิ่ง (สกรรมกริยา)",
-    "meanEn": "to start, begin (transitive)",
+    "meanTh": "เริ่มต้นทำ (สกรรมกริยา)",
+    "meanEn": "to start, begin (vt)",
     "pos": "กริยากลุ่ม 2 (他動詞)",
     "lvl": "N4",
     "morae": [
@@ -769,13 +2165,13 @@
     ],
     "dropMora": 0,
     "pitchPattern": "平板 [0]",
-    "exampleJp": "日本語の勉強を始めました。",
-    "exampleTh": "เริ่มเรียนภาษาญี่ปุ่นแล้ว",
-    "exampleEn": "Started studying Japanese.",
-    "note": "คู่กริยา: 会議を始める (เริ่มการประชุม) vs 会議が始まる (การประชุมเริ่มขึ้น)"
+    "exampleJp": "そろそろ会議を始めましょう。",
+    "exampleTh": "ได้เวลาเริ่มการประชุมกันแล้วเถอะ",
+    "exampleEn": "Let's start the meeting soon.",
+    "note": "คู่กริยา: 会議を始める (เริ่มประชุม) vs 会議が始まる (การประชุมเริ่มขึ้น)"
   },
   {
-    "id": 27,
+    "id": 74,
     "kanji": "始まる",
     "kana": "はじまる",
     "ruby": [
@@ -789,7 +2185,7 @@
       ]
     ],
     "meanTh": "เริ่มขึ้น (อกรรมกริยา)",
-    "meanEn": "to begin (intransitive)",
+    "meanEn": "to begin (vi)",
     "pos": "กริยากลุ่ม 1 (自動詞)",
     "lvl": "N4",
     "morae": [
@@ -800,13 +2196,13 @@
     ],
     "dropMora": 0,
     "pitchPattern": "平板 [0]",
-    "exampleJp": "映画は何時に始まりますか。",
-    "exampleTh": "หนังจะเริ่มฉายกี่โมงครับ",
-    "exampleEn": "What time does the movie start?",
-    "note": "ใช้คำช่วย が กับสิ่งที่เริ่มขึ้นเอง"
+    "exampleJp": "コンサートは七時に始まります。",
+    "exampleTh": "คอนเสิร์ตจะเริ่มขึ้นตอนหนึ่งทุ่ม",
+    "exampleEn": "The concert starts at 7 PM.",
+    "note": "ใช้คำช่วย が กับสิ่งที่เริ่มขึ้น"
   },
   {
-    "id": 28,
+    "id": 75,
     "kanji": "届ける",
     "kana": "とどける",
     "ruby": [
@@ -819,8 +2215,8 @@
         ""
       ]
     ],
-    "meanTh": "นำไปส่ง, ยื่นเรื่อง (สกรรมกริยา)",
-    "meanEn": "to deliver, report (transitive)",
+    "meanTh": "นำไปส่ง, แจ้ง/ยื่นเรื่อง (สกรรมกริยา)",
+    "meanEn": "to deliver, report (vt)",
     "pos": "กริยากลุ่ม 2 (他動詞)",
     "lvl": "N4",
     "morae": [
@@ -831,13 +2227,13 @@
     ],
     "dropMora": 3,
     "pitchPattern": "中高 [3]",
-    "exampleJp": "荷物を友達の家に届けた。",
-    "exampleTh": "เอาพัสดุไปส่งที่บ้านเพื่อน",
-    "exampleEn": "Delivered the package to a friend's house.",
-    "note": "届出 (とどけで = การแจ้งความ/ยื่นคำร้อง)"
+    "exampleJp": "忘れ物を交番に届けました。",
+    "exampleTh": "นำของที่คนลืมไว้ไปส่งที่ป้อมตำรวจ",
+    "exampleEn": "Turned in a lost item at the police box.",
+    "note": "คู่กริยา: 荷物を届ける (เอาของไปส่ง) vs 荷物が届く (ของส่งมาถึง)"
   },
   {
-    "id": 29,
+    "id": 76,
     "kanji": "届く",
     "kana": "とどく",
     "ruby": [
@@ -850,8 +2246,8 @@
         ""
       ]
     ],
-    "meanTh": "ส่งถึง, ไปถึง (อกรรมกริยา)",
-    "meanEn": "to arrive, reach (intransitive)",
+    "meanTh": "ส่งถึง, เอื้อมถึง (อกรรมกริยา)",
+    "meanEn": "to arrive, reach (vi)",
     "pos": "กริยากลุ่ม 1 (自動詞)",
     "lvl": "N4",
     "morae": [
@@ -861,13 +2257,13 @@
     ],
     "dropMora": 2,
     "pitchPattern": "中高 [2]",
-    "exampleJp": "昨日、日本からの手紙が届きました。",
-    "exampleTh": "เมื่อวานนี้ จดหมายจากญี่ปุ่นส่งมาถึงแล้ว",
-    "exampleEn": "Yesterday, a letter from Japan arrived.",
-    "note": "荷物が届く (พัสดุส่งมาถึง)"
+    "exampleJp": "注文した本が今朝届きました。",
+    "exampleTh": "หนังสือที่สั่งซื้อไว้ส่งมาถึงเมื่อเช้านี้แล้ว",
+    "exampleEn": "The book I ordered arrived this morning.",
+    "note": "手が届く = มือเอื้อมถึง"
   },
   {
-    "id": 30,
+    "id": 77,
     "kanji": "壊す",
     "kana": "こわす",
     "ruby": [
@@ -881,7 +2277,7 @@
       ]
     ],
     "meanTh": "ทำพัง, ทำเสีย (สกรรมกริยา)",
-    "meanEn": "to break, destroy (transitive)",
+    "meanEn": "to break, destroy (vt)",
     "pos": "กริยากลุ่ม 1 (他動詞)",
     "lvl": "N4",
     "morae": [
@@ -891,13 +2287,13 @@
     ],
     "dropMora": 2,
     "pitchPattern": "中高 [2]",
-    "exampleJp": "時計を落として壊してしまった。",
-    "exampleTh": "ทำนาฬิกาตกพื้นจนพังเสียแล้ว",
-    "exampleEn": "Dropped the watch and broke it.",
-    "note": "体を壊す = ทำลายสุขภาพตัวเอง (ทำงานหนักเกินไป)"
+    "exampleJp": "弟がカメラを壊してしまいました。",
+    "exampleTh": "น้องชายทำกล้องถ่ายรูปพังเสียแล้ว",
+    "exampleEn": "My younger brother broke the camera.",
+    "note": "お腹を壊す = ท้องเสีย"
   },
   {
-    "id": 31,
+    "id": 78,
     "kanji": "壊れる",
     "kana": "こわれる",
     "ruby": [
@@ -911,7 +2307,7 @@
       ]
     ],
     "meanTh": "พัง, ชำรุด (อกรรมกริยา)",
-    "meanEn": "to be broken, break down (intransitive)",
+    "meanEn": "to break down, be broken (vi)",
     "pos": "กริยากลุ่ม 2 (自動詞)",
     "lvl": "N4",
     "morae": [
@@ -922,13 +2318,388 @@
     ],
     "dropMora": 3,
     "pitchPattern": "中高 [3]",
-    "exampleJp": "エレベーターが壊れています。",
-    "exampleTh": "ลิฟต์ชำรุดอยู่ครับ",
-    "exampleEn": "The elevator is out of order.",
-    "note": "สภาพพังอยู่ใช้รูป こわれている"
+    "exampleJp": "エアコンが壊れて動かない。",
+    "exampleTh": "แอร์เสียไม่ยอมทำงาน",
+    "exampleEn": "The air conditioner is broken and won't run.",
+    "note": "壊れている = อยู่ในสภาพพัง"
   },
   {
-    "id": 32,
+    "id": 79,
+    "kanji": "変える",
+    "kana": "かえる",
+    "ruby": [
+      [
+        "変",
+        "か"
+      ],
+      [
+        "える",
+        ""
+      ]
+    ],
+    "meanTh": "เปลี่ยน, แก้ไข (สกรรมกริยา)",
+    "meanEn": "to change, alter (vt)",
+    "pos": "กริยากลุ่ม 2 (他動詞)",
+    "lvl": "N4",
+    "morae": [
+      "か",
+      "え",
+      "る"
+    ],
+    "dropMora": 0,
+    "pitchPattern": "平板 [0]",
+    "exampleJp": "旅行の予定を変えました。",
+    "exampleTh": "เปลี่ยนกำหนดการเดินทางท่องเที่ยว",
+    "exampleEn": "Changed the travel schedule.",
+    "note": "ระวังเสียงพ้อง: 帰る [1] (กลับบ้าน) เสียงตกพยางค์แรก, 変える [0] (เปลี่ยน) เสียงเรียบ"
+  },
+  {
+    "id": 80,
+    "kanji": "変わる",
+    "kana": "かわる",
+    "ruby": [
+      [
+        "変",
+        "か"
+      ],
+      [
+        "わる",
+        ""
+      ]
+    ],
+    "meanTh": "เปลี่ยนแปลง (อกรรมกริยา)",
+    "meanEn": "to change (vi)",
+    "pos": "กริยากลุ่ม 1 (自動詞)",
+    "lvl": "N4",
+    "morae": [
+      "か",
+      "わ",
+      "る"
+    ],
+    "dropMora": 0,
+    "pitchPattern": "平板 [0]",
+    "exampleJp": "季節が秋に変わりました。",
+    "exampleTh": "ฤดูกาลเปลี่ยนเข้าสู่ฤดูใบไม้ร่วงแล้ว",
+    "exampleEn": "The season has changed to autumn.",
+    "note": "信号が変わる = ไฟจราจรเปลี่ยนสี"
+  },
+  {
+    "id": 81,
+    "kanji": "見つける",
+    "kana": "みつける",
+    "ruby": [
+      [
+        "見",
+        "み"
+      ],
+      [
+        "つける",
+        ""
+      ]
+    ],
+    "meanTh": "หาเจอ, ค้นพบ (สกรรมกริยา)",
+    "meanEn": "to find, discover (vt)",
+    "pos": "กริยากลุ่ม 2 (他動詞)",
+    "lvl": "N4",
+    "morae": [
+      "み",
+      "つ",
+      "け",
+      "る"
+    ],
+    "dropMora": 0,
+    "pitchPattern": "平板 [0]",
+    "exampleJp": "やっと探していた鍵を見つけた。",
+    "exampleTh": "ในที่สุดก็หากุญแจที่ตามหาอยู่เจอแล้ว",
+    "exampleEn": "Finally found the key I was looking for.",
+    "note": "คู่กับ 見つかる (みつか = ถูกพบ/หาเจอแล้ว)"
+  },
+  {
+    "id": 82,
+    "kanji": "見つかる",
+    "kana": "みつかる",
+    "ruby": [
+      [
+        "見",
+        "み"
+      ],
+      [
+        "つかる",
+        ""
+      ]
+    ],
+    "meanTh": "ถูกพบ, หาเจอแล้ว (อกรรมกริยา)",
+    "meanEn": "to be found (vi)",
+    "pos": "กริยากลุ่ม 1 (自動詞)",
+    "lvl": "N4",
+    "morae": [
+      "み",
+      "つ",
+      "か",
+      "る"
+    ],
+    "dropMora": 0,
+    "pitchPattern": "平板 [0]",
+    "exampleJp": "なくした財布が見つかりました。",
+    "exampleTh": "กระเป๋าสตางค์ที่ทำหายไปหาเจอแล้วครับ",
+    "exampleEn": "The lost wallet was found.",
+    "note": "ประธานใช้คำช่วย が (財布が見つかる)"
+  },
+  {
+    "id": 83,
+    "kanji": "続ける",
+    "kana": "つづける",
+    "ruby": [
+      [
+        "続",
+        "つづ"
+      ],
+      [
+        "ける",
+        ""
+      ]
+    ],
+    "meanTh": "ทำต่อไป, สานต่อ (สกรรมกริยา)",
+    "meanEn": "to continue (vt)",
+    "pos": "กริยากลุ่ม 2 (他動詞)",
+    "lvl": "N4",
+    "morae": [
+      "つ",
+      "づ",
+      "け",
+      "る"
+    ],
+    "dropMora": 0,
+    "pitchPattern": "平板 [0]",
+    "exampleJp": "毎日少しずつ練習を続けています。",
+    "exampleTh": "ฝึกฝนต่อเนื่องวันละนิดทุกวัน",
+    "exampleEn": "Continuing practice little by little every day.",
+    "note": "คู่กับ 続く (つづく = ดำเนินต่อไป)"
+  },
+  {
+    "id": 84,
+    "kanji": "決める",
+    "kana": "きめる",
+    "ruby": [
+      [
+        "決",
+        "き"
+      ],
+      [
+        "める",
+        ""
+      ]
+    ],
+    "meanTh": "ตัดสินใจ, กำหนด (สกรรมกริยา)",
+    "meanEn": "to decide (vt)",
+    "pos": "กริยากลุ่ม 2 (他動詞)",
+    "lvl": "N4",
+    "morae": [
+      "き",
+      "め",
+      "る"
+    ],
+    "dropMora": 0,
+    "pitchPattern": "平板 [0]",
+    "exampleJp": "進学する大学を決めました。",
+    "exampleTh": "ตัดสินใจเลือกมหาวิทยาลัยที่จะศึกษาต่อแล้ว",
+    "exampleEn": "Decided on the university to attend.",
+    "note": "คู่กับ 決まる (きまる = ถูกกำหนด/ได้ข้อสรุป)"
+  },
+  {
+    "id": 85,
+    "kanji": "調べる",
+    "kana": "しらべる",
+    "ruby": [
+      [
+        "調",
+        "しら"
+      ],
+      [
+        "べる",
+        ""
+      ]
+    ],
+    "meanTh": "ตรวจสอบ, ค้นคว้า, เปิดหาข้อมูล",
+    "meanEn": "to investigate, look up",
+    "pos": "กริยากลุ่ม 2",
+    "lvl": "N4",
+    "morae": [
+      "し",
+      "ら",
+      "べ",
+      "る"
+    ],
+    "dropMora": 3,
+    "pitchPattern": "中高 [3]",
+    "exampleJp": "わからない言葉を辞書で調べる。",
+    "exampleTh": "เปิดหาคำศัพท์ที่ไม่รู้ในพจนานุกรม",
+    "exampleEn": "Look up unknown words in the dictionary.",
+    "note": "原因を調べる = ตรวจสอบหาสาเหตุ"
+  },
+  {
+    "id": 86,
+    "kanji": "伝える",
+    "kana": "つたえる",
+    "ruby": [
+      [
+        "伝",
+        "つた"
+      ],
+      [
+        "える",
+        ""
+      ]
+    ],
+    "meanTh": "ถ่ายทอด, บอกต่อ, ฝากข้อความ",
+    "meanEn": "to convey, tell, report",
+    "pos": "กริยากลุ่ม 2",
+    "lvl": "N4",
+    "morae": [
+      "つ",
+      "た",
+      "え",
+      "る"
+    ],
+    "dropMora": 0,
+    "pitchPattern": "平板 [0]",
+    "exampleJp": "田中さんによろしくお伝えください。",
+    "exampleTh": "ฝากความคิดถึงไปบอกคุณทานากะด้วยนะครับ",
+    "exampleEn": "Please give my regards to Mr. Tanaka.",
+    "note": "気持ちを伝える = สื่อความรู้สึกออกไป"
+  },
+  {
+    "id": 87,
+    "kanji": "迎える",
+    "kana": "むかえる",
+    "ruby": [
+      [
+        "迎",
+        "むか"
+      ],
+      [
+        "える",
+        ""
+      ]
+    ],
+    "meanTh": "ไปรับ, ต้อนรับ",
+    "meanEn": "to welcome, go to pick up",
+    "pos": "กริยากลุ่ม 2",
+    "lvl": "N4",
+    "morae": [
+      "む",
+      "か",
+      "え",
+      "る"
+    ],
+    "dropMora": 0,
+    "pitchPattern": "平板 [0]",
+    "exampleJp": "空港までお客さんを迎えに行く。",
+    "exampleTh": "ไปรับแขกที่สนามบิน",
+    "exampleEn": "Go to pick up a guest at the airport.",
+    "note": "迎えに行く = ไปรับ"
+  },
+  {
+    "id": 88,
+    "kanji": "頼む",
+    "kana": "たのむ",
+    "ruby": [
+      [
+        "頼",
+        "たの"
+      ],
+      [
+        "む",
+        ""
+      ]
+    ],
+    "meanTh": "ขอร้อง, ไหว้วาน, สั่ง (อาหาร)",
+    "meanEn": "to request, ask a favor, order",
+    "pos": "กริยากลุ่ม 1",
+    "lvl": "N4",
+    "morae": [
+      "た",
+      "の",
+      "む"
+    ],
+    "dropMora": 2,
+    "pitchPattern": "中高 [2]",
+    "exampleJp": "先輩に仕事を頼まれました。",
+    "exampleTh": "ถูกรุ่นพี่ไหว้วานให้ช่วยงาน",
+    "exampleEn": "Was asked to do work by a senior.",
+    "note": "ผัน たのみます, たのんで, たのまない"
+  },
+  {
+    "id": 89,
+    "kanji": "慣れる",
+    "kana": "なれる",
+    "ruby": [
+      [
+        "慣",
+        "な"
+      ],
+      [
+        "れる",
+        ""
+      ]
+    ],
+    "meanTh": "คุ้นเคย, ชิน",
+    "meanEn": "to get used to",
+    "pos": "กริยากลุ่ม 2",
+    "lvl": "N4",
+    "morae": [
+      "な",
+      "れ",
+      "る"
+    ],
+    "dropMora": 2,
+    "pitchPattern": "中高 [2]",
+    "exampleJp": "日本の生活にすっかり慣れました。",
+    "exampleTh": "คุ้นชินกับการใช้ชีวิตที่ญี่ปุ่นแล้ว",
+    "exampleEn": "Got completely used to life in Japan.",
+    "note": "ใช้คู่กับคำช่วย に เสมอ (〜に慣れる)"
+  },
+  {
+    "id": 90,
+    "kanji": "間に合う",
+    "kana": "まにあう",
+    "ruby": [
+      [
+        "間",
+        "ま"
+      ],
+      [
+        "に",
+        ""
+      ],
+      [
+        "合",
+        "あ"
+      ],
+      [
+        "う",
+        ""
+      ]
+    ],
+    "meanTh": "ทันเวลา",
+    "meanEn": "to be in time for",
+    "pos": "วลีกริยา (กลุ่ม 1)",
+    "lvl": "N4",
+    "morae": [
+      "ま",
+      "に",
+      "あ",
+      "う"
+    ],
+    "dropMora": 3,
+    "pitchPattern": "中高 [3]",
+    "exampleJp": "急げば終電に間に合います。",
+    "exampleTh": "ถ้ารีบไปจะทันรถไฟขบวนสุดท้าย",
+    "exampleEn": "If we hurry, we'll make the last train.",
+    "note": "ใช้คู่กับคำช่วย に (時間に間に合う)"
+  },
+  {
+    "id": 91,
     "kanji": "役に立つ",
     "kana": "やくにたつ",
     "ruby": [
@@ -962,52 +2733,13 @@
     ],
     "dropMora": 1,
     "pitchPattern": "頭高 [1]",
-    "exampleJp": "この辞書はとても役に立ちます。",
-    "exampleTh": "พจนานุกรมเล่มนี้มีประโยชน์มาก",
-    "exampleEn": "This dictionary is very useful.",
-    "note": "役に立つ本 = หนังสือที่มีประโยชน์"
+    "exampleJp": "このアプリは日本語の勉強に役に立つ。",
+    "exampleTh": "แอปนี้มีประโยชน์ต่อการเรียนภาษาญี่ปุ่นมาก",
+    "exampleEn": "This app is useful for studying Japanese.",
+    "note": "〜の役に立つ = เป็นประโยชน์ต่อ..."
   },
   {
-    "id": 33,
-    "kanji": "間に合う",
-    "kana": "まにあう",
-    "ruby": [
-      [
-        "間",
-        "ま"
-      ],
-      [
-        "に",
-        ""
-      ],
-      [
-        "合",
-        "あ"
-      ],
-      [
-        "う",
-        ""
-      ]
-    ],
-    "meanTh": "ทันเวลา",
-    "meanEn": "to be in time",
-    "pos": "วลีกริยา (กลุ่ม 1)",
-    "lvl": "N4",
-    "morae": [
-      "ま",
-      "に",
-      "あ",
-      "う"
-    ],
-    "dropMora": 3,
-    "pitchPattern": "中高 [3]",
-    "exampleJp": "走ったので電車に間に合いました。",
-    "exampleTh": "เพราะวิ่งมาเลยขึ้นรถไฟทันเวลา",
-    "exampleEn": "Because I ran, I made it in time for the train.",
-    "note": "ใช้คำช่วย に กับสิ่งที่ทัน เช่น 電車に間に合う, 会議に間に合う"
-  },
-  {
-    "id": 34,
+    "id": 92,
     "kanji": "複雑",
     "kana": "ふくざつ",
     "ruby": [
@@ -1032,13 +2764,13 @@
     ],
     "dropMora": 0,
     "pitchPattern": "平板 [0]",
-    "exampleJp": "この文法は少し複雑です。",
-    "exampleTh": "ไวยากรณ์ข้อนี้ค่อนข้างซับซ้อนครับ",
-    "exampleEn": "This grammar is a bit complicated.",
-    "note": "ตรงข้ามกับ 簡単 [0] (ง่าย/เรียบง่าย)"
+    "exampleJp": "東京の地下鉄は複雑で迷いやすい。",
+    "exampleTh": "รถไฟใต้ดินโตเกียวซับซ้อนทำให้หลงทางง่าย",
+    "exampleEn": "Tokyo's subway is complex and easy to get lost in.",
+    "note": "ตรงข้ามกับ 簡単 [0] (ง่าย/ไม่ซับซ้อน)"
   },
   {
-    "id": 35,
+    "id": 93,
     "kanji": "簡単",
     "kana": "かんたん",
     "ruby": [
@@ -1051,7 +2783,7 @@
         "たん"
       ]
     ],
-    "meanTh": "ง่ายดาย, ไม่ยุ่งยาก",
+    "meanTh": "ง่ายดาย, เรียบง่าย",
     "meanEn": "simple, easy",
     "pos": "คุณศัพท์ な",
     "lvl": "N4",
@@ -1063,13 +2795,13 @@
     ],
     "dropMora": 0,
     "pitchPattern": "平板 [0]",
-    "exampleJp": "この料理は簡単で作れます。",
-    "exampleTh": "อาหารจานนี้ทำได้ง่ายมาก",
-    "exampleEn": "This dish can be made simply.",
-    "note": "簡単に説明する = อธิบายอย่างเข้าใจง่าย"
+    "exampleJp": "簡単な言葉で説明してください。",
+    "exampleTh": "กรุณาอธิบายด้วยคำพูดง่ายๆ ครับ",
+    "exampleEn": "Please explain in simple words.",
+    "note": "簡単な問題 = โจทย์ที่ง่าย"
   },
   {
-    "id": 36,
+    "id": 94,
     "kanji": "危険",
     "kana": "きけん",
     "ruby": [
@@ -1083,8 +2815,8 @@
       ]
     ],
     "meanTh": "อันตราย",
-    "meanEn": "dangerous",
-    "pos": "คุณศัพท์ な",
+    "meanEn": "dangerous, hazard",
+    "pos": "คุณศัพท์ な · คำนาม",
     "lvl": "N4",
     "morae": [
       "き",
@@ -1093,13 +2825,13 @@
     ],
     "dropMora": 0,
     "pitchPattern": "平板 [0]",
-    "exampleJp": "夜道の一人歩きは危険です。",
-    "exampleTh": "การเดินคนเดียวตอนกลางคืนเป็นเรื่องอันตราย",
-    "exampleEn": "Walking alone at night is dangerous.",
+    "exampleJp": "台風接近中は外出が危険です。",
+    "exampleTh": "ช่วงพายุไต้ฝุ่นเข้า การออกไปข้างนอกเป็นอันตราย",
+    "exampleEn": "Going outside is dangerous when a typhoon approaches.",
     "note": "ตรงข้ามกับ 安全 [0] (ปลอดภัย)"
   },
   {
-    "id": 37,
+    "id": 95,
     "kanji": "安全",
     "kana": "あんぜん",
     "ruby": [
@@ -1113,8 +2845,8 @@
       ]
     ],
     "meanTh": "ปลอดภัย",
-    "meanEn": "safe",
-    "pos": "คุณศัพท์ な",
+    "meanEn": "safe, safety",
+    "pos": "คุณศัพท์ な · คำนาม",
     "lvl": "N4",
     "morae": [
       "あ",
@@ -1124,13 +2856,13 @@
     ],
     "dropMora": 0,
     "pitchPattern": "平板 [0]",
-    "exampleJp": "日本は治安が良くて安全な国です。",
-    "exampleTh": "ญี่ปุ่นเป็นประเทศที่มีความปลอดภัยและระเบียบเรียบร้อยดี",
-    "exampleEn": "Japan is a safe country with good public order.",
-    "note": "安全第一 (あんぜんだいいち = ปลอดภัยไว้ก่อน)"
+    "exampleJp": "安全な場所へ避難してください。",
+    "exampleTh": "กรุณาอพยพไปยังสถานที่ปลอดภัย",
+    "exampleEn": "Please evacuate to a safe place.",
+    "note": "安全運転 (あんぜんうんてん) = การขับขี่อย่างปลอดภัย"
   },
   {
-    "id": 38,
+    "id": 96,
     "kanji": "必要",
     "kana": "ひつよう",
     "ruby": [
@@ -1144,8 +2876,8 @@
       ]
     ],
     "meanTh": "จำเป็น",
-    "meanEn": "necessary",
-    "pos": "คุณศัพท์ な",
+    "meanEn": "necessary, needed",
+    "pos": "คุณศัพท์ な · คำนาม",
     "lvl": "N4",
     "morae": [
       "ひ",
@@ -1155,13 +2887,13 @@
     ],
     "dropMora": 0,
     "pitchPattern": "平板 [0]",
-    "exampleJp": "パスポートのコピーが必要です。",
-    "exampleTh": "จำเป็นต้องใช้สำเนาหนังสือเดินทาง",
-    "exampleEn": "A copy of your passport is necessary.",
-    "note": "〜が必要 = จำเป็นต้องมี..."
+    "exampleJp": "ビザの申請に必要な書類を集める。",
+    "exampleTh": "รวบรวมเอกสารที่จำเป็นสำหรับการยื่นขอวีซ่า",
+    "exampleEn": "Gather documents necessary for visa application.",
+    "note": "〜が必要だ = จำเป็นต้องใช้..."
   },
   {
-    "id": 39,
+    "id": 97,
     "kanji": "大切",
     "kana": "たいせつ",
     "ruby": [
@@ -1174,7 +2906,7 @@
         "せつ"
       ]
     ],
-    "meanTh": "สำคัญ, มีค่า, ทะนุถนอม",
+    "meanTh": "สำคัญ, ล้ำค่า",
     "meanEn": "important, precious",
     "pos": "คุณศัพท์ な",
     "lvl": "N4",
@@ -1186,13 +2918,105 @@
     ],
     "dropMora": 0,
     "pitchPattern": "平板 [0]",
-    "exampleJp": "健康は何よりも大切です。",
-    "exampleTh": "สุขภาพเป็นสิ่งที่สำคัญเหนือสิ่งอื่นใด",
-    "exampleEn": "Health is more important than anything else.",
-    "note": "体を大切にしてください (รักษาสุขภาพด้วยนะครับ)"
+    "exampleJp": "毎日の復習が一番大切です。",
+    "exampleTh": "การทบทวนทุกวันเป็นสิ่งที่สำคัญที่สุด",
+    "exampleEn": "Daily review is the most important thing.",
+    "note": "大切にする = ทะนุถนอม/ให้ความสำคัญ"
   },
   {
-    "id": 40,
+    "id": 98,
+    "kanji": "丁寧",
+    "kana": "ていねい",
+    "ruby": [
+      [
+        "丁",
+        "てい"
+      ],
+      [
+        "寧",
+        "ねい"
+      ]
+    ],
+    "meanTh": "สุภาพ, ประณีต, รอบคอบ",
+    "meanEn": "polite, careful",
+    "pos": "คุณศัพท์ な",
+    "lvl": "N4",
+    "morae": [
+      "て",
+      "い",
+      "ね",
+      "い"
+    ],
+    "dropMora": 1,
+    "pitchPattern": "頭高 [1]",
+    "exampleJp": "店員さんが丁寧に教えてくれました。",
+    "exampleTh": "พนักงานร้านช่วยอธิบายให้ฟังอย่างสุภาพเรียบร้อย",
+    "exampleEn": "The clerk politely explained it to me.",
+    "note": "丁寧語 (ていねいご) = ภาษาสุภาพ (รูป です・ます)"
+  },
+  {
+    "id": 99,
+    "kanji": "不便",
+    "kana": "ふべん",
+    "ruby": [
+      [
+        "不",
+        "ふ"
+      ],
+      [
+        "便",
+        "べん"
+      ]
+    ],
+    "meanTh": "ไม่สะดวก",
+    "meanEn": "inconvenient",
+    "pos": "คุณศัพท์ な",
+    "lvl": "N4",
+    "morae": [
+      "ふ",
+      "べ",
+      "ん"
+    ],
+    "dropMora": 1,
+    "pitchPattern": "頭高 [1]",
+    "exampleJp": "駅から遠いので交通が不便です。",
+    "exampleTh": "เพราะอยู่ไกลจากสถานี การเดินทางจึงไม่สะดวก",
+    "exampleEn": "Transportation is inconvenient because it's far from the station.",
+    "note": "ตรงข้ามกับ 便利 [1] (สะดวก)"
+  },
+  {
+    "id": 100,
+    "kanji": "特別",
+    "kana": "とくべつ",
+    "ruby": [
+      [
+        "特",
+        "とく"
+      ],
+      [
+        "別",
+        "べつ"
+      ]
+    ],
+    "meanTh": "พิเศษ",
+    "meanEn": "special",
+    "pos": "คุณศัพท์ な",
+    "lvl": "N4",
+    "morae": [
+      "と",
+      "く",
+      "べ",
+      "つ"
+    ],
+    "dropMora": 0,
+    "pitchPattern": "平板 [0]",
+    "exampleJp": "今日は特別な日なのでケーキを買う。",
+    "exampleTh": "เพราะวันนี้เป็นวันพิเศษจึงซื้อเค้ก",
+    "exampleEn": "Buy a cake because today is a special day.",
+    "note": "特別な理由 = เหตุผลพิเศษ"
+  },
+  {
+    "id": 101,
     "kanji": "経験",
     "kana": "けいけん",
     "ruby": [
@@ -1217,9 +3041,282 @@
     ],
     "dropMora": 0,
     "pitchPattern": "平板 [0]",
-    "exampleJp": "海外で留学の良い経験をしました。",
-    "exampleTh": "ได้รับประสบการณ์ที่ดีจากการไปเรียนต่อต่างประเทศ",
-    "exampleEn": "Had a good experience studying abroad.",
+    "exampleJp": "日本での生活はいい経験になりました。",
+    "exampleTh": "การใช้ชีวิตในญี่ปุ่นกลายเป็นประสบการณ์ที่ดีมาก",
+    "exampleEn": "Living in Japan became a great experience.",
     "note": "経験がある = มีประสบการณ์"
+  },
+  {
+    "id": 102,
+    "kanji": "習慣",
+    "kana": "しゅうかん",
+    "ruby": [
+      [
+        "習",
+        "しゅう"
+      ],
+      [
+        "慣",
+        "かん"
+      ]
+    ],
+    "meanTh": "ธรรมเนียม, กิจวัตร, นิสัยความเคยชิน",
+    "meanEn": "custom, habit",
+    "pos": "คำนาม",
+    "lvl": "N4",
+    "morae": [
+      "しゅ",
+      "う",
+      "か",
+      "ん"
+    ],
+    "dropMora": 0,
+    "pitchPattern": "平板 [0]",
+    "exampleJp": "国によって文化や習慣が違います。",
+    "exampleTh": "วัฒนธรรมและธรรมเนียมปฏิบัติแตกต่างกันไปตามแต่ละประเทศ",
+    "exampleEn": "Cultures and customs differ depending on the country.",
+    "note": "ระวังเสียงพ้อง: 週間 (しゅうかん = สัปดาห์)"
+  },
+  {
+    "id": 103,
+    "kanji": "理由",
+    "kana": "りゆう",
+    "ruby": [
+      [
+        "理",
+        "り"
+      ],
+      [
+        "由",
+        "ゆう"
+      ]
+    ],
+    "meanTh": "เหตุผล, ข้ออ้าง",
+    "meanEn": "reason",
+    "pos": "คำนาม",
+    "lvl": "N4",
+    "morae": [
+      "り",
+      "ゆ",
+      "う"
+    ],
+    "dropMora": 0,
+    "pitchPattern": "平板 [0]",
+    "exampleJp": "遅刻した理由を説明してください。",
+    "exampleTh": "กรุณาอธิบายเหตุผลที่มาสายด้วยครับ",
+    "exampleEn": "Please explain the reason why you were late.",
+    "note": "理由もなく = โดยไม่มีเหตุผล"
+  },
+  {
+    "id": 104,
+    "kanji": "予定",
+    "kana": "よてい",
+    "ruby": [
+      [
+        "予",
+        "よ"
+      ],
+      [
+        "定",
+        "てい"
+      ]
+    ],
+    "meanTh": "กำหนดการ, แผนการ",
+    "meanEn": "schedule, plan",
+    "pos": "คำนาม · กริยา する",
+    "lvl": "N4",
+    "morae": [
+      "よ",
+      "て",
+      "い"
+    ],
+    "dropMora": 0,
+    "pitchPattern": "平板 [0]",
+    "exampleJp": "来週の予定を教えてください。",
+    "exampleTh": "ช่วยบอกกำหนดการของสัปดาห์หน้าหน่อยครับ",
+    "exampleEn": "Please tell me your schedule for next week.",
+    "note": "〜する予定です = มีกำหนดการว่าจะ..."
+  },
+  {
+    "id": 105,
+    "kanji": "将来",
+    "kana": "しょうらい",
+    "ruby": [
+      [
+        "将",
+        "しょう"
+      ],
+      [
+        "来",
+        "らい"
+      ]
+    ],
+    "meanTh": "อนาคต (ของบุคคล/ประเทศ)",
+    "meanEn": "future",
+    "pos": "คำนาม",
+    "lvl": "N4",
+    "morae": [
+      "しょ",
+      "う",
+      "ら",
+      "い"
+    ],
+    "dropMora": 1,
+    "pitchPattern": "頭高 [1]",
+    "exampleJp": "将来、日本で働きたいと思っています。",
+    "exampleTh": "ในอนาคตคิดไว้ว่าอยากทำงานที่ญี่ปุ่น",
+    "exampleEn": "I think I want to work in Japan in the future.",
+    "note": "将来の夢 = ความฝันในอนาคต"
+  },
+  {
+    "id": 106,
+    "kanji": "趣味",
+    "kana": "しゅみ",
+    "ruby": [
+      [
+        "趣",
+        "しゅ"
+      ],
+      [
+        "味",
+        "み"
+      ]
+    ],
+    "meanTh": "งานอดิเรก",
+    "meanEn": "hobby, interest",
+    "pos": "คำนาม",
+    "lvl": "N4",
+    "morae": [
+      "しゅ",
+      "み"
+    ],
+    "dropMora": 1,
+    "pitchPattern": "頭高 [1]",
+    "exampleJp": "私の趣味は写真を撮ることです。",
+    "exampleTh": "งานอดิเรกของฉันคือการถ่ายรูป",
+    "exampleEn": "My hobby is taking photographs.",
+    "note": "趣味が合う = มีรสนิยม/งานอดิเรกตรงกัน"
+  },
+  {
+    "id": 107,
+    "kanji": "興味",
+    "kana": "きょうみ",
+    "ruby": [
+      [
+        "興",
+        "きょう"
+      ],
+      [
+        "味",
+        "み"
+      ]
+    ],
+    "meanTh": "ความสนใจ",
+    "meanEn": "interest (in something)",
+    "pos": "คำนาม",
+    "lvl": "N4",
+    "morae": [
+      "きょ",
+      "う",
+      "み"
+    ],
+    "dropMora": 1,
+    "pitchPattern": "頭高 [1]",
+    "exampleJp": "日本の歴史にとても興味があります。",
+    "exampleTh": "มีความสนใจในประวัติศาสตร์ญี่ปุ่นมาก",
+    "exampleEn": "I am very interested in Japanese history.",
+    "note": "ใช้โครงสร้าง 〜に興味がある (สนใจใน...)"
+  },
+  {
+    "id": 108,
+    "kanji": "景色",
+    "kana": "けしき",
+    "ruby": [
+      [
+        "景",
+        "け"
+      ],
+      [
+        "色",
+        "しき"
+      ]
+    ],
+    "meanTh": "ทิวทัศน์, วิว",
+    "meanEn": "scenery, view",
+    "pos": "คำนาม",
+    "lvl": "N4",
+    "morae": [
+      "け",
+      "し",
+      "き"
+    ],
+    "dropMora": 1,
+    "pitchPattern": "頭高 [1]",
+    "exampleJp": "山の頂上から見る景色は素晴らしい。",
+    "exampleTh": "ทิวทัศน์ที่มองจากยอดเขานั้นงดงามยอดเยี่ยมมาก",
+    "exampleEn": "The view from the top of the mountain is wonderful.",
+    "note": "景色がいい = วิวสวย"
+  },
+  {
+    "id": 109,
+    "kanji": "都合",
+    "kana": "つごう",
+    "ruby": [
+      [
+        "都",
+        "つ"
+      ],
+      [
+        "合",
+        "ごう"
+      ]
+    ],
+    "meanTh": "ความสะดวก (เรื่องเวลา/โอกาส)",
+    "meanEn": "convenience, circumstances",
+    "pos": "คำนาม",
+    "lvl": "N4",
+    "morae": [
+      "つ",
+      "ご",
+      "う"
+    ],
+    "dropMora": 0,
+    "pitchPattern": "平板 [0]",
+    "exampleJp": "明日の午後はご都合がいかがですか。",
+    "exampleTh": "ช่วงบ่ายวันพรุ่งนี้คุณสะดวกไหมครับ",
+    "exampleEn": "How is your availability tomorrow afternoon?",
+    "note": "都合がいい (สะดวก) vs 都合が悪い (ไม่สะดวก/ติดธุระ)"
+  },
+  {
+    "id": 110,
+    "kanji": "素晴らしい",
+    "kana": "すばらしい",
+    "ruby": [
+      [
+        "素晴",
+        "すば"
+      ],
+      [
+        "らしい",
+        ""
+      ]
+    ],
+    "meanTh": "ยอดเยี่ยม, วิเศษ, งดงามมาก",
+    "meanEn": "wonderful, splendid",
+    "pos": "คุณศัพท์ い",
+    "lvl": "N4",
+    "morae": [
+      "す",
+      "ば",
+      "ら",
+      "し",
+      "い"
+    ],
+    "dropMora": 4,
+    "pitchPattern": "中高 [4]",
+    "exampleJp": "素晴らしい演奏に感動しました。",
+    "exampleTh": "ประทับใจกับการบรรเลงดนตรีที่ยอดเยี่ยมมาก",
+    "exampleEn": "Was moved by the wonderful musical performance.",
+    "note": "คำชมระดับสูง ใช้ได้ทั้งกับผลงาน วิวทิวทัศน์ และความคิด"
   }
 ]

@@ -2,6 +2,7 @@ package com.kotoba.app
 
 import android.app.Application
 import com.kotoba.app.audio.NativeAudioPlayer
+import com.kotoba.app.data.AppPreferences
 import com.kotoba.app.data.db.KotobaDatabase
 import com.kotoba.app.updater.GitHubUpdater
 import kotlinx.coroutines.CoroutineScope
@@ -12,12 +13,18 @@ class KotobaApplication : Application() {
 
     val applicationScope = CoroutineScope(SupervisorJob() + Dispatchers.Default)
 
+    val preferences by lazy {
+        AppPreferences(this)
+    }
+
     val database by lazy {
         KotobaDatabase.getDatabase(this, applicationScope)
     }
 
     val audioPlayer by lazy {
-        NativeAudioPlayer(this)
+        NativeAudioPlayer(this).apply {
+            setSpeechRate(preferences.speechRate.value)
+        }
     }
 
     val updater by lazy {
@@ -26,7 +33,7 @@ class KotobaApplication : Application() {
 
     override fun onCreate() {
         super.onCreate()
-        // Ensure database is initialized and seeded with vocabulary & grammar
+        preferences.refreshDailyState()
         database.checkAndSeedData(this, applicationScope)
     }
 
