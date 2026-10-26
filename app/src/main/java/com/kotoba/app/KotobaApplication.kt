@@ -24,6 +24,12 @@ class KotobaApplication : Application() {
         GitHubUpdater(this)
     }
 
+    override fun onCreate() {
+        super.onCreate()
+        // Ensure database is initialized and seeded with vocabulary & grammar
+        database.checkAndSeedData(this, applicationScope)
+    }
+
     override fun onTerminate() {
         super.onTerminate()
         audioPlayer.release()

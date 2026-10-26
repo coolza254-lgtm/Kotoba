@@ -1,24 +1,45 @@
 [
   {
     "id": "g1",
-    "title": "〜て形 (Te-Form)",
+    "title": "〜て形 (Te-Form Foundations)",
     "lvl": "base",
-    "group": "ผันรูปกริยา",
+    "group": "พื้นฐานการผันรูป",
     "meanTh": "รูป て (เชื่อมประโยค, ขอร้อง, ทำต่อเนื่อง)",
     "meanEn": "Te-form (connecting actions, requests, ongoing)",
     "formula": [
-      { "tag": "กลุ่ม 1", "rule": "う, つ, る → って | む, ぶ, ぬ → んで | く → いて | ぐ → いで | す → して" },
-      { "tag": "กลุ่ม 2", "rule": "ตัด る + て (เช่น 食べる → 食べて)" },
-      { "tag": "กลุ่ม 3", "rule": "する → して | くる (来る) → きて (来て)" }
+      {
+        "tag": "กลุ่ม 1",
+        "rule": "う, つ, る → って | む, ぶ, ぬ → んで | く → いて | ぐ → いで | す → して"
+      },
+      {
+        "tag": "กลุ่ม 2",
+        "rule": "ตัด る + て (เช่น 食べる → 食べて)"
+      },
+      {
+        "tag": "กลุ่ม 3",
+        "rule": "する → して | くる (来る) → きて (来て)"
+      }
     ],
-    "nuanceTh": "รูป て เป็นหัวใจสำคัญของไวยากรณ์ญี่ปุ่น ใช้เป็นฐานต่อยอดไวยากรณ์ N5–N4 อีกกว่า 20 รูป เช่น 〜てください, 〜ている, 〜てしまう, 〜てもいい",
-    "nuanceEn": "Te-form is the foundational building block for over 20 N5–N4 patterns (e.g. 〜てください, 〜ている, 〜てしまう).",
+    "nuanceTh": "รูป て เป็นหัวใจสำคัญของไวยากรณ์ภาษาญี่ปุ่น ใช้เป็นฐานต่อยอดไวยากรณ์ N5–N4 อีกกว่า 20 รูป เช่น 〜てください, 〜ている, 〜てもいい",
+    "nuanceEn": "Te-form is the foundational building block for over 20 N5–N4 patterns.",
     "examples": [
-      { "jp": "朝起きて、顔を洗って、ご飯を食べた。", "th": "ตื่นเช้า ล้างหน้า แล้วกินข้าว", "en": "Woke up in the morning, washed face, and ate breakfast." },
-      { "jp": "窓を開けてください。", "th": "กรุณาเปิดหน้าต่างครับ", "en": "Please open the window." }
+      {
+        "jp": "朝起きて、顔を洗って、ご飯を食べた。",
+        "th": "ตื่นเช้า ล้างหน้า แล้วกินข้าว",
+        "en": "Woke up in the morning, washed face, and ate breakfast."
+      },
+      {
+        "jp": "窓を開けてください。",
+        "th": "กรุณาเปิดหน้าต่างครับ",
+        "en": "Please open the window."
+      }
     ],
     "quizQuestion": "รูป て ของกริยา 「待つ (まつ = รอ)」 คือข้อใด?",
-    "quizChoices": ["待って (まって)", "待ちて (まちて)", "待んで (まんで)"],
+    "quizChoices": [
+      "待って (まって)",
+      "待ちて (まちて)",
+      "待んで (まんで)"
+    ],
     "quizAnswer": 0
   },
   {
@@ -29,17 +50,35 @@
     "meanTh": "หัวข้อเรื่อง (Topic は) vs ประธานเจาะจง/ข้อมูลใหม่ (Focus が)",
     "meanEn": "Topic marker (は) vs Subject/Focus marker (が)",
     "formula": [
-      { "tag": "は (Topic)", "rule": "[หัวข้อใหญ่/สิ่งที่คนฟังรู้อยู่แล้ว] は [ข้อมูลใหม่]" },
-      { "tag": "が (Subject)", "rule": "[ประธาน/สิ่งที่ตาเห็น/ข้อมูลที่เน้น] が [ภาคแสดง]" }
+      {
+        "tag": "は (Topic)",
+        "rule": "[หัวข้อใหญ่/สิ่งที่คนฟังรู้อยู่แล้ว] は [ข้อมูลใหม่]"
+      },
+      {
+        "tag": "が (Subject)",
+        "rule": "[ประธาน/สิ่งที่ตาเห็น/ข้อมูลที่เน้น] が [ภาคแสดง]"
+      }
     ],
     "nuanceTh": "「私は学生です」(ฉันเป็นนักเรียน - เน้นที่นักเรียน) ต่างกับ 「私が学生です」(ฉันต่างหากที่เป็นนักเรียน - ชี้ตัวผู้พูดชัดเจน)",
     "nuanceEn": "は highlights the predicate info; が highlights the subject itself as the focal answer.",
     "examples": [
-      { "jp": "象は鼻が長いです。", "th": "ช้างน่ะ จมูกยาว", "en": "As for elephants, their trunks are long." },
-      { "jp": "あ、雨が降ってきた！", "th": "อ๊ะ ฝนตกมาแล้ว!", "en": "Oh, it started raining!" }
+      {
+        "jp": "象は鼻が長いです。",
+        "th": "ช้างน่ะ จมูกยาว",
+        "en": "As for elephants, their trunks are long."
+      },
+      {
+        "jp": "あ、雨が降ってきた！",
+        "th": "อ๊ะ ฝนตกมาแล้ว!",
+        "en": "Oh, it started raining!"
+      }
     ],
     "quizQuestion": "ประโยคบอกปรากฏการณ์ธรรมชาติที่เกิดขึ้นตรงหน้า: 「雨 ___ 降っています」 ควรเติมคำช่วยใด?",
-    "quizChoices": ["が (ga)", "は (wa)", "を (wo)"],
+    "quizChoices": [
+      "が (ga)",
+      "は (wa)",
+      "を (wo)"
+    ],
     "quizAnswer": 0
   },
   {
@@ -48,121 +87,388 @@
     "lvl": "N5",
     "group": "แสดงความต้องการ",
     "meanTh": "อยากทำ... (ความต้องการของผู้พูด)",
-    "meanEn": "Want to do (speaker’s desire)",
+    "meanEn": "want to do (speaker's desire)",
     "formula": [
-      { "tag": "กริยา", "rule": "V-ます (ตัด ます) + たい (ปฏิเสธ: たくない / อดีต: たかった)" },
-      { "tag": "คำช่วย", "rule": "เปลี่ยนคำช่วยกรรมจาก を เป็น が ได้ (ご飯を食べたい / ご飯が食べたい)" }
+      {
+        "tag": "โครงสร้าง",
+        "rule": "กริยาตัด ます + たいです"
+      },
+      {
+        "tag": "ปฏิเสธ",
+        "rule": "กริยาตัด ます + たくないです"
+      }
     ],
-    "nuanceTh": "ใช้กับความต้องการของบุรุษที่ 1 (ตัวเรา) หากต้องการพูดถึงคนอื่นให้ใช้ 〜たがっている",
-    "nuanceEn": "Used strictly for the speaker. For 3rd-person desire, use 〜たがっている.",
+    "nuanceTh": "ใช้บอกความต้องการของ 'ผู้พูด' เท่านั้น ห้ามใช้ถามผู้อาวุโสตรงๆ เพราะถือว่าเสียมารยาท (ควรถามด้วย 〜いかがですか แทน)",
+    "nuanceEn": "Only used for the speaker's own desire. Do not use to directly ask superiors.",
     "examples": [
-      { "jp": "日本へ旅行に行きたいです。", "th": "อยากไปเที่ยวที่ประเทศญี่ปุ่นครับ", "en": "I want to go on a trip to Japan." },
-      { "jp": "今日はお酒を飲みたくない。", "th": "วันนี้ไม่อยากดื่มเหล้าเลย", "en": "I don’t want to drink alcohol today." }
+      {
+        "jp": "日本へ旅行に行きたいです。",
+        "th": "อยากไปเที่ยวที่ญี่ปุ่นครับ",
+        "en": "I want to go travel to Japan."
+      },
+      {
+        "jp": "今日は何も食べたくない。",
+        "th": "วันนี้ไม่อยากกินอะไรเลย",
+        "en": "I don't want to eat anything today."
+      }
     ],
-    "quizQuestion": "กริยา 「行く」 ทำเป็นรูป \"อยากไป\" ผันอย่างไร?",
-    "quizChoices": ["行きたい (いきたい)", "行きたる", "行きてたい"],
+    "quizQuestion": "「行く (いく)」 ถ้าต้องการทำเป็นรูปอยากไป ต้องเปลี่ยนเป็นข้อใด?",
+    "quizChoices": [
+      "行きたい (いきたい)",
+      "行きたる (いきたる)",
+      "行ってたい (いってたい)"
+    ],
     "quizAnswer": 0
   },
   {
     "id": "g4",
-    "title": "〜てもいい (Permission)",
+    "title": "〜ている (Ongoing / State)",
     "lvl": "N5",
-    "group": "การอนุญาต",
-    "meanTh": "ทำ...ก็ได้, ขออนุญาตทำ...",
-    "meanEn": "May do, allowed to do (permission)",
+    "group": "การกระทำและสภาพ",
+    "meanTh": "1. กำลังทำอยู่ (Progressive) / 2. สภาพที่ยังคงอยู่ (Resultant State)",
+    "meanEn": "ongoing action or resultant state",
     "formula": [
-      { "tag": "กริยา", "rule": "V-て形 + もいい (です / ですか)" }
+      {
+        "tag": "โครงสร้าง",
+        "rule": "V-て + いる / います"
+      }
     ],
-    "nuanceTh": "หากเติม か เป็น 「〜てもいいですか」 จะเป็นการถามขออนุญาตอย่างสุภาพ",
-    "nuanceEn": "Adding か makes it a polite request for permission: \"May I...?\"",
+    "nuanceTh": "กริยาที่ทำต่อเนื่องได้ เช่น 食べる แปลว่า 'กำลังกิน' แต่กริยาที่เกิดชั่วพริบตา เช่น 結婚する (แต่งงาน) หรือ 知る (รู้) เมื่อเป็น 〜ている จะหมายถึง 'ผลลัพธ์หรือสภาพที่ยังคงอยู่' เช่น 結婚している (แต่งงานแล้ว) ไม่ใช่กำลังจัดงานแต่งงาน",
+    "nuanceEn": "Ongoing action for durative verbs (eating); resultant continuous state for instantaneous verbs (married, knowing).",
     "examples": [
-      { "jp": "ここで写真を撮ってもいいですか。", "th": "ถ่ายรูปตรงนี้ได้ไหมครับ", "en": "May I take a photo here?" },
-      { "jp": "もう帰ってもいいですよ。", "th": "กลับบ้านได้แล้วนะ", "en": "You may go home now." }
+      {
+        "jp": "今、本を読んでいます。",
+        "th": "ตอนนี้กำลังอ่านหนังสืออยู่ครับ",
+        "en": "I am reading a book right now."
+      },
+      {
+        "jp": "田中さんを知っていますか。",
+        "th": "รู้จักคุณทานากะไหมครับ",
+        "en": "Do you know Mr. Tanaka?"
+      }
     ],
-    "quizQuestion": "\"ขอนั่งตรงนี้ได้ไหม\" พูดเป็นภาษาญี่ปุ่นอย่างไร?",
-    "quizChoices": ["ここに座ってもいいですか", "ここに座りたいですか", "ここに座らないでください"],
+    "quizQuestion": "คำว่า 「แต่งงานแล้ว (มีคู่สมรสแล้ว)」 ในภาษาญี่ปุ่นต้องใช้รูปใด?",
+    "quizChoices": [
+      "結婚しています",
+      "結婚します",
+      "結婚しましただけ"
+    ],
     "quizAnswer": 0
   },
   {
     "id": "g5",
-    "title": "〜ながら (Simultaneous Action)",
-    "lvl": "N4",
-    "group": "การกระทำพร้อมกัน",
-    "meanTh": "ทำ...ไปพลาง ทำ...ไปพลาง (สองอย่างพร้อมกัน)",
-    "meanEn": "While doing A, doing B (simultaneous)",
+    "title": "〜てもいい vs 〜てはいけない",
+    "lvl": "N5",
+    "group": "อนุญาตและข้อห้าม",
+    "meanTh": "ทำ...ก็ได้ (อนุญาต) vs ห้ามทำ... (ข้อห้ามเด็ดขาด)",
+    "meanEn": "May do (permission) vs Must not do (prohibition)",
     "formula": [
-      { "tag": "กริยา", "rule": "V1-ます (ตัด ます) + ながら + V2 (การกระทำหลักอยู่ข้างหลัง)" }
+      {
+        "tag": "อนุญาต",
+        "rule": "V-て + もいいです"
+      },
+      {
+        "tag": "ข้อห้าม",
+        "rule": "V-て + はいけません"
+      }
     ],
-    "nuanceTh": "กริยาหลักที่เป็นจุดโฟกัสของการกระทำต้องอยู่ \"หลัง\" ながら เสมอ เช่น 「音楽を聞きながら勉強する」 (จุดประสงค์หลักคืออ่านหนังสือ โดยฟังเพลงคลอไปด้วย)",
-    "nuanceEn": "The secondary background action precedes ながら; the main focal action follows it.",
+    "nuanceTh": "〜てはいけない เป็นข้อห้ามเด็ดขาด มักพบในป้ายเตือน กฎระเบียบ หรือผู้ใหญ่บอกเด็ก",
+    "nuanceEn": "てもいい expresses permission; てはいけない expresses strict prohibition.",
     "examples": [
-      { "jp": "音楽を聞きながら、部屋を掃除しました。", "th": "เปิดเพลงฟังไปพลาง ทำความสะอาดห้องไปพลาง", "en": "I cleaned my room while listening to music." },
-      { "jp": "歩きながらスマホを見てはいけません。", "th": "ห้ามดูสมาร์ตโฟนขณะเดิน", "en": "Do not look at your smartphone while walking." }
+      {
+        "jp": "写真を撮ってもいいですか。",
+        "th": "ถ่ายรูปได้ไหมครับ",
+        "en": "May I take a photo?"
+      },
+      {
+        "jp": "ここでタバコを吸ってはいけません。",
+        "th": "ห้ามสูบบุหรี่ตรงนี้ครับ",
+        "en": "You must not smoke here."
+      }
     ],
-    "quizQuestion": "\"คุยไปพลาง ดื่มกาแฟไปพลาง\" ข้อใดถูกต้อง?",
-    "quizChoices": ["話しながらコーヒーを飲む", "話してながらコーヒーを飲む", "話すながらコーヒーを飲む"],
+    "quizQuestion": "「ここで写真を撮って___いいですか」 ควรเติมคำช่วยใด?",
+    "quizChoices": [
+      "も (mo)",
+      "は (wa)",
+      "に (ni)"
+    ],
     "quizAnswer": 0
   },
   {
     "id": "g6",
-    "title": "〜ば (Conditional)",
-    "lvl": "N4",
-    "group": "ประโยคเงื่อนไข",
-    "meanTh": "ถ้า...แล้วจะ..., หาก...",
-    "meanEn": "If / Provided that (conditional)",
+    "title": "〜たことがある (Experience)",
+    "lvl": "N5",
+    "group": "ประสบการณ์",
+    "meanTh": "เคยทำ... (บอกเล่าประสบการณ์ในอดีต)",
+    "meanEn": "have done before (past experience)",
     "formula": [
-      { "tag": "กริยา", "rule": "เปลี่ยนเสียงสระท้ายเป็น -e แล้วเติม ば (行けば, 食べれば, すれば, くれば)" },
-      { "tag": "คุณศัพท์ い", "rule": "ตัด い + ければ (安ければ = ถ้าถูก)" },
-      { "tag": "คุณศัพท์ な/นาม", "rule": "เติม ならば / なら (静かなら = ถ้าเงียบ)" }
+      {
+        "tag": "โครงสร้าง",
+        "rule": "V-た + ことがある / あります"
+      },
+      {
+        "tag": "ไม่เคย",
+        "rule": "V-た + ことがない / ありません"
+      }
     ],
-    "nuanceTh": "มักใช้กับเงื่อนไขที่เป็นจริงตามธรรมชาติ หรือคำแนะนำที่เป็นตรรกะเหตุผล",
-    "nuanceEn": "Expresses natural results, logical conclusions, or hypothetical prerequisites.",
+    "nuanceTh": "ใช้กับประสบการณ์ครั้งหนึ่งในชีวิต ไม่ใช้กับสิ่งที่ทำเป็นกิจวัตรเมื่อวานนี้ (เช่น ห้ามพูดว่า 昨日ご飯を食べたことがある)",
+    "nuanceEn": "Expresses life experiences, not routine daily occurrences.",
     "examples": [
-      { "jp": "薬を飲めば、熱が下がりますよ。", "th": "ถ้ากินยานี้ เดี๋ยวไข้ก็ลดครับ", "en": "If you take this medicine, the fever will go down." },
-      { "jp": "安ければ買いたいです。", "th": "ถ้าถูกก็อยากซื้อครับ", "en": "If it is cheap, I want to buy it." }
+      {
+        "jp": "富士山に登ったことがありますか。",
+        "th": "เคยปีนภูเขาไฟฟูจิไหมครับ",
+        "en": "Have you ever climbed Mt. Fuji?"
+      },
+      {
+        "jp": "一度も刺身を食べたことがありません。",
+        "th": "ไม่เคยทานซาชิมิเลยแม้แต่ครั้งเดียว",
+        "en": "I have never eaten sashimi even once."
+      }
     ],
-    "quizQuestion": "รูปเงื่อนไข ば ของกริยา 「読む (よむ = อ่าน)」 คือข้อใด?",
-    "quizChoices": ["読めば (よめば)", "読みば", "読んだらば"],
+    "quizQuestion": "「行く (iku)」 ถ้าจะบอกว่า 'เคยไปญี่ปุ่น' ต้องผันกริยาเป็นรูปใด?",
+    "quizChoices": [
+      "行ったことがあります",
+      "行くことがあります",
+      "行っていたことがあります"
+    ],
     "quizAnswer": 0
   },
   {
     "id": "g7",
-    "title": "〜てしまう (Regret / Completion)",
-    "lvl": "N4",
-    "group": "ผลลัพธ์ & อารมณ์",
-    "meanTh": "เผลอทำ...ไปแล้ว (เสียดาย/ผิดพลาด) หรือ ทำ...เสร็จสิ้นสมบูรณ์",
-    "meanEn": "To do by accident (regret) / Complete fully",
+    "title": "〜から vs 〜ので (Reason)",
+    "lvl": "N5",
+    "group": "การบอกเหตุผล",
+    "meanTh": "เพราะว่า... / เนื่องจากว่า...",
+    "meanEn": "because / since (subjective vs objective reason)",
     "formula": [
-      { "tag": "กริยา", "rule": "V-て形 + しまう (ในภาษาพูดมักย่อเป็น 〜ちゃう / 〜じゃう)" }
+      {
+        "tag": "〜から",
+        "rule": "[ประโยคบอกเล่า/รูปธรรมดา] + から (เน้นความเห็นส่วนตัว/คำสั่ง/ข้ออ้าง)"
+      },
+      {
+        "tag": "〜ので",
+        "rule": "[รูปธรรมดา (な-adj/N + な)] + ので (สุภาพ เป็นกลาง เป็นข้อเท็จจริงตามธรรมชาติ)"
+      }
     ],
-    "nuanceTh": "มีความหมาย 2 มิติ: 1) ทำเสร็จเกลี้ยง (本を読んでしまった) และ 2) เผลอทำพลาดด้วยความเสียใจ (財布を忘れてしまった)",
-    "nuanceEn": "Two main nuances: 1) Full completion, 2) Accidental mistake with regret.",
+    "nuanceTh": "〜ので ให้ความรู้สึกสุภาพ อ่อนน้อม ไม่เอาแต่ใจ นิยมใช้เวลาขอลาป่วยหรือปฏิเสธผู้อื่น ส่วน 〜から ให้ความรู้สึกมั่นใจ หรือมีอารมณ์ส่วนตัวร่วม",
+    "nuanceEn": "ので is polite, objective and soft (ideal for apologies); から is more direct and subjective.",
     "examples": [
-      { "jp": "大切な約束を忘れてしまいました。", "th": "เผลอลืมสัญญานัดหมายสำคัญไปเสียแล้ว", "en": "I accidentally forgot an important appointment." },
-      { "jp": "一日でこの本を読んでしまった。", "th": "อ่านหนังสือเล่มนี้จบเกลี้ยงในวันเดียว", "en": "I read through this entire book in a single day." }
+      {
+        "jp": "頭が痛いので、少し休んでもいいですか。",
+        "th": "เนื่องจากปวดศีรษะ ขอพักสักครู่ได้ไหมครับ",
+        "en": "Since I have a headache, may I rest a bit?"
+      },
+      {
+        "jp": "危ないから、触らないでください。",
+        "th": "เพราะมันอันตราย กรุณาอย่าแตะต้องครับ",
+        "en": "Because it's dangerous, please don't touch it."
+      }
     ],
-    "quizQuestion": "\"เผลอทำกระเป๋าเงินหายไปแล้ว\" ควรใช้รูปใด?",
-    "quizChoices": ["財布を落としてしまった", "財布を落としながら", "財布を落とせばいい"],
+    "quizQuestion": "เวลาโทรศัพท์ไปขอลาป่วยกับหัวหน้า ควรใช้คำเชื่อมบอกเหตุผลใดที่สุภาพและเหมาะสมที่สุด?",
+    "quizChoices": [
+      "熱があるので、休みます",
+      "熱があるから、休みます",
+      "熱があるのに、休みます"
+    ],
     "quizAnswer": 0
   },
   {
     "id": "g8",
-    "title": "〜ようにする (Effort / Habit)",
+    "title": "〜なければならない (Obligation)",
     "lvl": "N4",
-    "group": "ความตั้งใจ & นิสัย",
-    "meanTh": "พยายามที่จะ... (สร้างเป็นนิสัยหรือความเคยชิน)",
-    "meanEn": "To make an effort to do / Try to make a habit",
+    "group": "หน้าที่และความจำเป็น",
+    "meanTh": "ต้องทำ... / จำเป็นต้องทำ...",
+    "meanEn": "must do / have to do",
     "formula": [
-      { "tag": "กริยา", "rule": "V-辞書形 / V-ない形 + ようにする (หรือ ようにしている = ทำเป็นประจำ)" }
+      {
+        "tag": "โครงสร้างทางการ",
+        "rule": "V-ない ตัด い + ければならない / ければいけません"
+      },
+      {
+        "tag": "ภาษาพูดทั่วไป",
+        "rule": "V-ない ตัด い + なくちゃ / なきゃ"
+      }
     ],
-    "nuanceTh": "เน้นความพยายามอย่างต่อเนื่องของผู้พูด ต่างกับ 〜ことにする ที่เน้นแค่ \"การตัดสินใจครั้งเดียว\"",
-    "nuanceEn": "Emphasizes deliberate, continuous effort to establish a daily routine or habit.",
+    "nuanceTh": "แสดงหน้าที่ กฎเกณฑ์ หรือความจำเป็นที่หลีกเลี่ยงไม่ได้",
+    "nuanceEn": "Expresses an unavoidable obligation or duty.",
     "examples": [
-      { "jp": "毎朝、野菜をたくさん食べるようにしています。", "th": "พยายามกินผักเยอะๆ ทุกเช้าเป็นประจำ", "en": "I make it a point to eat plenty of vegetables every morning." },
-      { "jp": "夜遅くにお菓子を食べないようにする。", "th": "จะพยายามไม่กินขนมตอนดึกๆ", "en": "I will try not to eat snacks late at night." }
+      {
+        "jp": "明日、早く起きなければなりません。",
+        "th": "พรุ่งนี้จำเป็นต้องตื่นเช้าครับ",
+        "en": "I must wake up early tomorrow."
+      },
+      {
+        "jp": "薬を毎日飲まなければいけない。",
+        "th": "ต้องกินยาทุกวัน",
+        "en": "Have to take medicine every day."
+      }
     ],
-    "quizQuestion": "\"พยายามนอนเร็วทุกวัน\" เขียนอย่างไร?",
-    "quizChoices": ["早く寝るようにしている", "早く寝たことがある", "早く寝てもいい"],
+    "quizQuestion": "รูป 'ต้องทำ' ของกริยา 「行く (iku)」 คือข้อใด?",
+    "quizChoices": [
+      "行かなければならない",
+      "行かないでならない",
+      "行くてはならない"
+    ],
+    "quizAnswer": 0
+  },
+  {
+    "id": "g9",
+    "title": "〜ことができる (Ability)",
+    "lvl": "N5",
+    "group": "ความสามารถและความเป็นไปได้",
+    "meanTh": "สามารถทำ...ได้",
+    "meanEn": "can do / be able to do",
+    "formula": [
+      {
+        "tag": "โครงสร้าง",
+        "rule": "V-辞書形 (พจนานุกรม) + ことができる / できます"
+      }
+    ],
+    "nuanceTh": "ใช้บอกความสามารถส่วนบุคคล หรือความเป็นไปได้ตามสถานการณ์",
+    "nuanceEn": "Expresses ability or possibility using the dictionary form.",
+    "examples": [
+      {
+        "jp": "日本語を少し話すことができます。",
+        "th": "สามารถพูดภาษาญี่ปุ่นได้นิดหน่อยครับ",
+        "en": "I can speak a little Japanese."
+      },
+      {
+        "jp": "この店でカードを使うことができますか。",
+        "th": "ที่ร้านนี้สามารถใช้บัตรเครดิตได้ไหมครับ",
+        "en": "Can I use a credit card at this store?"
+      }
+    ],
+    "quizQuestion": "「泳ぐ (およぐ = ว่ายน้ำ)」 ถ้าจะบอกว่า 'ว่ายน้ำได้' ต้องเขียนอย่างไร?",
+    "quizChoices": [
+      "泳ぐことができる",
+      "泳ぎることができる",
+      "泳いだことができる"
+    ],
+    "quizAnswer": 0
+  },
+  {
+    "id": "g10",
+    "title": "กริยารูปสามารถ (Potential Form)",
+    "lvl": "N4",
+    "group": "ความสามารถและการเปลี่ยนแปลง",
+    "meanTh": "ทำ...ได้ (ผันกริยารูปสามารถ)",
+    "meanEn": "Potential form (can do)",
+    "formula": [
+      {
+        "tag": "กลุ่ม 1",
+        "rule": "เสียง u → e + る (เช่น 書く → 書ける, 飲む → 飲める)"
+      },
+      {
+        "tag": "กลุ่ม 2",
+        "rule": "ตัด る + られる (เช่น 食べる → 食べられる)"
+      },
+      {
+        "tag": "กลุ่ม 3",
+        "rule": "する → できる | くる → こられる"
+      }
+    ],
+    "nuanceTh": "ในรูปสามารถ กรรมของประโยคมักจะเปลี่ยนจากคำช่วย を มาเป็น が เช่น 日本語が話せる (พูดภาษาญี่ปุ่นได้)",
+    "nuanceEn": "Direct object particle を usually changes to が with potential verbs.",
+    "examples": [
+      {
+        "jp": "漢字が少し読めます。",
+        "th": "อ่านคันจิได้นิดหน่อยครับ",
+        "en": "I can read a little kanji."
+      },
+      {
+        "jp": "刺身が食べられますか。",
+        "th": "ทานซาชิมิได้ไหมครับ",
+        "en": "Can you eat sashimi?"
+      }
+    ],
+    "quizQuestion": "รูปสามารถของ 「話す (はなす = พูด)」 คือข้อใด?",
+    "quizChoices": [
+      "話せる (はなせる)",
+      "話される (はなされる)",
+      "話させる (はなさせる)"
+    ],
+    "quizAnswer": 0
+  },
+  {
+    "id": "g11",
+    "title": "〜たら vs 〜ば vs 〜と (Conditions)",
+    "lvl": "N4",
+    "group": "ประโยคเงื่อนไข",
+    "meanTh": "ถ้า... / เมื่อ...",
+    "meanEn": "if / when (conditional forms)",
+    "formula": [
+      {
+        "tag": "〜たら",
+        "rule": "V-た + ら (เงื่อนไขทั่วไป ใช้ง่ายที่สุดและครอบคลุมที่สุด)"
+      },
+      {
+        "tag": "〜ば",
+        "rule": "เสียง u → e + ば (เงื่อนไขสมมุติ ถ้า A เกิดขึ้น B จะตามมา)"
+      },
+      {
+        "tag": "〜と",
+        "rule": "V-辞書形 + と (ผลลัพธ์ที่เกิดแน่นอนตามธรรมชาติหรือเครื่องจักร)"
+      }
+    ],
+    "nuanceTh": "〜たら ยืดหยุ่นที่สุด ใช้ได้กับทั้งคำสั่ง ขอร้อง และเหตุการณ์ในอนาคต ส่วน 〜と ห้ามใช้ประโยคหลังเป็นคำสั่งหรือความต้องการของผู้พูด",
+    "nuanceEn": "〜たら is the most versatile conditional; 〜と expresses inevitable natural results or machine operations.",
+    "examples": [
+      {
+        "jp": "雨が降ったら、出かけません。",
+        "th": "ถ้าฝนตก ก็จะไม่ออกไปข้างนอก",
+        "en": "If it rains, I won't go out."
+      },
+      {
+        "jp": "このボタンを押すと、お湯が出ます。",
+        "th": "พอกดปุ่มนี้ น้ำร้อนจะไหลออกมา",
+        "en": "When you press this button, hot water comes out."
+      }
+    ],
+    "quizQuestion": "ประโยคบอกการทำงานของตู้จำหน่ายสินค้าอัตโนมัติ: 「お金を入れる___、切符が出ます」 ควรใช้รูปเงื่อนไขใด?",
+    "quizChoices": [
+      "と (to)",
+      "たら (tara)",
+      "ば (ba)"
+    ],
+    "quizAnswer": 0
+  },
+  {
+    "id": "g12",
+    "title": "〜ようにする vs 〜ようになる",
+    "lvl": "N4",
+    "group": "การเปลี่ยนแปลงและพฤติกรรม",
+    "meanTh": "พยายามทำ...ให้เป็นนิสัย vs เปลี่ยนแปลงจนทำ...ได้",
+    "meanEn": "make an effort to do vs come to be able to do",
+    "formula": [
+      {
+        "tag": "〜ようにする",
+        "rule": "V-辞書形 / ない形 + ようにする (ความตั้งใจ พยายามทำอย่างสม่ำเสมอ)"
+      },
+      {
+        "tag": "〜ようになる",
+        "rule": "V-可能形 (รูปสามารถ) + ようになる (การเปลี่ยนแปลงตามกาลเวลา)"
+      }
+    ],
+    "nuanceTh": "ようにする เน้นความพยายามของผู้พูด ส่วน ようになる เน้นการพัฒนาหรือการเปลี่ยนแปลงของสภาพ",
+    "nuanceEn": "ようにする indicates continuous conscious effort; ようになる indicates a gradual shift in state or capability.",
+    "examples": [
+      {
+        "jp": "毎朝野菜を食べるようにしています。",
+        "th": "พยายามกินผักทุกเช้าให้เป็นนิสัยครับ",
+        "en": "I make an effort to eat vegetables every morning."
+      },
+      {
+        "jp": "日本語のニュースがわかるようになりました。",
+        "th": "เริ่มฟังข่าวภาษาญี่ปุ่นเข้าใจขึ้นมาแล้วครับ",
+        "en": "I have come to understand Japanese news."
+      }
+    ],
+    "quizQuestion": "「พยายามอย่านอนดึก」 ควรพูดภาษาญี่ปุ่นว่าอย่างไร?",
+    "quizChoices": [
+      "夜遅く寝ないようにしています",
+      "夜遅く寝ないようになります",
+      "夜遅く寝ないようにさせます"
+    ],
     "quizAnswer": 0
   }
 ]

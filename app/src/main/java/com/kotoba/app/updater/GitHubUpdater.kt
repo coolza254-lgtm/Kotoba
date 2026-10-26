@@ -52,7 +52,7 @@ class GitHubUpdater(private val context: Context) {
     private val gson = Gson()
     private val repoOwner = "coolza254-lgtm"
     private val repoName = "Kotoba"
-    private val currentVersion = "v1.0.0"
+    private val currentVersion = "v1.0.1"
 
     private val _updateState = MutableStateFlow<UpdateState>(UpdateState.Idle)
     val updateState: StateFlow<UpdateState> = _updateState.asStateFlow()

@@ -1,6 +1,7 @@
 package com.kotoba.app.data.db
 
 import android.content.Context
+import android.util.Log
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
@@ -19,14 +20,30 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.io.InputStreamReader
 
-@Database(entities = [WordEntity::class, GrammarEntity::class], version = 1, exportSchema = false)
+@Database(entities = [WordEntity::class, GrammarEntity::class], version = 2, exportSchema = false)
 @TypeConverters(WordConverters::class, GrammarConverters::class)
 abstract class KotobaDatabase : RoomDatabase() {
 
     abstract fun wordDao(): WordDao
     abstract fun grammarDao(): GrammarDao
 
+    fun checkAndSeedData(context: Context, scope: CoroutineScope) {
+        scope.launch(Dispatchers.IO) {
+            try {
+                val count = wordDao().getWordCount()
+                if (count == 0) {
+                    Log.d("KotobaDB", "Database empty. Seeding initial data...")
+                    populateInitialData(context, this@KotobaDatabase)
+                }
+            } catch (e: Exception) {
+                Log.e("KotobaDB", "Failed to check or seed data", e)
+            }
+        }
+    }
+
     companion object {
+        private const val TAG = "KotobaDB"
+
         @Volatile
         private var INSTANCE: KotobaDatabase? = null
 
@@ -37,9 +54,14 @@ abstract class KotobaDatabase : RoomDatabase() {
                     KotobaDatabase::class.java,
                     "kotoba_database"
                 )
+                    .fallbackToDestructiveMigration()
                     .addCallback(DatabaseCallback(context, scope))
                     .build()
                 INSTANCE = instance
+                
+                // Immediately ensure data is seeded
+                instance.checkAndSeedData(context, scope)
+                
                 instance
             }
         }
@@ -50,9 +72,20 @@ abstract class KotobaDatabase : RoomDatabase() {
         ) : RoomDatabase.Callback() {
             override fun onCreate(db: SupportSQLiteDatabase) {
                 super.onCreate(db)
-                INSTANCE?.let { database ->
-                    scope.launch(Dispatchers.IO) {
+                scope.launch(Dispatchers.IO) {
+                    INSTANCE?.let { database ->
                         populateInitialData(context, database)
+                    }
+                }
+            }
+
+            override fun onOpen(db: SupportSQLiteDatabase) {
+                super.onOpen(db)
+                scope.launch(Dispatchers.IO) {
+                    INSTANCE?.let { database ->
+                        if (database.wordDao().getWordCount() == 0) {
+                            populateInitialData(context, database)
+                        }
                     }
                 }
             }
@@ -87,6 +120,7 @@ abstract class KotobaDatabase : RoomDatabase() {
                         )
                     }
                     database.wordDao().insertAll(words)
+                    Log.d(TAG, "Successfully seeded ${words.size} vocabulary items.")
                 }
 
                 // 2. Populate Grammar Foundations, N5 & N4
@@ -112,15 +146,16 @@ abstract class KotobaDatabase : RoomDatabase() {
                         )
                     }
                     database.grammarDao().insertAll(grammarList)
+                    Log.d(TAG, "Successfully seeded ${grammarList.size} grammar items.")
                 }
             } catch (e: Exception) {
-                e.printStackTrace()
+                Log.e(TAG, "Error populating initial data", e)
             }
         }
     }
 }
 
-private data class RawWordJson(
+data class RawWordJson(
     val id: Int,
     val kanji: String,
     val kana: String,
@@ -138,7 +173,7 @@ private data class RawWordJson(
     val note: String? = null
 )
 
-private data class RawGrammarJson(
+data class RawGrammarJson(
     val id: String,
     val title: String,
     val lvl: String,

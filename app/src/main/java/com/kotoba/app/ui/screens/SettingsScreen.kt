@@ -2,6 +2,7 @@ package com.kotoba.app.ui.screens
 
 import android.content.Intent
 import android.net.Uri
+import android.widget.Toast
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
@@ -25,8 +26,9 @@ import com.kotoba.app.ui.theme.AccentPurple
 
 @Composable
 fun SettingsScreen(
-    currentVersion: String = "v1.0.0",
-    onCheckUpdate: () -> Unit
+    currentVersion: String = "v1.0.1",
+    onCheckUpdate: () -> Unit,
+    onReloadContent: () -> Unit = {}
 ) {
     val context = LocalContext.current
     var targetRetention by remember { mutableFloatStateOf(0.90f) }
@@ -92,6 +94,37 @@ fun SettingsScreen(
                     Icon(Icons.Default.Refresh, contentDescription = null, modifier = Modifier.size(18.dp))
                     Spacer(modifier = Modifier.width(8.dp))
                     Text("ตรวจสอบเวอร์ชันใหม่", fontSize = 14.sp, fontWeight = FontWeight.SemiBold)
+                }
+            }
+        }
+
+        // Content Library Management
+        Surface(
+            modifier = Modifier.fillMaxWidth(),
+            shape = RoundedCornerShape(22.dp),
+            color = MaterialTheme.colorScheme.surface,
+            border = CardDefaults.outlinedCardBorder()
+        ) {
+            Column(
+                modifier = Modifier.padding(20.dp),
+                verticalArrangement = Arrangement.spacedBy(12.dp)
+            ) {
+                Text("คลังข้อมูลคำศัพท์และไวยากรณ์ (Content Library)", fontSize = 15.sp, fontWeight = FontWeight.Bold)
+                Text(
+                    "โหลดข้อมูลคำศัพท์ JLPT N5–N4 และบทเรียนไวยากรณ์ตั้งต้นทั้งหมดเข้าสู่ระบบ",
+                    fontSize = 12.sp,
+                    color = MaterialTheme.colorScheme.secondary,
+                    lineHeight = 18.sp
+                )
+                OutlinedButton(
+                    onClick = {
+                        onReloadContent()
+                        Toast.makeText(context, "กำลังโหลดคลังคำศัพท์และไวยากรณ์...", Toast.LENGTH_SHORT).show()
+                    },
+                    modifier = Modifier.fillMaxWidth().height(48.dp),
+                    shape = RoundedCornerShape(14.dp)
+                ) {
+                    Text("โหลดคลังข้อมูลใหม่ (Reload Content)", fontSize = 14.sp, fontWeight = FontWeight.SemiBold)
                 }
             }
         }

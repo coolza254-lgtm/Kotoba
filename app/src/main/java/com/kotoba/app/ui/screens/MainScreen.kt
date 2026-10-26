@@ -4,15 +4,16 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.MenuBook
 import androidx.compose.material.icons.filled.AutoAwesome
 import androidx.compose.material.icons.filled.BarChart
-import androidx.compose.material.icons.filled.MenuBook
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material.icons.filled.Today
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.kotoba.app.audio.NativeAudioPlayer
@@ -21,11 +22,12 @@ import com.kotoba.app.fsrs.FsrsEngine
 import com.kotoba.app.updater.GitHubRelease
 import com.kotoba.app.updater.GitHubUpdater
 import com.kotoba.app.updater.UpdateState
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 sealed class NavigationTab(val route: String, val label: String, val icon: ImageVector) {
     data object Today : NavigationTab("today", "วันนี้", Icons.Default.Today)
-    data object Words : NavigationTab("words", "คำศัพท์", Icons.Default.MenuBook)
+    data object Words : NavigationTab("words", "คำศัพท์", Icons.AutoMirrored.Filled.MenuBook)
     data object Grammar : NavigationTab("grammar", "ไวยากรณ์", Icons.Default.AutoAwesome)
     data object Stats : NavigationTab("stats", "สถิติ", Icons.Default.BarChart)
     data object Settings : NavigationTab("settings", "ตั้งค่า", Icons.Default.Settings)
@@ -37,12 +39,20 @@ fun MainScreen(
     audioPlayer: NativeAudioPlayer,
     updater: GitHubUpdater
 ) {
+    val context = LocalContext.current
     val coroutineScope = rememberCoroutineScope()
     val fsrsEngine = remember { FsrsEngine() }
 
     // Database states
     val wordsList by database.wordDao().getAllWords().collectAsState(initial = emptyList())
     val grammarList by database.grammarDao().getAllGrammar().collectAsState(initial = emptyList())
+
+    // Ensure database seeds on launch if empty
+    LaunchedEffect(wordsList.size) {
+        if (wordsList.isEmpty()) {
+            database.checkAndSeedData(context, coroutineScope)
+        }
+    }
 
     // Active Tab & Sub-screens
     var currentTab by remember { mutableStateOf<NavigationTab>(NavigationTab.Today) }
@@ -59,7 +69,7 @@ fun MainScreen(
         wordsList.filter { it.state != "new" && it.nextReview <= now && !it.isSuspended }
     }
     val newWords = remember(wordsList) {
-        wordsList.filter { it.state == "new" && !it.isSuspended }.take(10)
+        wordsList.filter { it.state == "new" && !it.isSuspended }.take(15)
     }
 
     // Handle back button / sub-screen navigation
@@ -162,10 +172,15 @@ fun MainScreen(
                 )
 
                 NavigationTab.Settings -> SettingsScreen(
-                    currentVersion = "v1.0.0",
+                    currentVersion = "v1.0.1",
                     onCheckUpdate = {
                         showUpdateDialog = true
                         updater.checkForUpdate()
+                    },
+                    onReloadContent = {
+                        coroutineScope.launch(Dispatchers.IO) {
+                            KotobaDatabase.populateInitialData(context, database)
+                        }
                     }
                 )
             }
