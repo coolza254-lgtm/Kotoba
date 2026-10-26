@@ -12,8 +12,8 @@ android {
         applicationId = "com.kotoba.app"
         minSdk = 26
         targetSdk = 34
-        versionCode = 3
-        versionName = "1.1.0"
+        versionCode = 4
+        versionName = "1.2.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
@@ -26,6 +26,18 @@ android {
         }
     }
 
+    // Fixed release signing key so every build (local + GitHub Actions) has the SAME signature.
+    // Without this, Android rejects in-app updates ("App not installed") because CI generates
+    // a new random debug key on every run.
+    signingConfigs {
+        create("release") {
+            storeFile = file("kotoba-release.jks")
+            storePassword = "kotoba2026"
+            keyAlias = "kotoba"
+            keyPassword = "kotoba2026"
+        }
+    }
+
     buildTypes {
         release {
             isMinifyEnabled = true
@@ -34,7 +46,7 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
-            signingConfig = signingConfigs.getByName("debug") // Defaults to debug signature if release keystore not yet provided
+            signingConfig = signingConfigs.getByName("release")
         }
         debug {
             applicationIdSuffix = ".debug"

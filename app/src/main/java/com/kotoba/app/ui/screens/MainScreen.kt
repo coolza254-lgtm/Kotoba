@@ -91,10 +91,6 @@ fun MainScreen(
     // Exit App Confirmation Dialog state
     var showExitAppDialog by remember { mutableStateOf(false) }
 
-    // In-App Updater state
-    val updateState by updater.updateState.collectAsState()
-    var showUpdateDialog by remember { mutableStateOf(false) }
-
     val dueWords = remember(wordsList) {
         val now = System.currentTimeMillis()
         wordsList.filter { it.state != "new" && it.nextReview <= now && !it.isSuspended }
@@ -371,7 +367,7 @@ fun MainScreen(
                     )
 
                     NavigationTab.Settings -> SettingsScreen(
-                        currentVersion = "v1.1.0",
+                        updater = updater,
                         themeMode = themeMode,
                         dailyNewLimit = dailyNewLimit,
                         desiredRetention = desiredRetention,
@@ -386,10 +382,6 @@ fun MainScreen(
                         onTestAudio = {
                             audioPlayer.speak("こんにちは。ことばのアプリへようこそ。")
                         },
-                        onCheckUpdate = {
-                            showUpdateDialog = true
-                            updater.checkForUpdate()
-                        },
                         onReloadContent = {
                             coroutineScope.launch(Dispatchers.IO) {
                                 KotobaDatabase.populateInitialData(context, database)
@@ -397,23 +389,6 @@ fun MainScreen(
                         }
                     )
                 }
-            }
-
-            // Updater Dialog
-            if (showUpdateDialog && updateState !is UpdateState.Idle) {
-                InAppUpdaterDialog(
-                    updateState = updateState,
-                    onDismiss = {
-                        showUpdateDialog = false
-                        updater.resetState()
-                    },
-                    onConfirmDownload = { release: GitHubRelease ->
-                        val apkUrl = release.getApkDownloadUrl()
-                        if (apkUrl != null) {
-                            updater.downloadAndInstallApk(apkUrl, "Kotoba-${release.tagName}.apk")
-                        }
-                    }
-                )
             }
         }
     }

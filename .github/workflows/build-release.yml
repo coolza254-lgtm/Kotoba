@@ -7,11 +7,6 @@ on:
     tags:
       - 'v*'
   workflow_dispatch:
-    inputs:
-      release_version:
-        description: 'Release version tag (e.g. v1.0.0)'
-        required: false
-        default: 'v1.0.0'
 
 permissions:
   contents: write
@@ -35,25 +30,20 @@ jobs:
       - name: Grant Execute Permission for Gradlew
         run: chmod +x gradlew
 
-      - name: Build Release APK
+      - name: Build Release APK (signed with fixed Kotoba key)
         run: ./gradlew assembleRelease --stacktrace
 
       - name: Prepare APK Output
         id: prepare_apk
         run: |
           VERSION="${{ github.ref_name }}"
-          if [ -z "$VERSION" ] || [[ "$VERSION" == *"main"* ]]; then
-            VERSION="${{ github.event.inputs.release_version }}"
+          if [[ "${{ github.ref_type }}" != "tag" ]]; then
+            VERSION="dev-${GITHUB_SHA::7}"
           fi
-          if [ -z "$VERSION" ]; then
-            VERSION="v1.0.0"
-          fi
-          
           mkdir -p dist
           APK_PATH=$(find app/build/outputs/apk/release -name "*.apk" | head -n 1)
           TARGET_APK="dist/Kotoba-${VERSION}-arm64.apk"
           cp "$APK_PATH" "$TARGET_APK"
-          
           echo "apk_path=$TARGET_APK" >> $GITHUB_OUTPUT
           echo "version=$VERSION" >> $GITHUB_OUTPUT
 
@@ -63,25 +53,15 @@ jobs:
           name: Kotoba-APK
           path: ${{ steps.prepare_apk.outputs.apk_path }}
 
+      # Only version tags (v1.2.0, v1.3.0 ...) become public releases that the in-app updater sees.
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
-        if: startsWith(github.ref, 'refs/tags/v') || github.event_name == 'workflow_dispatch' || github.ref == 'refs/heads/main'
+        if: github.ref_type == 'tag'
         with:
           tag_name: ${{ steps.prepare_apk.outputs.version }}
           name: Kotoba ${{ steps.prepare_apk.outputs.version }}
-          body: |
-            ### Kotoba (ことば) - Release ${{ steps.prepare_apk.outputs.version }}
-            
-            #### มีอะไรใหม่ในรุ่นนี้:
-            - รวมคลังคำศัพท์ JLPT N5 และ JLPT N4 พร้อมเครื่องหมายบอกระดับเสียง Pitch Accent (โตเกียว)
-            - ระบบ Furigana แบบ Baseline-Aligned หมดปัญหาตัวคานะลอยทับตัวคันจิ
-            - โหมดเรียนไวยากรณ์ (Grammar Mode) ครอบคลุมพื้นฐานผันรูปกริยา, N5, N4 พร้อมโครงสร้างและแบบฝึกหัด
-            - อัลกอริทึมทบทวนความจำระยะยาว FSRS-5 (Free Spaced Repetition Scheduler)
-            - รองรับระบบ In-App Updater อัปเดต APK อัตโนมัติจากในตัวแอป
-            
-            #### การติดตั้งบน Samsung Galaxy A54 5G:
-            1. ดาวน์โหลดไฟล์ `Kotoba-${{ steps.prepare_apk.outputs.version }}-arm64.apk`
-            2. แตะเปิดไฟล์เพื่อติดตั้ง (อนุญาต Install Unknown Apps หากระบบร้องขอ)
+          body_path: RELEASE_NOTES.md
           files: ${{ steps.prepare_apk.outputs.apk_path }}
           draft: false
           prerelease: false
+          make_latest: true
